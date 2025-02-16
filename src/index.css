@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans:ital@0;1&family=Space+Grotesk:wght@300..700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background-light: #ffffff;
+  --text-light: #1a1a1a;
+  --background-dark: #190b1f;
+  --text-dark: #f3f4f6;
+  --accent-color: #9333ea;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.light-mode {
+  background-color: var(--background-light);
+  color: #333333;
+}
+
+body.light-mode .bg-primary-color {
+  background-color: #7c3aed;
+}
+
+body.light-mode .hover\:text-purple-600:hover {
+  color: #7c3aed;
+}
+
+body.light-mode .text-gray-200 {
+  color: #4b5563;
+}
+
+body.light-mode .bg-gray-900 {
+  background-color: #f3f4f6;
+}
+
+/* Portfolio section light mode styles */
+body.light-mode .portfolio {
+  color: #1a1a1a;
+}
+
+body.light-mode .portfolio h2 {
+  color: #1a1a1a;
+}
+
+body.light-mode .portfolio button {
+  color: #1a1a1a;
+}
+
+
+/* Experience section light mode styles */
+body.light-mode .experience {
+  color: #1a1a1a;
+}
+
+body.light-mode .experience h2 {
+  color: #1a1a1a;
+}
+
+/* About Me (Skills) section light mode styles */
+body.light-mode .skills {
+  color: #1a1a1a;
+}
+
+body.light-mode .skills h2 {
+  color: #1a1a1a;
+}
+
+
+
+body.light-mode span {
+  color: #7c3aed;
+}
+
+body.light-mode .shiny-effect {
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.2), transparent 70%);
+}
+
+
+h2 {
+  @apply text-xl md:text-4xl
+}
+
+p {
+  @apply text-xl tracking-tight leading-relaxed
+}
+
+span {
+  color: var(--accent-color);
+}
+
+.shiny-effect {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(178, 19, 202, 0.2), transparent 70%);
+  transition: background 0.3s ease;
+}
+
+.bg-primary-color {
+  background-color: var(--accent-color);
+}
+
+.theme-toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.theme-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.theme-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.theme-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .theme-slider {
+  background-color: var(--accent-color);
+}
+
+input:checked + .theme-slider:before {
+  transform: translateX(26px);
+}
