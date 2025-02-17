@@ -31,8 +31,9 @@ export default function App() {
       <Skills/>
       <Portfolio/>
       <Experience/>
-      <Contact/>
+      <Contact isDarkMode={isDarkMode}/>
       <Footer isDarkMode={isDarkMode}/>
+
     </>
   )
 }

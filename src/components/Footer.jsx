@@ -20,7 +20,7 @@ const Footer = ({ isDarkMode }) => {
                 <a href="https://www.instagram.com/agung_saputra____"><FaInstagram /></a>
             </div>
         </div>
-        <p className='text-gray-400'>Copyright &copy; 2025 agungs.</p>
+        <p className='text-gray-400'>Copyright &copy; 2025. agungs.</p>
     </div>
   )
 }
