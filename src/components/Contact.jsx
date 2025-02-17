@@ -12,12 +12,12 @@ const Contact = ({ isDarkMode }) => {
           {/* Left Column - Contact Info */}
           <div className={`space-y-8 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
             <motion.h3 
-              className={`text-6xl font-extrabold mb-12 tracking-wider ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
+              className={`text-5xl font-black mb-12 tracking-wider ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
               initial={{ x: '-100%', opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              Get <span className="text-purple-500">in Touch</span>
+              Get <span>in Touch</span>
             </motion.h3>
 
             <div className={`flex items-center gap-6 p-6 rounded-xl transition-all ${
