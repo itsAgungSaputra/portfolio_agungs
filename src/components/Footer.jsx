@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaGithubSquare, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import { FaBehanceSquare, FaGithubSquare, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import logoLight from '../assets/logo(lightmode).png'
 import logoDark from '../assets/logo(darkmode).png'
 
@@ -15,10 +15,12 @@ const Footer = ({ isDarkMode }) => {
             />
             {/* <h3 className='text-2xl text-gray-200 font-semibold'>Agung Saputra</h3> */}
             <div className='flex flex-row gap-6 text-gray-400 text-4xl'>
-                <a href="https://github.com/itsAgungSaputra"><FaGithubSquare /></a>
-                <a href="https://www.linkedin.com/in/agungsaputra14/"><FaLinkedin /></a>
-                <a href="https://www.instagram.com/agung_saputra____"><FaInstagram /></a>
+                <a href="https://github.com/itsAgungSaputra" className="hover:text-[#4078c0] transition-all duration-300 hover:scale-110"><FaGithubSquare /></a>
+                <a href="https://www.linkedin.com/in/agungsaputra14/" className="hover:text-[#0a66c2] transition-all duration-300 hover:scale-110"><FaLinkedin /></a>
+                <a href="https://www.instagram.com/agung_saputra____" className="hover:text-[#e1306c] transition-all duration-300 hover:scale-110"><FaInstagram /></a>
+                <a href="https://www.behance.net/itsagungsaputra" className="hover:text-[#1769ff] transition-all duration-300 hover:scale-110"><FaBehanceSquare /></a>
             </div>
+
         </div>
         <p className='text-gray-400'>Copyright &copy; 2025. agungs.</p>
     </div>

@@ -6,6 +6,7 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Portfolio from "./components/Portfolio";
 import Skills from "./components/Skills";
+import Education from "./components/Education";
 
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -29,11 +30,11 @@ export default function App() {
       <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme}/>
       <Hero isDarkMode={isDarkMode}/>
       <Skills/>
-      <Portfolio/>
+      <Education isDarkMode={isDarkMode}/>
+      <Portfolio isDarkMode={isDarkMode} />
       <Experience/>
       <Contact isDarkMode={isDarkMode}/>
       <Footer isDarkMode={isDarkMode}/>
-
     </>
   )
 }

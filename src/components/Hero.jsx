@@ -3,6 +3,7 @@ import profilepic from "../assets/profpicv2.png";
 import { TypeAnimation } from "react-type-animation";
 import ShinyEffect from "./ShinyEffect";
 import {
+    AiOutlineBehance,
   AiOutlineGithub,
   AiOutlineInstagram,
   AiOutlineLinkedin,
@@ -76,7 +77,7 @@ const Hero = ({ isDarkMode }) => {
                                      border-purple-400 rounded-xl"
                         onClick={() => {
                             const link = document.createElement('a');
-                            link.href = '/myCV.pdf';
+                            link.href = '/Agung_Saputra_CV.pdf';
                             link.download = 'Agung_Saputra_CV.pdf';
                             document.body.appendChild(link);
                             link.click();
@@ -88,7 +89,7 @@ const Hero = ({ isDarkMode }) => {
 
 
                     <div className="flex gap-6 flex-row text-4xl md:text-6xl text-purple-400 z-20">
-                          <motion.a whileHover={{ scale: 1.2 }} href="https://github.com/itsAgungSaputra">
+                        <motion.a whileHover={{ scale: 1.2 }} href="https://github.com/itsAgungSaputra">
                             <AiOutlineGithub/>
                         </motion.a>
 
@@ -98,6 +99,9 @@ const Hero = ({ isDarkMode }) => {
 
                         <motion.a whileHover={{ scale: 1.2 }} href="https://www.instagram.com/agung_saputra____">
                             <AiOutlineInstagram/>
+                        </motion.a>
+                        <motion.a whileHover={{ scale: 1.2 }} href="https://www.behance.net/itsagungsaputra">
+                            <AiOutlineBehance/>
                         </motion.a>
                     </div>
                 </motion.div>
@@ -130,7 +134,7 @@ const Hero = ({ isDarkMode }) => {
         </motion.div>
 
         <div className="absolute inset-0 hidden md:block">
-            <ShinyEffect left={0} top={0} size={1400} />
+            <ShinyEffect left={0} top={0} size={1200} />
         </div>
     </div>
   )

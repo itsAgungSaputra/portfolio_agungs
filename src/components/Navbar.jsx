@@ -42,9 +42,25 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
               <a href="#">agungs</a>
             </div>
             <ul className='hidden md:flex gap-12 z-10 cursor-pointer'>
-                <li className='hover:text-purple-600 transition duration-300'><Link to="skills" smooth={true} offset={50} duration={500}>About</Link></li>
-                <li className='hover:text-purple-600 transition duration-300'><Link to="portfolio" smooth={true} offset={50} duration={500}>Portfolio</Link></li>
-                <li className='hover:text-purple-600 transition duration-300'><Link to="contact" smooth={true} offset={50} duration={500}>Contact</Link></li>
+                <li className='relative group'>
+                  <Link to="skills" smooth={true} offset={50} duration={500} className='hover:text-purple-600 transition duration-300'>
+                    About
+                    <span className='absolute left-0 bottom-0 h-[2px] w-0 bg-purple-600 transition-all duration-300 group-hover:w-full'></span>
+                  </Link>
+                </li>
+                <li className='relative group'>
+                  <Link to="portfolio" smooth={true} offset={50} duration={500} className='hover:text-purple-600 transition duration-300'>
+                    Portfolio
+                    <span className='absolute left-0 bottom-0 h-[2px] w-0 bg-purple-600 transition-all duration-300 group-hover:w-full'></span>
+                  </Link>
+                </li>
+                <li className='relative group'>
+                  <Link to="contact" smooth={true} offset={50} duration={500} className='hover:text-purple-600 transition duration-300'>
+                    Contact
+                    <span className='absolute left-0 bottom-0 h-[2px] w-0 bg-purple-600 transition-all duration-300 group-hover:w-full'></span>
+                  </Link>
+                </li>
+
 
                 <li className='flex items-center'>
                 <label className='theme-toggle'>
@@ -77,10 +93,41 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
             className='fixed left-0 top-0 w-full min-h-screen bg-gray-900 z-40'
             >
                 <ul className='font-semibold text-4xl space-y-8 mt-24 text-center'>
-                    <li className='hover:text-purple-600 transition duration-300'><Link to="skills" onClick={closeNav} smooth={true} offset={50} duration={500}>About</Link></li>
-                    <li className='hover:text-purple-600 transition duration-300'><Link to="portfolio" onClick={closeNav} smooth={true} offset={50} duration={500}>Portfolio</Link></li>
-                    <li className='hover:text-purple-600 transition duration-300'><Link to="contact" onClick={closeNav} smooth={true} offset={50} duration={500}>Contact</Link></li>
+                    <li className='py-4'>
+                      <Link to="skills" onClick={closeNav} smooth={true} offset={50} duration={500} className='block hover:text-purple-600 transition duration-300'>
+                        About
+                      </Link>
+                    </li>
+                    <li className='py-4'>
+                      <Link to="portfolio" onClick={closeNav} smooth={true} offset={50} duration={500} className='block hover:text-purple-600 transition duration-300'>
+                        Portfolio
+                      </Link>
+                    </li>
+                    <li className='py-4'>
+                      <Link to="contact" onClick={closeNav} smooth={true} offset={50} duration={500} className='block hover:text-purple-600 transition duration-300'>
+                        Contact
+                      </Link>
+                    </li>
+                    <li className='py-4 flex justify-center'>
+                      <label className='theme-toggle'>
+                        <input 
+                          type="checkbox" 
+                          checked={isDarkMode}
+                          onChange={toggleTheme}
+                          className="hidden"
+                        />
+                        <div className="theme-slider">
+                          {isDarkMode ? (
+                            <AiOutlineMoon className="absolute left-1 top-1/2 transform -translate-y-1/2" size={20} />
+                          ) : (
+                            <AiOutlineSun className="absolute right-1 top-1/2 transform -translate-y-1/2" size={20} />
+                          )}
+                        </div>
+                      </label>
+                    </li>
+
                 </ul>
+
             </motion.div>
         </div>
     </div>
