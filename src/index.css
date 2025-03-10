@@ -3,6 +3,49 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes jump {
+    0% { 
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    }
+    50% { 
+        transform: translateY(-12px);
+        animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    }
+    100% { 
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+}
+
+
+.social-icon {
+    position: relative;
+    display: inline-block;
+}
+
+.social-icon::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.social-icon:hover {
+    animation: jump 0.4s ease-in-out;
+}
+
+
+.social-icon:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+
 :root {
   --background-light: #ffffff;
   --text-light: #1a1a1a;

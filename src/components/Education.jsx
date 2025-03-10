@@ -1,87 +1,140 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FaGraduationCap, FaSchool, FaUniversity } from 'react-icons/fa';
 import Reveal from './Reveal';
-import { FaGraduationCap, FaLaptopCode, FaSchool } from 'react-icons/fa';
-
-const educations = [
-  {
-    institution: 'Univeristas Negeri Gorontalo',
-    period: '2021 - Present',
-    degree: 'Information System',
-    description: 'Specialized in web development and software engineering.',
-    icon: <FaGraduationCap className="w-8 h-8" />,
-    color: 'from-purple-600 to-indigo-600'
-  },
-  {
-    institution: 'Univeritas Brawijaya',
-    period: 'Aug 2023 - Dec 2023',
-    degree: 'Information System',
-    description: 'Student Exchange MBKM Program Batch 3',
-    icon: <FaGraduationCap className="w-8 h-8" />,
-    color: 'from-purple-600 to-indigo-600'
-  },
-];
-
 
 const Education = ({ isDarkMode }) => {
+  const educations = [
+    {
+      institution: "SMKN 1 Gorontalo",
+      period: "2017 - 2020",
+      degree: "Software Engineering",
+      description: "Belajar dasar-dasar pemrograman dan pengembangan perangkat lunak. Aktif dalam berbagai proyek sekolah dan kompetisi IT.",
+      icon: <FaSchool className="w-8 h-8 text-white" />,
+      color: "from-blue-500 to-cyan-500"
+    },
+    {
+      institution: "Universitas Negeri Gorontalo",
+      period: "2020 - 2024",
+      degree: "Bachelor of Computer Science",
+      description: "Fokus pada pengembangan web dan mobile. Terlibat dalam berbagai proyek penelitian dan pengembangan aplikasi.",
+      icon: <FaUniversity className="w-8 h-8 text-white" />,
+      color: "from-purple-500 to-pink-500"
+    }
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100
+      }
+    }
+  };
+
   return (
-    <section className={`py-12`}>
-      <div className="max-w-4xl mx-auto px-4">
-
+    <section className={`py-20`}>
+      <div className="container mx-auto px-4 max-w-6xl">
         <Reveal>
-          <h1 className={`text-3xl font-bold text-center mb-12 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-
-            My Education Journey
-          </h1>
+          <h2 className="text-4xl font-bold text-center mb-16">
+            <span className={isDarkMode ? 'text-gray-200' : 'text-gray-800'}>Educational </span>
+            <span className="text-purple-500">Journey</span>
+          </h2>
         </Reveal>
-        
-        <div className="relative">
+
+        <motion.div 
+          className="relative"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {/* Timeline line */}
-          <div className={`absolute left-1/2 w-1 h-full ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'}`}></div>
+          {/* <div className="absolute left-[50%] w-1 h-full transform -translate-x-1/2">
+            <div className={`w-full h-full ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'}`}>
+              <div className="h-full w-full bg-gradient-to-b from-purple-500 to-pink-500 opacity-50"></div>
+            </div>
+          </div> */}
           
           {educations.map((education, index) => (
-            <Reveal key={index}>
-              <motion.div
-                className={`flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} items-center mb-16`}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-              >
-                {/* Icon with gradient background */}
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r ${education.color} shadow-lg z-10`}>
-
-                  {education.icon}
-                </div>
-                
-                {/* Content Card */}
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className={`flex-1 mx-6 p-6 rounded-xl shadow-lg transform transition-all duration-300 ${
-
-                    isDarkMode ? 'bg-gray-800' : 'bg-white'
-                  }`}
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className={`relative flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} items-center mb-16`}
+            >
+              {/* Timeline dot */}
+              {/* <div className="absolute left-[50%] transform -translate-x-1/2 z-10">
+                <motion.div 
+                  className={`w-6 h-6 rounded-full bg-gradient-to-r ${education.color}`}
+                  whileHover={{ scale: 1.2 }}
+                  initial={{ rotate: 0 }}
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                 >
-                  <h2 className={`text-2xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                    {education.institution}
-                  </h2>
-                  <p className={`text-sm mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    {education.period}
-                  </p>
-                  <h3 className={`text-xl font-semibold mb-4 ${isDarkMode ? 'text-purple-400' : 'text-purple-600'}`}>
-                    {education.degree}
-                  </h3>
-                  <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                    {education.description}
-                  </p>
+                  <div className="w-4 h-4 rounded-full bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
                 </motion.div>
+              </div> */}
+
+              {/* Content Card */}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className={`flex-1 mx-12 p-6 rounded-xl shadow-lg transform transition-all duration-300 ${
+                  isDarkMode 
+                    ? 'bg-gray-800/90 hover:bg-gray-700/90' 
+                    : 'bg-white hover:bg-gray-50'
+                }`}
+              >
+                <div className="flex items-start gap-4">
+                  <div className={`p-3 rounded-xl bg-gradient-to-r ${education.color} shadow-lg`}>
+                    {education.icon}
+                  </div>
+                  
+                  <div className="flex-1">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                      <h3 className={`text-xl font-bold ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                        {education.institution}
+                      </h3>
+                      <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                        isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'
+                      }`}>
+                        {education.period}
+                      </span>
+                    </div>
+                    
+                    <h4 className={`text-lg font-semibold mt-2 ${
+                      isDarkMode ? 'text-purple-400' : 'text-purple-600'
+                    }`}>
+                      {education.degree}
+                    </h4>
+                    
+                    <p className={`mt-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      {education.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Decorative Elements */}
+                <div className={`absolute -bottom-2 -right-2 w-24 h-24 rounded-full bg-gradient-to-br ${education.color} opacity-5`} />
+                <div className={`absolute -top-2 -left-2 w-20 h-20 rounded-full bg-gradient-to-br ${education.color} opacity-5`} />
               </motion.div>
-            </Reveal>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
-
   );
 };
 

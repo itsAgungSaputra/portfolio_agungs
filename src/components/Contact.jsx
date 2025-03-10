@@ -1,84 +1,169 @@
-import React from "react"
-import { AiFillPhone, AiOutlineMail, AiFillEnvironment } from "react-icons/ai"
-import Reveal from "./Reveal"
-import { motion } from "framer-motion"
+import React, { useState } from "react";
+//import { send } from "@emailjs/browser"; // Updated import for EmailJS
+
+import { motion } from "framer-motion";
+import { AiOutlineMail, AiOutlinePhone, AiOutlineEnvironment, AiOutlineGithub, AiOutlineLinkedin, AiOutlineInstagram } from "react-icons/ai";
 
 const Contact = ({ isDarkMode }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", formData, "YOUR_USER_ID") // EmailJS functionality disabled
+    console.log("Form submitted:", formData); // Log form data instead
+
+    console.log("Form submitted:", formData); // Log form data instead
+
+
+
+      // EmailJS functionality disabled
+
+
+  };
+
   return (
-    <div className="px-4 sm:px-6 max-w-[1200px] mx-auto py-10 sm:py-20" id="contact">
-      <Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 md:gap-12">
+    <div
+      className={`px-4 sm:px-6 max-w-[1200px] mx-auto py-10 sm:py-20`}
+      id="contact"
+    >
+      <motion.h3
+        className="text-3xl sm:text-4xl md:text-5xl font-black mb-8 sm:mb-12 tracking-wider text-center"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ 
+          duration: 0.8,
+          type: "spring",
+          bounce: 0.4
+        }}
+      >
+        <span className={isDarkMode ? "text-gray-200" : "text-gray-800"}>
+          Get{" "}
+        </span>
+        <span className="text-purple-500">In Touch</span>
+      </motion.h3>
 
-          {/* Left Column - Contact Info */}
-          <div className={`space-y-8 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            <motion.h3 
-              className="text-3xl sm:text-4xl md:text-5xl font-black mb-8 sm:mb-12 tracking-wider"
-              initial={{ x: '-100%', opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              Get <span>in Touch</span>
-            </motion.h3>
-
-            <div className={`flex items-center gap-4 sm:gap-6 p-4 sm:p-6 rounded-xl transition-all ${
-              isDarkMode ? 'bg-gray-800/20 hover:bg-gray-800/40' : 'bg-gray-100 hover:bg-gray-200'
-            }`}>
-              <div className={`p-2 sm:p-3 rounded-lg ${isDarkMode ? 'bg-primary-color/10' : 'bg-primary-color/20'}`}>
-                <AiFillPhone className="text-2xl sm:text-3xl text-primary-color" />
-              </div>
-              <div>
-                <p className="text-lg font-medium">Phone</p>
-                <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>+62 852 9883 4626</p>
-              </div>
+      <div
+        className={`max-w-2xl mx-auto ${
+          isDarkMode ? "text-gray-200" : "text-gray-800"
+        }`}
+      >
+        <motion.div
+          className="grid md:grid-cols-2 gap-8"
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ 
+            duration: 0.8,
+            delay: 0.3,
+            type: "spring",
+            stiffness: 100
+          }}
+        >
+          {/* Kontak Langsung */}
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className={`p-6 rounded-xl ${
+              isDarkMode ? "bg-gray-800/50" : "bg-white/90"
+            } backdrop-blur-lg shadow-lg`}
+          >
+            <h4 className="text-2xl font-bold mb-4">Kontak Langsung</h4>
+            <div className="space-y-4">
+              <motion.div 
+                className="flex items-start space-x-3"
+                initial={{ x: -50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.8 }}
+              >
+                <AiOutlineMail className="text-2xl text-purple-500 flex-shrink-0 mt-1" />
+                <a
+                  href="mailto:agungsaputraofficial@gmail.com"
+                  className="hover:text-purple-500 transition-colors break-all"
+                >
+                  agungsaputraofficial@gmail.com
+                </a>
+              </motion.div>
+              <motion.div 
+                className="flex items-center space-x-3"
+                initial={{ x: -50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.9 }}
+              >
+                <AiOutlineEnvironment className="text-2xl text-purple-500" />
+                <span>Gorontalo, Indonesia</span>
+              </motion.div>
             </div>
+          </motion.div>
 
-            <div className={`flex items-center gap-4 sm:gap-6 p-4 sm:p-6 rounded-xl transition-all ${
-              isDarkMode ? 'bg-gray-800/20 hover:bg-gray-800/40' : 'bg-gray-100 hover:bg-gray-200'
-            }`}>
-              <div className={`p-2 sm:p-3 rounded-lg ${isDarkMode ? 'bg-primary-color/10' : 'bg-primary-color/20'}`}>
-                <AiOutlineMail className="text-2xl sm:text-3xl text-primary-color" />
-              </div>
-              <div>
-                <p className="text-lg font-medium">Email</p>
-                <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>agungsaputraofficial@gmail.com</p>
-              </div>
+          {/* Social Media */}
+          <motion.div
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className={`p-6 rounded-xl ${
+              isDarkMode ? "bg-gray-800/50" : "bg-white/90"
+            } backdrop-blur-lg shadow-lg`}
+          >
+            <h4 className="text-2xl font-bold mb-4">Social Media</h4>
+            <div className="space-y-4">
+              <motion.a
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.8 }}
+                href="https://github.com/itsAgungSaputra"
+                className="flex items-center space-x-3 hover:text-purple-500 transition-colors"
+                whileHover={{ x: 10 }}
+              >
+                <AiOutlineGithub className="text-2xl" />
+                <span>GitHub</span>
+              </motion.a>
+              <motion.a
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.9 }}
+                href="https://www.linkedin.com/in/agungsaputra14/"
+                className="flex items-center space-x-3 hover:text-purple-500 transition-colors"
+                whileHover={{ x: 10 }}
+              >
+                <AiOutlineLinkedin className="text-2xl" />
+                <span>LinkedIn</span>
+              </motion.a>
+              <motion.a
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.4, delay: 1 }}
+                href="https://www.instagram.com/agung_saputra____"
+                className="flex items-center space-x-3 hover:text-purple-500 transition-colors"
+                whileHover={{ x: 10 }}
+              >
+                <AiOutlineInstagram className="text-2xl" />
+                <span>Instagram</span>
+              </motion.a>
             </div>
+          </motion.div>
+        </motion.div>
 
-            <div className={`flex items-center gap-4 sm:gap-6 p-4 sm:p-6 rounded-xl transition-all ${
-              isDarkMode ? 'bg-gray-800/20 hover:bg-gray-800/40' : 'bg-gray-100 hover:bg-gray-200'
-            }`}>
-              <div className={`p-2 sm:p-3 rounded-lg ${isDarkMode ? 'bg-primary-color/10' : 'bg-primary-color/20'}`}>
-                <AiFillEnvironment className="text-2xl sm:text-3xl text-primary-color" />
-              </div>
-              <div>
-                <p className="text-lg font-medium">Address</p>
-                <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
-                  Perum Asabri Blok C No. 23,<br />
-                  Desa Ulapato A, Kec. Telaga Biru,<br />
-                  Kab. Gorontalo
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column - Google Maps */}
-          <div className={`h-[300px] sm:h-[400px] md:h-[500px] w-full rounded-xl md:rounded-2xl overflow-hidden shadow-md md:shadow-xl ${
-            isDarkMode ? 'border border-gray-700/50' : 'border border-gray-300'
-          }`}>
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27054.38932265909!2d123.00576625014378!3d0.6164908737171245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32792d9893c78119%3A0xe1f13a4b141ce39b!2sUlapato%20A%2C%20Kec.%20Telaga%20Biru%2C  20Kabupaten%20Gorontalo%2C%20Gorontalo!5e1!3m2!1sid!2sid!4v1739775004196!5m2!1sid!2sid" 
-              width="100%"
-              height="100%"
-              style={{border:0}}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-        </div>
-      </Reveal>
+        <motion.p
+          className="text-center mt-12 text-lg"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1.2 }}
+        >
+          Mari berkolaborasi untuk menciptakan sesuatu yang luar biasa! 🚀
+        </motion.p>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Contact
+export default Contact;

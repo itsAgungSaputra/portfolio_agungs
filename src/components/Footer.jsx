@@ -1,30 +1,41 @@
-import React from 'react'
-import { FaBehanceSquare, FaGithubSquare, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { AiOutlineGithub, AiOutlineLinkedin, AiOutlineInstagram, AiOutlineBehance, AiOutlineMail, AiOutlineHeart } from 'react-icons/ai';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 import logoLight from '../assets/logo(lightmode).png'
 import logoDark from '../assets/logo(darkmode).png'
 
 const Footer = ({ isDarkMode }) => {
+  const currentYear = new Date().getFullYear();
 
   return (
-    <div className='max-w-[1300px] mx-auto flex justify-between p-6 md:p-20 text-sm md:text-lg mt-12'>
-        <div className='space-y-4'>
-            <img 
-              src={isDarkMode ? logoDark : logoLight} 
-              alt="Agung Saputra Logo" 
-              className="h-20 w-auto drop-shadow-[0_4px_6px_rgba(0,0,0,0.3)]"
-            />
-            {/* <h3 className='text-2xl text-gray-200 font-semibold'>Agung Saputra</h3> */}
-            <div className='flex flex-row gap-6 text-gray-400 text-4xl'>
-                <a href="https://github.com/itsAgungSaputra" className="hover:text-[#4078c0] transition-all duration-300 hover:scale-110"><FaGithubSquare /></a>
-                <a href="https://www.linkedin.com/in/agungsaputra14/" className="hover:text-[#0a66c2] transition-all duration-300 hover:scale-110"><FaLinkedin /></a>
-                <a href="https://www.instagram.com/agung_saputra____" className="hover:text-[#e1306c] transition-all duration-300 hover:scale-110"><FaInstagram /></a>
-                <a href="https://www.behance.net/itsagungsaputra" className="hover:text-[#1769ff] transition-all duration-300 hover:scale-110"><FaBehanceSquare /></a>
-            </div>
+    <footer className={`${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} pt-16 pb-8`}>
+      <div className="container mx-auto px-4">
+        
 
+        {/* Copyright */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="text-center"
+        >
+          <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+            © {currentYear} Agung Saputra. Made with 
+            <AiOutlineHeart className="inline-block mx-1 text-red-500" />
+            using React, Tailwind, & Framer Motion
+          </p>
+        </motion.div>
+
+        {/* Decorative Elements */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden">
+          <div className="relative h-10">
+            <div className={`absolute bottom-0 w-full h-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 ${isDarkMode ? 'opacity-30' : 'opacity-20'}`} />
+          </div>
         </div>
-        <p className='text-gray-400'>Copyright &copy; 2025. agungs.</p>
-    </div>
-  )
-}
+      </div>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;

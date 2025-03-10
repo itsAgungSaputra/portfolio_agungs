@@ -7,7 +7,9 @@ import {
   AiOutlineGithub,
   AiOutlineInstagram,
   AiOutlineLinkedin,
+  AiOutlineDownload,
 } from "react-icons/ai";
+
 import {
   DiCss3,
   DiHtml5,
@@ -21,60 +23,67 @@ import { SiNextdotjs } from "react-icons/si";
 const Hero = ({ isDarkMode }) => {
 
   return (
-    <div className="mt-24 max-w-[1200px] mx-auto relative">
+    <div className="max-w-[1200px] mx-auto relative">
         <div className="grid md:grid-cols-2 place-items-center gap-8">
             <motion.div
             initial={{ opacity: 0, y: -50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
+            className="relative z-10"
             >
                 <TypeAnimation
                     sequence={[
                         "Frontend Developer",
                         1000,
-                        // "UI/UX Designer",
-                        // 1000,
                         "Graphic Designer",
                         1000
                     ]}
                     speed={50}
                     repeat={Infinity}
-                    className="font-bold text-gray-400 text-xl md:text-5xl italic- mb-4"
+                    className={`font-bold text-xl md:text-2xl mb-4 ${
+                        isDarkMode ? 'text-purple-400' : 'text-purple-600'
+                    }`}
                 />
 
-                <motion.p
+                <motion.h1
                 initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="text-gray-200 md:text-7xl text-5xl tracking-tight mb-4"
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.8 }}
+                className={`text-5xl md:text-7xl font-bold tracking-tight mb-4 ${
+                    isDarkMode ? 'text-gray-200' : 'text-gray-800'
+                }`}
                 >
                     HEY, I AM <br/>
-                    <span className="text-purple-500">AGUNG SAPUTRA</span>
-                </motion.p>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+                        AGUNG SAPUTRA
+                    </span>
+                </motion.h1>
 
                 <motion.p
                 initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 1 }}
-                className="text-gray-300 max-w-[300px] md:max-w-[500px] md:text-2xl text-lg mb-6"
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 1.2 }}
+                className={`text-lg md:text-xl mb-8 max-w-[500px] ${
+                    isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                }`}
                 >
-                    I am a passionate frontend developer with over 5 years of experience.
+                    Seorang Frontend Developer yang berfokus pada pembuatan website yang modern, responsif, dan user-friendly.
                 </motion.p>
 
                 <motion.div
                 initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 1.5 }}
-                className="flex flex-row items-center gap-6 my-4 md:mb-0"
+                className="flex flex-col sm:flex-row items-center gap-4 md:gap-6"
                 >
                     <motion.button 
-                        whileHover={{ scale: 1.05, boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.3)" }}
-                        className="z-10 cursor-pointer font-bold text-gray-200 md:w-auto p-4 border
-                                     border-purple-400 rounded-xl"
+                        whileHover={{ 
+                            scale: 1.05,
+                            boxShadow: "0px 0px 20px rgba(147, 51, 234, 0.3)"
+                        }}
+                        className={`z-10 cursor-pointer font-bold px-8 py-4 rounded-xl flex items-center gap-2 ${
+                            isDarkMode ? 'bg-purple-500 hover:bg-purple-600 text-white' : 'bg-purple-600 hover:bg-purple-700 text-white'
+                        } transition-all duration-300`}
                         onClick={() => {
                             const link = document.createElement('a');
                             link.href = '/Agung_Saputra_CV.pdf';
@@ -84,53 +93,91 @@ const Hero = ({ isDarkMode }) => {
                             document.body.removeChild(link);
                         }}     
                     >
+                        <AiOutlineDownload className="text-xl" />
                         Download CV
                     </motion.button>
 
-
-                    <div className="flex gap-6 flex-row text-4xl md:text-6xl text-purple-400 z-20">
-                        <motion.a whileHover={{ scale: 1.2 }} href="https://github.com/itsAgungSaputra">
-                            <AiOutlineGithub/>
-                        </motion.a>
-
-                        <motion.a whileHover={{ scale: 1.2 }} href="https://www.linkedin.com/in/agungsaputra14/">
-                            <AiOutlineLinkedin/>
-                        </motion.a>
-
-                        <motion.a whileHover={{ scale: 1.2 }} href="https://www.instagram.com/agung_saputra____">
-                            <AiOutlineInstagram/>
-                        </motion.a>
-                        <motion.a whileHover={{ scale: 1.2 }} href="https://www.behance.net/itsagungsaputra">
-                            <AiOutlineBehance/>
-                        </motion.a>
+                    <div className="flex gap-4 text-3xl md:text-4xl">
+                        {[
+                            { icon: <AiOutlineGithub/>, link: "https://github.com/itsAgungSaputra", color: "hover:text-[#333]" },
+                            { icon: <AiOutlineLinkedin/>, link: "https://www.linkedin.com/in/agungsaputra14/", color: "hover:text-[#0A66C2]" },
+                            { icon: <AiOutlineInstagram/>, link: "https://www.instagram.com/agung_saputra____", color: "hover:text-[#E4405F]" },
+                            { icon: <AiOutlineBehance/>, link: "https://www.behance.net/itsagungsaputra", color: "hover:text-[#053EFF]" }
+                        ].map((social, index) => (
+                            <motion.a
+                            key={index}
+                            href={social.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'} ${social.color} transition-colors duration-300`}
+                            whileHover={{ scale: 1.2 }}
+                            whileTap={{ scale: 0.9 }}
+                            >
+                                {social.icon}
+                            </motion.a>
+                        ))}
                     </div>
                 </motion.div>
             </motion.div>
 
+            <div className="relative">
+                <div className="relative z-10">
+                    <img 
+                        src={profilepic}
+                        alt="Agung Saputra"
+                        className={`mt-24 w-[250px] md:w-[350px] rounded-2xl ${
+                            !isDarkMode ? 'drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]' : ''
+                        }`}
+                    />
+                </div>
 
-            <motion.img 
-                src={profilepic}
-                className={`w-[200px] md:w-[300px] ${!isDarkMode ? 'drop-shadow-[0_4px_6px_rgba(0,0,0,0.3)]' : ''}`}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1 }}
-            />
+                {/* Background Elements */}
+                <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] md:w-[450px] md:h-[450px] rounded-full ${
+                    isDarkMode ? 'bg-gradient-to-r from-purple-500/10 to-pink-500/10' : 'bg-gradient-to-r from-purple-500/20 to-pink-500/20'
+                } blur-3xl -z-10`}
+                />
+            </div>
         </div>
 
         <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 2 }}
-            className="flex flex-row text-7xl px-12 md:px-0 w-full justify-center items-center py-24"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 2 }}
+        className="mt-20 md:mt-32 text-center"
         >
-            <p className="text-gray-200 mr-6">My Tech Stack</p>
-            <DiHtml5 className="text-orange-600 mx-2" />
-            <DiCss3 className="text-blue-600 mx-2" />
-            <DiJavascript1 className="text-yellow-500 mx-2" />
-            <DiReact className="text-blue-500 mx-2" />
-            <SiNextdotjs className="text-black mx-2" />
+            <motion.p 
+            className={`text-2xl md:text-3xl font-semibold mb-8 ${
+                isDarkMode ? 'text-gray-200' : 'text-gray-800'
+            }`}
+            >
+                Tech Stack
+            </motion.p>
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+                {[
+                    { icon: <DiHtml5 className="text-[#E34F26]" />, name: "HTML5" },
+                    { icon: <DiCss3 className="text-[#1572B6]" />, name: "CSS3" },
+                    { icon: <DiJavascript1 className="text-[#F7DF1E]" />, name: "JavaScript" },
+                    { icon: <DiReact className="text-[#61DAFB]" />, name: "React" },
+                    { icon: <SiNextdotjs className={isDarkMode ? "text-white" : "text-black"} />, name: "Next.js" }
+                ].map((tech, index) => (
+                    <motion.div
+                    key={index}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 2 + (index * 0.1) }}
+                    className={`p-4 rounded-xl ${
+                        isDarkMode ? 'bg-gray-800/50 hover:bg-gray-700/50' : 'bg-white/50 hover:bg-gray-50/50'
+                    } backdrop-blur-sm border border-purple-500/20 shadow-lg`}
+                    >
+                        <motion.div
+                        whileHover={{ scale: 1.2 }}
+                        className="text-4xl md:text-5xl"
+                        >
+                            {tech.icon}
+                        </motion.div>
+                    </motion.div>
+                ))}
+            </div>
         </motion.div>
 
         <div className="absolute inset-0 hidden md:block">
