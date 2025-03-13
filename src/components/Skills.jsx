@@ -1,64 +1,58 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { DiHtml5, DiCss3, DiJavascript1, DiReact, DiGit } from 'react-icons/di';
-import { SiNextdotjs, SiTailwindcss, SiFigma, SiAdobephotoshop } from 'react-icons/si';
+import { SiLaravel, SiNextdotjs, SiTailwindcss } from 'react-icons/si';
 import Reveal from './Reveal';
 
 const Skills = ({ isDarkMode }) => {
   const skills = [
     {
-      name: 'HTML5',
+      name: "HTML5",
       icon: <DiHtml5 className="w-12 h-12" />,
-      color: 'text-orange-500',
+      color: "text-orange-500",
       level: 90,
     },
     {
-      name: 'CSS3',
+      name: "CSS3",
       icon: <DiCss3 className="w-12 h-12" />,
-      color: 'text-blue-500',
-      level: 85,
+      color: "text-blue-500",
+      level: 90,
     },
     {
-      name: 'JavaScript',
+      name: "JavaScript",
       icon: <DiJavascript1 className="w-12 h-12" />,
-      color: 'text-yellow-400',
+      color: "text-yellow-400",
       level: 80,
     },
     {
-      name: 'React',
+      name: "React",
       icon: <DiReact className="w-12 h-12" />,
-      color: 'text-cyan-400',
+      color: "text-cyan-400",
       level: 85,
     },
     {
-      name: 'Next.js',
+      name: "Next.js",
       icon: <SiNextdotjs className="w-12 h-12" />,
-      color: 'text-black',
+      color: "text-black",
       level: 75,
     },
     {
-      name: 'Tailwind',
-      icon: <SiTailwindcss className="w-12 h-12" />,
-      color: 'text-cyan-400',
+      name: "Laravel",
+      icon: <SiLaravel className="w-12 h-12" />,
+      color: "text-red-500",
       level: 90,
     },
     {
-      name: 'Git',
+      name: "Tailwind",
+      icon: <SiTailwindcss className="w-12 h-12" />,
+      color: "text-cyan-400",
+      level: 90,
+    },
+    {
+      name: "Git",
       icon: <DiGit className="w-12 h-12" />,
-      color: 'text-orange-600',
-      level: 80,
-    },
-    {
-      name: 'Figma',
-      icon: <SiFigma className="w-12 h-12" />,
-      color: 'text-purple-500',
+      color: "text-orange-600",
       level: 85,
-    },
-    {
-      name: 'Photoshop',
-      icon: <SiAdobephotoshop className="w-12 h-12" />,
-      color: 'text-blue-600',
-      level: 80,
     },
   ];
 

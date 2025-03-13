@@ -60,7 +60,10 @@ const projects = [
 const Portfolio = ({ isDarkMode }) => {
   return (
     <div className='max-w-[1200px] mx-auto p-4 md:p-6 my-10 md:my-20' id="portfolio">
-      <h2 className={`text-3xl md:text-4xl font-bold ${isDarkMode ? 'text-white' : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600'} mb-8 md:mb-12 text-center`}>Featured Projects</h2>
+      <h2 className="text-4xl font-bold text-center mb-16">
+        <span className={isDarkMode ? 'text-gray-200' : 'text-gray-800'}>Featured </span>
+        <span className="text-purple-500">Projects</span>
+      </h2>
 
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8'>
 

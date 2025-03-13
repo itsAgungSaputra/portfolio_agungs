@@ -36,7 +36,7 @@ const Contact = ({ isDarkMode }) => {
       className={`px-4 sm:px-6 max-w-[1200px] mx-auto py-10 sm:py-20`}
       id="contact"
     >
-      <motion.h3
+      <motion.h3 
         className="text-3xl sm:text-4xl md:text-5xl font-black mb-8 sm:mb-12 tracking-wider text-center"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -68,7 +68,6 @@ const Contact = ({ isDarkMode }) => {
             stiffness: 100
           }}
         >
-          {/* Kontak Langsung */}
           <motion.div
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -77,7 +76,7 @@ const Contact = ({ isDarkMode }) => {
               isDarkMode ? "bg-gray-800/50" : "bg-white/90"
             } backdrop-blur-lg shadow-lg`}
           >
-            <h4 className="text-2xl font-bold mb-4">Kontak Langsung</h4>
+            <h4 className="text-2xl font-bold mb-4">Contact Person</h4>
             <div className="space-y-4">
               <motion.div 
                 className="flex items-start space-x-3"
@@ -102,7 +101,7 @@ const Contact = ({ isDarkMode }) => {
                 <AiOutlineEnvironment className="text-2xl text-purple-500" />
                 <span>Gorontalo, Indonesia</span>
               </motion.div>
-            </div>
+        </div>
           </motion.div>
 
           {/* Social Media */}
@@ -149,7 +148,7 @@ const Contact = ({ isDarkMode }) => {
                 <AiOutlineInstagram className="text-2xl" />
                 <span>Instagram</span>
               </motion.a>
-            </div>
+        </div>
           </motion.div>
         </motion.div>
 
@@ -159,7 +158,7 @@ const Contact = ({ isDarkMode }) => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.2 }}
         >
-          Mari berkolaborasi untuk menciptakan sesuatu yang luar biasa! 🚀
+          Feel free to hit me up! 🚀
         </motion.p>
       </div>
     </div>

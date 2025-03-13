@@ -7,20 +7,25 @@ const Education = ({ isDarkMode }) => {
   const educations = [
     {
       institution: "SMKN 1 Gorontalo",
-      period: "2017 - 2020",
+      period: "2018 - 2021",
       degree: "Software Engineering",
-      description: "Belajar dasar-dasar pemrograman dan pengembangan perangkat lunak. Aktif dalam berbagai proyek sekolah dan kompetisi IT.",
       icon: <FaSchool className="w-8 h-8 text-white" />,
-      color: "from-blue-500 to-cyan-500"
+      color: "from-blue-500 to-cyan-500",
+    },
+    {
+      institution: "Universitas Brawijaya",
+      period: "Aug 2021 - Dec 2021",
+      degree: "Bachelor of Computer Science (Student Exchange Program)",
+      icon: <FaUniversity className="w-8 h-8 text-white" />,
+      color: "from-orange-500 to-red-500",
     },
     {
       institution: "Universitas Negeri Gorontalo",
-      period: "2020 - 2024",
+      period: "2021 - Present",
       degree: "Bachelor of Computer Science",
-      description: "Fokus pada pengembangan web dan mobile. Terlibat dalam berbagai proyek penelitian dan pengembangan aplikasi.",
       icon: <FaUniversity className="w-8 h-8 text-white" />,
-      color: "from-purple-500 to-pink-500"
-    }
+      color: "from-purple-500 to-pink-500",
+    },
   ];
 
   const containerVariants = {
@@ -73,7 +78,7 @@ const Education = ({ isDarkMode }) => {
             <motion.div
               key={index}
               variants={itemVariants}
-              className={`relative flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} items-center mb-16`}
+              className={`relative flex ${index % 3 === 0 ? 'flex-row' : 'flex-row-reverse'} items-center mb-16`}
             >
               {/* Timeline dot */}
               {/* <div className="absolute left-[50%] transform -translate-x-1/2 z-10">
@@ -120,9 +125,9 @@ const Education = ({ isDarkMode }) => {
                       {education.degree}
                     </h4>
                     
-                    <p className={`mt-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    {/* <p className={`mt-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                       {education.description}
-                    </p>
+                    </p> */}
                   </div>
                 </div>
 
