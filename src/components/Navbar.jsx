@@ -111,7 +111,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                                 >
                                     {item.title}
                                     <span className='absolute left-0 bottom-0 h-[2px] w-0 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full'></span>
-                                </Link>
+                  </Link>
                             </motion.li>
                         ))}
                     </ul>

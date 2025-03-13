@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { DiHtml5, DiCss3, DiJavascript1, DiReact, DiGit } from 'react-icons/di';
-import { SiLaravel, SiNextdotjs, SiTailwindcss } from 'react-icons/si';
+import { SiBootstrap, SiLaravel, SiNextdotjs, SiTailwindcss } from 'react-icons/si';
 import Reveal from './Reveal';
 
 const Skills = ({ isDarkMode }) => {
@@ -46,6 +46,12 @@ const Skills = ({ isDarkMode }) => {
       name: "Tailwind",
       icon: <SiTailwindcss className="w-12 h-12" />,
       color: "text-cyan-400",
+      level: 90,
+    },
+    {
+      name: "Bootstrap",
+      icon: <SiBootstrap className="w-12 h-12" />,
+      color: "text-blue-900",
       level: 90,
     },
     {
