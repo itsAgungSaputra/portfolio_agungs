@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import profilepic from "../assets/profpicv2.png";
 import { TypeAnimation } from "react-type-animation";
 import ShinyEffect from "./ShinyEffect";
+import AboutMeModal from "./AboutMeModal";
 import {
     AiOutlineBehance,
   AiOutlineGithub,
@@ -22,9 +23,16 @@ import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
 
 
 const Hero = ({ isDarkMode }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="max-w-[1200px] mx-auto relative px-4 sm:px-6 pt-12 sm:pt-16 md:pt-12">
+      <AboutMeModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        isDarkMode={isDarkMode}
+      />
+      
       <div className="grid md:grid-cols-2 place-items-center gap-8 md:gap-12">
         <motion.div
           initial={{ opacity: 0, y: -50 }}
@@ -139,7 +147,10 @@ const Hero = ({ isDarkMode }) => {
         </motion.div>
 
         <div className="relative order-first md:order-last">
-          <div className="relative z-10 mt-4 md:mt-8">
+          <motion.div 
+            className="relative z-10 mt-4 md:mt-8 cursor-pointer"
+            onClick={() => setIsModalOpen(true)}
+          >
             <img
               src={profilepic}
               alt="Agung Saputra"
@@ -147,7 +158,7 @@ const Hero = ({ isDarkMode }) => {
                 !isDarkMode ? "drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]" : ""
               }`}
             />
-          </div>
+          </motion.div>
 
           {/* Background Elements */}
           <div
@@ -168,12 +179,16 @@ const Hero = ({ isDarkMode }) => {
       >
         <motion.p
           className={`text-xl sm:text-2xl md:text-3xl font-semibold mb-6 sm:mb-8 ${
-            isDarkMode ? "text-gray-200" : "text-gray-800"
+            isDarkMode ? "text-white" : "text-gray-800"
           }`}
+          whileInView={{ 
+            scale: [1, 1.2, 1],
+            transition: { duration: 1 }
+          }}
         >
           Tech Stack
         </motion.p>
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12">
           {[
             { icon: <DiHtml5 className="text-[#E34F26]" />, name: "HTML5" },
             { icon: <DiCss3 className="text-[#1572B6]" />, name: "CSS3" },
@@ -196,17 +211,60 @@ const Hero = ({ isDarkMode }) => {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 2 + index * 0.1 }}
-              className={`p-3 sm:p-4 rounded-xl ${
-                isDarkMode
-                  ? "bg-gray-800/50 hover:bg-gray-700/50"
-                  : "bg-white/50 hover:bg-gray-50/50"
-              } backdrop-blur-sm border border-purple-500/20 shadow-lg`}
+              whileHover={{ 
+                scale: 1.2,
+                transition: {
+                  duration: 0.3,
+                  ease: "easeOut"
+                }
+              }}
+              className="relative"
             >
               <motion.div
-                whileHover={{ scale: 1.2 }}
-                className="text-3xl sm:text-4xl md:text-5xl"
+                className="text-5xl sm:text-6xl md:text-7xl relative"
+                animate={{ 
+                  y: [0, -8, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: index * 0.2
+                }}
+                style={{
+                  filter: `drop-shadow(0 8px 8px rgba(${
+                    tech.name === "HTML5" ? "227, 79, 38" : 
+                    tech.name === "CSS3" ? "21, 114, 182" :
+                    tech.name === "JavaScript" ? "247, 223, 30" :
+                    tech.name === "React" ? "97, 218, 251" :
+                    tech.name === "Laravel" ? "255, 45, 32" :
+                    "6, 182, 212"
+                  }, 0.3))`
+                }}
               >
                 {tech.icon}
+                <motion.div
+                  className="absolute -inset-6 opacity-0 group-hover:opacity-20 rounded-full blur-2xl"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0, 0.15, 0]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  style={{
+                    background: `radial-gradient(circle, rgba(${
+                      tech.name === "HTML5" ? "227, 79, 38" : 
+                      tech.name === "CSS3" ? "21, 114, 182" :
+                      tech.name === "JavaScript" ? "247, 223, 30" :
+                      tech.name === "React" ? "97, 218, 251" :
+                      tech.name === "Laravel" ? "255, 45, 32" :
+                      "6, 182, 212"
+                    }, 0.4) 0%, transparent 70%)`
+                  }}
+                />
               </motion.div>
             </motion.div>
           ))}

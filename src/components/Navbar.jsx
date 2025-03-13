@@ -86,33 +86,35 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
             </div>
 
                 {/* Desktop Menu */}
-                <ul className='hidden md:flex items-center gap-8 z-10'>
-                    {navItems.map((item, index) => (
-                        <motion.li 
-                            key={index}
-                            className='relative group'
-                            initial={{ y: -20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: index * 0.1 + 0.5 }}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <Link 
-                                to={item.to} 
-                                smooth={true} 
-                                offset={50} 
-                                duration={500} 
-                                className={`font-medium transition duration-300 ${
-                                    isDarkMode 
-                                        ? 'text-gray-300 hover:text-purple-400' 
-                                        : 'text-gray-700 hover:text-purple-600'
-                                }`}
+                <div className='hidden md:flex items-center gap-8 z-10'>
+                    <ul className='flex items-center gap-8 list-none'>
+                        {navItems.map((item, index) => (
+                            <motion.li 
+                                key={index}
+                                className='relative group list-none'
+                                initial={{ y: -20, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ delay: index * 0.1 + 0.5 }}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
                             >
-                                {item.title}
-                                <span className='absolute left-0 bottom-0 h-[2px] w-0 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full'></span>
-                  </Link>
-                        </motion.li>
-                    ))}
+                                <Link 
+                                    to={item.to} 
+                                    smooth={true} 
+                                    offset={50} 
+                                    duration={500} 
+                                    className={`font-medium transition duration-300 ${
+                                        isDarkMode 
+                                            ? 'text-gray-300 hover:text-purple-400' 
+                                            : 'text-gray-700 hover:text-purple-600'
+                                    }`}
+                                >
+                                    {item.title}
+                                    <span className='absolute left-0 bottom-0 h-[2px] w-0 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full'></span>
+                                </Link>
+                            </motion.li>
+                        ))}
+                    </ul>
 
                     <motion.li 
                         className='flex items-center ml-4'
@@ -149,7 +151,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                             )}
                         </motion.button>
                     </motion.li>
-            </ul>
+            </div>
 
                 {/* Mobile Menu Button */}
                 <motion.button
