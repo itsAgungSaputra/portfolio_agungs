@@ -86,10 +86,12 @@ const Skills = ({ isDarkMode }) => {
 
   return (
     <section className={`py-20`}>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-6xl">
         <Reveal>
           <h2 className="text-4xl font-bold text-center mb-16">
-            <span className={`${isDarkMode ? 'text-gray-200' : 'text-white'}`}>Technical </span>
+            <span className={`${isDarkMode ? "text-gray-200" : "text-white"}`}>
+              Technical{" "}
+            </span>
             <span className="text-purple-500">Skills</span>
           </h2>
         </Reveal>
@@ -105,61 +107,73 @@ const Skills = ({ isDarkMode }) => {
             <motion.div
               key={index}
               variants={itemVariants}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
-                transition: { type: "spring", stiffness: 400 }
+                transition: { type: "spring", stiffness: 400 },
               }}
               className={`relative p-6 rounded-xl ${
-                isDarkMode 
-                  ? 'bg-gray-800/90 hover:bg-gray-700/90 border-gray-700' 
-                  : 'bg-gray-100 hover:bg-gray-50 border-gray-100'
+                isDarkMode
+                  ? "bg-gray-800/90 hover:bg-gray-700/90 border-gray-700"
+                  : "bg-gray-100 hover:bg-gray-50 border-gray-100"
               } backdrop-blur-lg shadow-lg border`}
             >
               <div className="flex items-start space-x-4">
-                <div className={`p-3 rounded-lg ${
-                  isDarkMode ? 'bg-gray-700' : 'bg-gray-100'
-                } ${skill.color}`}>
+                <div
+                  className={`p-3 rounded-lg ${
+                    isDarkMode ? "bg-gray-700" : "bg-gray-100"
+                  } ${skill.color}`}
+                >
                   {skill.icon}
                 </div>
                 <div className="flex-1">
-                  <h3 className={`text-xl font-semibold mb-2 ${
-                    isDarkMode ? 'text-gray-200' : 'text-gray-800'
-                  }`}>
+                  <h3
+                    className={`text-xl font-semibold mb-2 ${
+                      isDarkMode ? "text-gray-200" : "text-gray-800"
+                    }`}
+                  >
                     {skill.name}
                   </h3>
-                  <div className={`relative w-full h-2 ${
-                    isDarkMode ? 'bg-gray-700' : 'bg-gray-200'
-                  } rounded-full overflow-hidden`}>
+                  <div
+                    className={`relative w-full h-2 ${
+                      isDarkMode ? "bg-gray-700" : "bg-gray-200"
+                    } rounded-full overflow-hidden`}
+                  >
                     <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}
                       transition={{ duration: 1, ease: "easeOut" }}
                       className={`absolute top-0 left-0 h-full ${
-                        isDarkMode 
-                          ? 'bg-gradient-to-r from-purple-500 to-pink-500' 
-                          : 'bg-gradient-to-r from-purple-600 to-pink-600'
+                        isDarkMode
+                          ? "bg-gradient-to-r from-purple-500 to-pink-500"
+                          : "bg-gradient-to-r from-purple-600 to-pink-600"
                       } rounded-full`}
                     />
                   </div>
-                  <p className={`mt-1 text-sm ${
-                    isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                  }`}>
+                  <p
+                    className={`mt-1 text-sm ${
+                      isDarkMode ? "text-gray-400" : "text-gray-600"
+                    }`}
+                  >
                     {skill.level}% Proficiency
                   </p>
                 </div>
               </div>
 
               {/* Decorative Elements */}
-              <div className={`absolute -bottom-2 -right-2 w-20 h-20 rounded-full ${
-                isDarkMode 
-                  ? 'bg-gradient-to-br from-purple-500/5 to-pink-500/5' 
-                  : 'bg-gradient-to-br from-purple-500/10 to-pink-500/10'
-              }`} />
-              <div className={`absolute -top-2 -left-2 w-16 h-16 rounded-full ${
-                isDarkMode 
-                  ? 'bg-gradient-to-br from-blue-500/5 to-cyan-500/5' 
-                  : 'bg-gradient-to-br from-blue-500/10 to-cyan-500/10'
-              }`} />
+              <div
+                className={`absolute -bottom-2 -right-2 w-20 h-20 rounded-full ${
+                  isDarkMode
+                    ? "bg-gradient-to-br from-purple-500/5 to-pink-500/5"
+                    : "bg-gradient-to-br from-purple-500/10 to-pink-500/10"
+                }`}
+              />
+              <div
+                className={`absolute -top-2 -left-2 w-16 h-16 rounded-full ${
+                  isDarkMode
+                    ? "bg-gradient-to-br from-blue-500/5 to-cyan-500/5"
+                    : "bg-gradient-to-br from-blue-500/10 to-cyan-500/10"
+                }`}
+              />
             </motion.div>
           ))}
         </motion.div>
