@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 
 import project1 from "../assets/1.png"
 import project2 from "../assets/2.png"
+import project3 from "../assets/3.png";
 import project4 from "../assets/4.png"
 import project5 from "../assets/5.png"
 import project6 from "../assets/6.png"
@@ -12,8 +13,8 @@ import Reveal from './Reveal';
 const projects = [
     {
       img: project1,
-      title: "Project #1",
-      description: "lorem ipsum dolor sit amet",
+      title: "Sistem Informasi Verifikasi Ujian Mahasiswa",
+      // description: "lorem ipsum dolor sit amet",
       links: {
         site: "#",
         github: "#",
@@ -21,17 +22,26 @@ const projects = [
     },
     {
       img: project2,
-      title: "Project #2",
-      description: "lorem ipsum dolor sit amet",
+      title: "Geolocation Gorut",
+      // description: "lorem ipsum dolor sit amet",
       links: {
         site: "#",
-        github: "#",
+        github: "https://github.com/itsAgungSaputra/geolocation_gorut",
+      },
+    },
+    {
+      img: project3,
+      title: "Wonderful Hulonthalo",
+      // description: "lorem ipsum dolor sit amet",
+      links: {
+        site: "https://itsagungsaputra.github.io/wonderful_hulonthalo/",
+        github: "https://github.com/itsAgungSaputra/wonderful_hulonthalo",
       },
     },
     {
       img: project4,
-      title: "Project #3",
-      description: "lorem ipsum dolor sit amet",
+      title: "SIMIKOM (SISTEM INFORMASI MANAJEMEN IURAN KOMITE) SD LAB UNG",
+      // description: "lorem ipsum dolor sit amet",
       links: {
         site: "#",
         github: "#",
@@ -39,8 +49,8 @@ const projects = [
     },
     {
       img: project5,
-      title: "Project #4",
-      description: "lorem ipsum dolor sit amet",
+      title: "KSL UNG Official Website",
+      // description: "lorem ipsum dolor sit amet",
       links: {
         site: "#",
         github: "#",
@@ -48,8 +58,8 @@ const projects = [
     },
     {
       img: project6,
-      title: "Project #5",
-      description: "lorem ipsum dolor sit amet",
+      title: "Portal Resmi Kab. Gorontalo Utara",
+      // description: "lorem ipsum dolor sit amet",
       links: {
         site: "#",
         github: "#",
@@ -96,7 +106,7 @@ const Portfolio = ({ isDarkMode }) => {
               <motion.img
                 src={project.img}
                 alt={project.title}
-                className='w-full h-full object-cover'
+                className='w-full h-full object-contain'
                 whileHover={{
                   scale: 1.15,
                   rotate: 2,
@@ -113,11 +123,11 @@ const Portfolio = ({ isDarkMode }) => {
                   {project.title}
                 </h3>
                 
-                <p 
+                {/* <p 
                   className='text-gray-200 text-sm md:text-base mb-3 md:mb-4'
                 >
                   {project.description}
-                </p>
+                </p> */}
 
                 <div 
                   className='flex space-x-2 md:space-x-4'

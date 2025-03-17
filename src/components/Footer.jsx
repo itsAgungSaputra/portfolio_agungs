@@ -21,7 +21,7 @@ const Footer = ({ isDarkMode }) => {
           className="text-center"
         >
           <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            © {currentYear} Agung Saputra. Made with 
+            © {currentYear} agungs. Made with 
             <AiOutlineHeart className="inline-block mx-1 text-red-500" />
             using React, Tailwind, & Framer Motion
           </p>

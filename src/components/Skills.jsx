@@ -34,7 +34,7 @@ const Skills = ({ isDarkMode }) => {
       name: "Next.js",
       icon: <SiNextdotjs className="w-12 h-12" />,
       color: "text-black",
-      level: 75,
+      level: 70,
     },
     {
       name: "Laravel",

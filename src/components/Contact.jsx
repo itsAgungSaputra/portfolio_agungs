@@ -2,7 +2,7 @@ import React, { useState } from "react";
 //import { send } from "@emailjs/browser"; // Updated import for EmailJS
 
 import { motion } from "framer-motion";
-import { AiOutlineMail, AiOutlinePhone, AiOutlineEnvironment, AiOutlineGithub, AiOutlineLinkedin, AiOutlineInstagram } from "react-icons/ai";
+import { AiOutlineMail, AiOutlinePhone, AiOutlineEnvironment, AiOutlineGithub, AiOutlineLinkedin, AiOutlineInstagram, AiOutlineBehanceSquare } from "react-icons/ai";
 
 const Contact = ({ isDarkMode }) => {
   const [formData, setFormData] = useState({
@@ -36,14 +36,14 @@ const Contact = ({ isDarkMode }) => {
       className={`px-4 sm:px-6 max-w-[1200px] mx-auto py-10 sm:py-20`}
       id="contact"
     >
-      <motion.h3 
+      <motion.h3
         className="text-3xl sm:text-4xl md:text-5xl font-black mb-8 sm:mb-12 tracking-wider text-center"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ 
+        transition={{
           duration: 0.8,
           type: "spring",
-          bounce: 0.4
+          bounce: 0.4,
         }}
       >
         <span className={isDarkMode ? "text-gray-200" : "text-gray-800"}>
@@ -61,11 +61,11 @@ const Contact = ({ isDarkMode }) => {
           className="grid md:grid-cols-2 gap-8"
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ 
+          transition={{
             duration: 0.8,
             delay: 0.3,
             type: "spring",
-            stiffness: 100
+            stiffness: 100,
           }}
         >
           <motion.div
@@ -76,9 +76,9 @@ const Contact = ({ isDarkMode }) => {
               isDarkMode ? "bg-gray-800/50" : "bg-white/90"
             } backdrop-blur-lg shadow-lg`}
           >
-            <h4 className="text-2xl font-bold mb-4">Contact Person</h4>
+            <h4 className="text-2xl font-bold mb-4">My Contact</h4>
             <div className="space-y-4">
-              <motion.div 
+              <motion.div
                 className="flex items-start space-x-3"
                 initial={{ x: -50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -92,7 +92,7 @@ const Contact = ({ isDarkMode }) => {
                   agungsaputraofficial@gmail.com
                 </a>
               </motion.div>
-              <motion.div 
+              <motion.div
                 className="flex items-center space-x-3"
                 initial={{ x: -50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -101,7 +101,7 @@ const Contact = ({ isDarkMode }) => {
                 <AiOutlineEnvironment className="text-2xl text-purple-500" />
                 <span>Gorontalo, Indonesia</span>
               </motion.div>
-        </div>
+            </div>
           </motion.div>
 
           {/* Social Media */}
@@ -148,7 +148,18 @@ const Contact = ({ isDarkMode }) => {
                 <AiOutlineInstagram className="text-2xl" />
                 <span>Instagram</span>
               </motion.a>
-        </div>
+              <motion.a
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.4, delay: 1 }}
+                href="https://www.behance.net/itsagungsaputra"
+                className="flex items-center space-x-3 hover:text-purple-500 transition-colors"
+                whileHover={{ x: 10 }}
+              >
+                <AiOutlineBehanceSquare className="text-2xl" />
+                <span>Behance</span>
+              </motion.a>
+            </div>
           </motion.div>
         </motion.div>
 
