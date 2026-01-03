@@ -1,281 +1,247 @@
-import React, { useState } from "react";
-import profilepic from "../assets/profpicv2.png";
-import { TypeAnimation } from "react-type-animation";
-import ShinyEffect from "./ShinyEffect";
-import AboutMeModal from "./AboutMeModal";
-import {
-    AiOutlineBehance,
-  AiOutlineGithub,
-  AiOutlineInstagram,
-  AiOutlineLinkedin,
-  AiOutlineDownload,
-} from "react-icons/ai";
-
-import {
-  DiCss3,
-  DiHtml5,
-  DiJavascript1,
-  DiReact,
-  DiLaravel,
-} from "react-icons/di";
 import { motion } from "framer-motion";
-import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
+import { useState, useEffect } from "react";
+import profpic from "../assets/profilepic.jpg";
+import { 
+  AiOutlineGithub, 
+  AiOutlineLinkedin, 
+  AiOutlineInstagram,
+  AiOutlineBehance,
+  AiOutlineDownload,
+  AiOutlineEnvironment
+} from "react-icons/ai";
+import { 
+  DiHtml5, 
+  DiCss3, 
+  DiJavascript1, 
+  DiReact, 
+  DiPhp,
+  DiLaravel 
+} from "react-icons/di";
+import { SiNextdotjs, SiTailwindcss, SiSpotify, SiTypescript } from "react-icons/si";
 
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+};
 
-const Hero = ({ isDarkMode }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const Hero = () => {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    // Check initial theme
+    const checkTheme = () => {
+      const isDarkMode = document.documentElement.classList.contains('dark');
+      setIsDark(isDarkMode);
+    };
+
+    checkTheme();
+
+    // Listen for theme changes
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const socialLinks = [
+    { icon: <AiOutlineGithub />, href: "https://github.com/itsAgungSaputra", label: "GitHub" },
+    { icon: <AiOutlineLinkedin />, href: "https://www.linkedin.com/in/agungsaputra14/", label: "LinkedIn" },
+    { icon: <AiOutlineInstagram />, href: "https://www.instagram.com/agung_saputra____", label: "Instagram" },
+    { icon: <AiOutlineBehance />, href: "https://www.behance.net/itsagungsaputra", label: "Behance" },
+  ];
+
+  const techStack = [
+    { icon: <DiHtml5 />, name: "HTML5", color: "#E34F26" },
+    { icon: <DiCss3 />, name: "CSS3", color: "#1572B6" },
+    { icon: <DiJavascript1 />, name: "JavaScript", color: "#F7DF1E" },
+    { icon: <DiPhp />, name: "PHP", color: "#777BB4" },
+    { icon: <SiTypescript />, name: "TypeScript", color: "#3178C6" },
+    { icon: <DiReact />, name: "React", color: "#61DAFB" },
+    { icon: <SiNextdotjs />, name: "Next.js", color: "#000000" },
+    { icon: <DiLaravel />, name: "Laravel", color: "#FF2D20" },
+    { icon: <SiTailwindcss />, name: "Tailwind", color: "#06B6D4" },
+  ];
+
+  const handleDownloadCV = () => {
+    const link = document.createElement("a");
+    link.href = "/CV_Mohamad Agung Saputra.pdf";
+    link.download = "CV_Mohamad Agung Saputra.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
-    <div className="max-w-[1200px] mx-auto relative px-4 sm:px-6 pt-12 sm:pt-16 md:pt-12">
-      <AboutMeModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-        isDarkMode={isDarkMode}
-      />
-      
-      <div className="grid md:grid-cols-2 place-items-center gap-8 md:gap-12">
-        <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative z-10 text-center md:text-left md:-mt-16"
-        >
-          <TypeAnimation
-            sequence={["Frontend Developer", 1000]}
-            speed={50}
-            repeat={Infinity}
-            className={`font-bold text-lg sm:text-xl md:text-2xl mb-4 ${
-              isDarkMode ? "text-purple-400" : "text-purple-600"
-            }`}
-          />
-
-          <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className={`text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-4 ${
-              isDarkMode ? "text-gray-200" : "text-gray-800"
-            }`}
+    <section id="home" className="min-h-screen pt-24 pb-12 px-4">
+      <motion.div 
+        className="container-main"
+        variants={staggerContainer}
+        initial="initial"
+        animate="animate"
+      >
+        {/* Bento Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-auto">
+          
+          {/* Card 1: Profile Card - Large (spans 2 cols on md+) */}
+          <motion.div 
+            variants={fadeInUp}
+            className="bento-card md:col-span-2 md:row-span-2 flex flex-col items-center md:items-start text-center md:text-left pb-10 md:pb-6"
           >
-            HEY, I AM <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
-              AGUNG SAPUTRA
-            </span>
-          </motion.h1>
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-6 w-full">
+              <div className="relative">
+                <img 
+                  src={profpic} 
+                  alt="Agung Saputra" 
+                  className="w-32 h-32 md:w-40 md:h-40 rounded-3xl object-cover shadow-lg"
+                />
+                {/* Status Indicator - Green dot */}
+                <div className="absolute -bottom-1 -right-1 flex items-center">
+                  <div className="relative">
+                    <div className="w-5 h-5 bg-green-500 rounded-full border-3 border-white dark:border-neutral-900" />
+                    <div className="absolute inset-0 w-5 h-5 bg-green-500 rounded-full animate-ping opacity-75" />
+                  </div>
+                </div>
+                {/* Open for Work Badge */}
+                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
+                  <div className="flex items-center gap-1.5 px-3 py-1 bg-green-100 dark:bg-green-900/30 rounded-full border border-green-200 dark:border-green-800 shadow-sm">
+                    <div className="relative">
+                      <div className="w-2 h-2 bg-green-500 rounded-full" />
+                      <div className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full animate-ping opacity-75" />
+                    </div>
+                    <span className="text-xs font-medium text-green-700 dark:text-green-400 whitespace-nowrap">Open for Work</span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1 mt-6 md:mt-0">
+                <p className="text-sm font-medium text-indigo-600 dark:text-indigo-400 mb-1">
+                  Front-End Developer
+                </p>
+                <h1 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-2">
+                  Agung Saputra
+                </h1>
+                <p className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base leading-relaxed">
+                  I am a fresh graduate Bachelor of Information Systems at Gorontalo State University, 
+                  deeply interested in web development particularly front-end and adept at problem-solving.
+                </p>
+              </div>
+            </div>
+          </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
-            className={`text-base sm:text-sm md:text-lg mb-8 max-w-[500px] mx-auto md:mx-0 ${
-              isDarkMode ? "text-gray-400" : "text-gray-600"
-            }`}
+          {/* Card 2: Location Card - Small */}
+          <motion.div 
+            variants={fadeInUp}
+            className="bento-card flex items-center gap-3 md:gap-4"
           >
-            I am a final-year Information Systems student at Gorontalo State
-            University, deeply interested in web development—particularly
-            front-end—and adept at problem-solving.
-          </motion.p>
+            <div className="w-12 h-12 flex-shrink-0 rounded-2xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+              <AiOutlineEnvironment className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider">Location</p>
+              <p className="font-semibold text-neutral-900 dark:text-white text-sm md:text-base">Gorontalo, Indonesia</p>
+            </div>
+          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.5 }}
-            className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 md:gap-6"
+          {/* Card 3: Download CV - CTA */}
+          <motion.div 
+            variants={fadeInUp}
+            className="bento-card bento-card-hover bg-indigo-600 dark:bg-indigo-500 border-indigo-600 dark:border-indigo-500 cursor-pointer group"
+            onClick={handleDownloadCV}
           >
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0px 0px 20px rgba(147, 51, 234, 0.3)",
-              }}
-              className={`z-10 cursor-pointer font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl flex items-center gap-2 w-full sm:w-auto ${
-                isDarkMode
-                  ? "bg-purple-500 hover:bg-purple-600 text-white"
-                  : "bg-purple-600 hover:bg-purple-700 text-white"
-              } transition-all duration-300 justify-center`}
-              onClick={() => {
-                const link = document.createElement("a");
-                link.href = "/Agung_Saputra_CV.pdf";
-                link.download = "Agung_Saputra_CV.pdf";
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-              }}
-            >
-              <AiOutlineDownload className="text-xl" />
-              Download CV
-            </motion.button>
+            <div className="flex items-center justify-between h-full">
+              <div>
+                <p className="text-indigo-200 text-sm mb-1">Get my resume</p>
+                <p className="text-white font-semibold text-lg">Download CV</p>
+              </div>
+              <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                <AiOutlineDownload className="w-6 h-6 text-white" />
+              </div>
+            </div>
+          </motion.div>
 
-            <div className="flex gap-4 text-2xl sm:text-3xl md:text-4xl">
-              {[
-                {
-                  icon: <AiOutlineGithub />,
-                  link: "https://github.com/itsAgungSaputra",
-                  color: "hover:text-[#333]",
-                },
-                {
-                  icon: <AiOutlineLinkedin />,
-                  link: "https://www.linkedin.com/in/agungsaputra14/",
-                  color: "hover:text-[#0A66C2]",
-                },
-                {
-                  icon: <AiOutlineInstagram />,
-                  link: "https://www.instagram.com/agung_saputra____",
-                  color: "hover:text-[#E4405F]",
-                },
-                {
-                  icon: <AiOutlineBehance />,
-                  link: "https://www.behance.net/itsagungsaputra",
-                  color: "hover:text-[#053EFF]",
-                },
-              ].map((social, index) => (
-                <motion.a
+          {/* Card 4: Social Links - Small */}
+          <motion.div 
+            variants={fadeInUp}
+            className="bento-card"
+          >
+            <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider mb-4">Connect</p>
+            <div className="flex gap-3">
+              {socialLinks.map((social, index) => (
+                <a
                   key={index}
-                  href={social.link}
+                  href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${
-                    isDarkMode ? "text-gray-400" : "text-gray-600"
-                  } ${social.color} transition-colors duration-300`}
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
+                  aria-label={social.label}
+                  className="social-btn text-xl"
                 >
                   {social.icon}
-                </motion.a>
+                </a>
               ))}
             </div>
           </motion.div>
-        </motion.div>
 
-        <div className="relative order-first md:order-last">
+          {/* Card 5: Spotify Now Playing */}
           <motion.div 
-            className="relative z-10 mt-4 md:mt-8 cursor-pointer"
-            onClick={() => setIsModalOpen(true)}
+            variants={fadeInUp}
+            className="bento-card md:col-span-2 overflow-hidden"
           >
-            <img
-              src={profilepic}
-              alt="Agung Saputra"
-              className={`w-[180px] sm:w-[230px] md:w-[300px] rounded-2xl ${
-                !isDarkMode ? "drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]" : ""
-              }`}
-            />
+            <div className="flex items-center gap-2 mb-4">
+              <SiSpotify className="text-green-500 text-base" />
+              <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider">Now Playing</p>
+            </div>
+            <a 
+              href="https://spotify-github-profile.kittinanx.com/api/view?uid=agung_saputra14&redirect=true" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block"
+            >
+              <img 
+                src={`https://spotify-github-profile.kittinanx.com/api/view?uid=agung_saputra14&cover_image=true&theme=spotify-embed&show_offline=false&background_color=121212&interchange=false&profanity=false&bar_color=53b14f&bar_color_cover=false&mode=${isDark ? 'dark' : 'light'}`}
+                alt="Spotify Now Playing"
+                className="w-full rounded-2xl hover:scale-[1.02] transition-transform duration-300"
+              />
+            </a>
           </motion.div>
 
-          {/* Background Elements */}
-          <div
-            className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[230px] h-[230px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] rounded-full ${
-              isDarkMode
-                ? "bg-gradient-to-r from-purple-500/10 to-pink-500/10"
-                : "bg-gradient-to-r from-purple-500/20 to-pink-500/20"
-            } blur-3xl -z-10`}
-          />
-        </div>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 2 }}
-        className="mt-8 sm:mt-16 md:mt-24 text-center px-4"
-      >
-        <motion.p
-          className={`text-xl sm:text-2xl md:text-3xl font-semibold mb-6 sm:mb-8 ${
-            isDarkMode ? "text-white" : "text-gray-800"
-          }`}
-          whileInView={{ 
-            scale: [1, 1.2, 1],
-            transition: { duration: 1 }
-          }}
-        >
-          Tech Stack
-        </motion.p>
-        <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12">
-          {[
-            { icon: <DiHtml5 className="text-[#E34F26]" />, name: "HTML5" },
-            { icon: <DiCss3 className="text-[#1572B6]" />, name: "CSS3" },
-            {
-              icon: <DiJavascript1 className="text-[#F7DF1E]" />,
-              name: "JavaScript",
-            },
-            { icon: <DiReact className="text-[#61DAFB]" />, name: "React" },
-            {
-              icon: <DiLaravel className="text-[#FF2D20]" />,
-              name: "Laravel",
-            },
-            {
-              icon: <SiTailwindcss className="text-[#06B6D4]" />,
-              name: "Tailwind",
-            },
-          ].map((tech, index) => (
-            <motion.div
-              key={index}
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 2 + index * 0.1 }}
-              whileHover={{ 
-                scale: 1.2,
-                transition: {
-                  duration: 0.3,
-                  ease: "easeOut"
-                }
-              }}
-              className="relative"
-            >
-              <motion.div
-                className="text-5xl sm:text-6xl md:text-7xl relative"
-                animate={{ 
-                  y: [0, -8, 0],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: index * 0.2
-                }}
-                style={{
-                  filter: `drop-shadow(0 8px 8px rgba(${
-                    tech.name === "HTML5" ? "227, 79, 38" : 
-                    tech.name === "CSS3" ? "21, 114, 182" :
-                    tech.name === "JavaScript" ? "247, 223, 30" :
-                    tech.name === "React" ? "97, 218, 251" :
-                    tech.name === "Laravel" ? "255, 45, 32" :
-                    "6, 182, 212"
-                  }, 0.3))`
-                }}
-              >
-                {tech.icon}
+          {/* Card 6: Tech Stack - Medium (spans 2 cols on md+) */}
+          <motion.div 
+            variants={fadeInUp}
+            className="bento-card md:col-span-2"
+          >
+            <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider mb-4">Tech Stack</p>
+            <div className="flex flex-wrap gap-3">
+              {techStack.map((tech, index) => (
                 <motion.div
-                  className="absolute -inset-6 opacity-0 group-hover:opacity-20 rounded-full blur-2xl"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0, 0.15, 0]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  style={{
-                    background: `radial-gradient(circle, rgba(${
-                      tech.name === "HTML5" ? "227, 79, 38" : 
-                      tech.name === "CSS3" ? "21, 114, 182" :
-                      tech.name === "JavaScript" ? "247, 223, 30" :
-                      tech.name === "React" ? "97, 218, 251" :
-                      tech.name === "Laravel" ? "255, 45, 32" :
-                      "6, 182, 212"
-                    }, 0.4) 0%, transparent 70%)`
-                  }}
-                />
-              </motion.div>
-            </motion.div>
-          ))}
+                  key={index}
+                  className="tech-badge"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <span style={{ color: tech.color }} className="text-xl">
+                    {tech.icon}
+                  </span>
+                  <span>{tech.name}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
         </div>
       </motion.div>
-
-      <div className="absolute inset-0 hidden md:block">
-        <ShinyEffect left={0} top={0} size={1200} />
-      </div>
-    </div>
+    </section>
   );
-}
+};
 
-export default Hero
+export default Hero;

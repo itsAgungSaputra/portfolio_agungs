@@ -1,181 +1,137 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { DiHtml5, DiCss3, DiJavascript1, DiReact, DiGit } from 'react-icons/di';
-import { SiBootstrap, SiLaravel, SiNextdotjs, SiTailwindcss } from 'react-icons/si';
-import Reveal from './Reveal';
+import { motion } from "framer-motion";
+import { 
+  DiHtml5, 
+  DiCss3, 
+  DiJavascript1, 
+  DiReact, 
+  DiPhp,
+  DiLaravel,
+  DiGit
+} from "react-icons/di";
+import { 
+  SiNextdotjs, 
+  SiTailwindcss, 
+  SiFigma, 
+  SiPostman,
+  SiTypescript
+} from "react-icons/si";
+import { VscCode } from "react-icons/vsc";
 
-const Skills = ({ isDarkMode }) => {
-  const skills = [
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.5 }
+};
+
+const Skills = () => {
+  const skillCategories = [
     {
-      name: "HTML5",
-      icon: <DiHtml5 className="w-12 h-12" />,
-      color: "text-orange-500",
-      level: 90,
+      title: "Frontend",
+      description: "Building beautiful user interfaces",
+      skills: [
+        { name: "HTML5", icon: <DiHtml5 />, color: "#E34F26" },
+        { name: "CSS3", icon: <DiCss3 />, color: "#1572B6" },
+        { name: "TypeScript", icon: <SiTypescript />, color: "#3178C6" },
+        { name: "JavaScript", icon: <DiJavascript1 />, color: "#F7DF1E" },
+        { name: "React", icon: <DiReact />, color: "#61DAFB" },
+        { name: "Next.js", icon: <SiNextdotjs />, color: "#000000" },
+        { name: "Tailwind", icon: <SiTailwindcss />, color: "#06B6D4" },
+      ]
     },
     {
-      name: "CSS3",
-      icon: <DiCss3 className="w-12 h-12" />,
-      color: "text-blue-500",
-      level: 90,
+      title: "Backend",
+      description: "Server-side development",
+      skills: [
+        { name: "PHP", icon: <DiPhp />, color: "#777BB4" },
+        { name: "Laravel", icon: <DiLaravel />, color: "#FF2D20" },
+      ]
     },
     {
-      name: "JavaScript",
-      icon: <DiJavascript1 className="w-12 h-12" />,
-      color: "text-yellow-400",
-      level: 80,
-    },
-    {
-      name: "React",
-      icon: <DiReact className="w-12 h-12" />,
-      color: "text-cyan-400",
-      level: 85,
-    },
-    {
-      name: "Next.js",
-      icon: <SiNextdotjs className="w-12 h-12" />,
-      color: "text-black",
-      level: 70,
-    },
-    {
-      name: "Laravel",
-      icon: <SiLaravel className="w-12 h-12" />,
-      color: "text-red-500",
-      level: 90,
-    },
-    {
-      name: "Tailwind",
-      icon: <SiTailwindcss className="w-12 h-12" />,
-      color: "text-cyan-400",
-      level: 90,
-    },
-    {
-      name: "Bootstrap",
-      icon: <SiBootstrap className="w-12 h-12" />,
-      color: "text-blue-900",
-      level: 90,
-    },
-    {
-      name: "Git",
-      icon: <DiGit className="w-12 h-12" />,
-      color: "text-orange-600",
-      level: 85,
-    },
+      title: "Tools",
+      description: "Development workflow",
+      skills: [
+        { name: "Git", icon: <DiGit />, color: "#F05032" },
+        { name: "VS Code", icon: <VscCode />, color: "#007ACC" },
+        { name: "Figma", icon: <SiFigma />, color: "#F24E1E" },
+        { name: "Postman", icon: <SiPostman />, color: "#FF6C37" },
+      ]
+    }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100
-      }
-    }
-  };
-
   return (
-    <section className={`py-20`}>
-      <div className="container mx-auto px-4 max-w-6xl">
-        <Reveal>
-          <h2 className="text-4xl font-bold text-center mb-16">
-            <span className={`${isDarkMode ? "text-gray-200" : "text-white"}`}>
-              Technical{" "}
-            </span>
-            <span className="text-purple-500">Skills</span>
-          </h2>
-        </Reveal>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+    <section id="skills" className="py-12 md:py-20 px-4">
+      <div className="container-main">
+        {/* Section Header */}
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+          transition={{ duration: 0.5 }}
         >
-          {skills.map((skill, index) => (
+          <h2 className="section-title mb-4">Skills & Technologies</h2>
+          <p className="section-subtitle max-w-2xl mx-auto">
+            Technologies and tools I use to bring ideas to life
+          </p>
+        </motion.div>
+
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {skillCategories.map((category, categoryIndex) => (
             <motion.div
-              key={index}
-              variants={itemVariants}
-              whileHover={{
-                scale: 1.05,
-                transition: { type: "spring", stiffness: 400 },
-              }}
-              className={`relative p-6 rounded-xl ${
-                isDarkMode
-                  ? "bg-gray-800/90 hover:bg-gray-700/90 border-gray-700"
-                  : "bg-gray-100 hover:bg-gray-50 border-gray-100"
-              } backdrop-blur-lg shadow-lg border`}
+              key={category.title}
+              className="bento-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
             >
-              <div className="flex items-start space-x-4">
-                <div
-                  className={`p-3 rounded-lg ${
-                    isDarkMode ? "bg-gray-700" : "bg-gray-100"
-                  } ${skill.color}`}
-                >
-                  {skill.icon}
-                </div>
-                <div className="flex-1">
-                  <h3
-                    className={`text-xl font-semibold mb-2 ${
-                      isDarkMode ? "text-gray-200" : "text-gray-800"
-                    }`}
-                  >
-                    {skill.name}
-                  </h3>
-                  <div
-                    className={`relative w-full h-2 ${
-                      isDarkMode ? "bg-gray-700" : "bg-gray-200"
-                    } rounded-full overflow-hidden`}
-                  >
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.level}%` }}
-                      transition={{ duration: 1, ease: "easeOut" }}
-                      className={`absolute top-0 left-0 h-full ${
-                        isDarkMode
-                          ? "bg-gradient-to-r from-purple-500 to-pink-500"
-                          : "bg-gradient-to-r from-purple-600 to-pink-600"
-                      } rounded-full`}
-                    />
-                  </div>
-                  <p
-                    className={`mt-1 text-sm ${
-                      isDarkMode ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
-                    {skill.level}% Proficiency
-                  </p>
-                </div>
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-1">
+                  {category.title}
+                </h3>
+                <p className="text-sm text-neutral-500 dark:text-neutral-500">
+                  {category.description}
+                </p>
               </div>
 
-              {/* Decorative Elements */}
-              <div
-                className={`absolute -bottom-2 -right-2 w-20 h-20 rounded-full ${
-                  isDarkMode
-                    ? "bg-gradient-to-br from-purple-500/5 to-pink-500/5"
-                    : "bg-gradient-to-br from-purple-500/10 to-pink-500/10"
-                }`}
-              />
-              <div
-                className={`absolute -top-2 -left-2 w-16 h-16 rounded-full ${
-                  isDarkMode
-                    ? "bg-gradient-to-br from-blue-500/5 to-cyan-500/5"
-                    : "bg-gradient-to-br from-blue-500/10 to-cyan-500/10"
-                }`}
-              />
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill, skillIndex) => (
+                  <motion.div
+                    key={skill.name}
+                    className="tech-badge"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.3, 
+                      delay: categoryIndex * 0.1 + skillIndex * 0.05 
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <span style={{ color: skill.color }} className="text-lg dark:brightness-110">
+                      {skill.icon}
+                    </span>
+                    <span>{skill.name}</span>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Additional Info Card */}
+        <motion.div
+          className="bento-card mt-4 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <p className="text-neutral-600 dark:text-neutral-400">
+            Always learning and exploring new technologies to stay up-to-date with the latest trends in web development.
+          </p>
         </motion.div>
       </div>
     </section>

@@ -1,40 +1,25 @@
-import { useState, useEffect } from 'react';
-import Contact from "./components/Contact";
-import Experience from "./components/Experience";
-import Footer from "./components/Footer";
-import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
-import Portfolio from "./components/Portfolio";
+import Hero from "./components/Hero";
 import Skills from "./components/Skills";
 import Education from "./components/Education";
+import Experience from "./components/Experience";
+import Portfolio from "./components/Portfolio";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 export default function App() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === 'dark');
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = !isDarkMode;
-    setIsDarkMode(newTheme);
-    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
-    document.body.classList.toggle('light-mode', !newTheme);
-  };
-
   return (
-    <>
-      <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme}/>
-      <Hero isDarkMode={isDarkMode}/>
-      <Skills/>
-      <Education isDarkMode={isDarkMode}/>
-      <Portfolio isDarkMode={isDarkMode} />
-      <Experience/>
-      <Contact isDarkMode={isDarkMode}/>
-      <Footer isDarkMode={isDarkMode}/>
-    </>
-  )
+    <div className="min-h-screen bg-gray-50 dark:bg-neutral-950">
+      <Navbar />
+      <main className="max-w-7xl mx-auto pt-20 px-4 sm:px-6 space-y-12 md:space-y-16">
+        <Hero />
+        <Skills />
+        <Education />
+        <Experience />
+        <Portfolio />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  );
 }
