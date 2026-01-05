@@ -78,7 +78,7 @@
   /* Floating Navbar Pill */
   .navbar-pill {
     @apply fixed top-4 left-1/2 -translate-x-1/2 z-50;
-    @apply px-6 py-3 rounded-full;
+    @apply px-3 py-2 rounded-full;
     @apply backdrop-blur-xl bg-white/80 dark:bg-neutral-900/80;
     @apply border border-gray-200/50 dark:border-neutral-800/50;
     @apply shadow-lg shadow-black/5 dark:shadow-black/20;

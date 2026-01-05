@@ -1,75 +1,78 @@
 import { motion } from "framer-motion";
 import { HiBriefcase } from "react-icons/hi";
+import { useLanguage } from "../context/LanguageContext";
 
 const Experience = () => {
+  const { t, language } = useLanguage();
+
   const experiences = [
     {
       id: 1,
-      role: "Coding Mentor",
-      type: "Part-Time",
-      company: "Timedoor Academy",
+      role: t('experience.roles.codingMentor'),
+      type: t('experience.types.partTime'),
+      company: t('experience.companies.timedoor'),
       location: "Gorontalo, Indonesia",
-      period: "Apr 2025 - Present",
-      description: "Timedoor Academy is an educational institution focused on technology and digital skills development, especially in programming and information technology. Through interactive, project-based learning, equipping students with in-depth knowledge of coding, application design, and web/mobile development.",
-      skills: ["Teaching", "Programming", "Web Development"]
+      period: `Apr 2025 - ${t('experience.present')}`,
+      description: t('experience.descriptions.timedoor'),
+      skills: [t('experience.skillTags.teaching'), t('experience.skillTags.programming'), t('experience.skillTags.webDev')]
     },
     {
       id: 2,
-      role: "Front-End Developer",
-      type: "Internship",
-      company: "Sekawan Media (SEAL Coding Factory)",
+      role: t('experience.roles.frontendDev'),
+      type: t('experience.types.internship'),
+      company: t('experience.companies.sekawan'),
       location: "Malang, Indonesia",
       period: "Sep 2024 - Dec 2024",
-      description: "Sekawan Media is an IT company focused on developing applications and websites. Founded in 2013, Sekawan Media has provided top-notch solutions to hundreds of clients from various industries.",
+      description: t('experience.descriptions.sekawan'),
       highlights: [
-        "Developed 'ETIAMS' web application - internal audit management system for a BUMN company",
-        "Built 'Twintech Precision DCR' - Digital Controlling & Reporting application",
-        "Created 'Timah SSO' web application for PT. Timah",
-        "Developed 'TeAMS' - audit management system for JOB Pertamina-Medco E&P Tomori Sulawesi"
+        t('experience.highlights.etiams'),
+        t('experience.highlights.twintech'),
+        t('experience.highlights.timahSso'),
+        t('experience.highlights.teams')
       ],
-      skills: ["Web Development", "Quality Control"]
+      skills: [t('experience.skillTags.webDev'), t('experience.skillTags.qualityControl')]
     },
     {
       id: 3,
-      role: "Graphic Designer",
-      type: "Part-Time",
-      company: "SAShop Gorontalo",
+      role: t('experience.roles.graphicDesigner'),
+      type: t('experience.types.partTime'),
+      company: t('experience.companies.sashop'),
       location: "Gorontalo, Indonesia",
       period: "May 2024 - Jun 2024",
-      description: "SAShop Gorontalo is a clothing and personal care store based in Gorontalo, Indonesia offering fashionable clothing items and personal care products.",
+      description: t('experience.descriptions.sashop'),
       highlights: [
-        "Developed engaging Instagram content for SAShop Gorontalo"
+        t('experience.highlights.sashopContent')
       ],
-      skills: ["Graphic Design", "Social Media", "Content Creation"]
+      skills: [t('experience.skillTags.graphicDesign'), t('experience.skillTags.socialMedia'), t('experience.skillTags.contentCreation')]
     },
     {
       id: 4,
-      role: "Front-End Developer",
-      type: "Freelance",
-      company: "Self-employed",
+      role: t('experience.roles.frontendDev'),
+      type: t('experience.types.freelance'),
+      company: t('experience.companies.selfEmployed'),
       location: "Gorontalo, Indonesia",
-      period: "Apr 2020 - Present",
-      description: "High school years transitioning to college years saw dedication to Front-End Development, significantly enhancing experience and skill set.",
+      period: `Apr 2020 - ${t('experience.present')}`,
+      description: t('experience.descriptions.selfEmployed'),
       highlights: [
-        "New student registration website for SMK Negeri 1 Limboto",
-        "SIMIKOM - information management and tuition payment system for SD LABORATORIUM UNG",
-        "PKKMB website for Department of Informatics Engineering at UNG",
-        "Thesis exam verification web application for Department of Informatics Engineering at UNG"
+        t('experience.highlights.smkWebsite'),
+        t('experience.highlights.simikom'),
+        t('experience.highlights.pkkmb'),
+        t('experience.highlights.thesis')
       ],
-      skills: ["Web Development"]
+      skills: [t('experience.skillTags.webDev')]
     },
     {
       id: 5,
-      role: "Front-End Developer",
-      type: "Internship",
-      company: "Smart Data Integrasi",
+      role: t('experience.roles.frontendDev'),
+      type: t('experience.types.internship'),
+      company: t('experience.companies.smartData'),
       location: "Gorontalo, Indonesia",
       period: "Jan 2020 - Mar 2020",
-      description: "Smart Data Integrasi is a company that specializes in web development. The company has contributed to the creation of websites and applications for several government agencies in Gorontalo.",
+      description: t('experience.descriptions.smartData'),
       highlights: [
-        "Developed the official website of North Gorontalo Regency providing information and news about the region"
+        t('experience.highlights.gorutWebsite')
       ],
-      skills: ["Web Development"]
+      skills: [t('experience.skillTags.webDev')]
     },
   ];
 
@@ -84,9 +87,9 @@ const Experience = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="section-title mb-4">Work Experience</h2>
+          <h2 className="section-title mb-4">{t('experience.title')}</h2>
           <p className="section-subtitle max-w-2xl mx-auto">
-            My professional journey and contributions
+            {t('experience.subtitle')}
           </p>
         </motion.div>
 
@@ -104,7 +107,7 @@ const Experience = () => {
               <HiBriefcase className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
             </div>
             <h3 className="text-xl font-semibold text-neutral-900 dark:text-white">
-              Experience Timeline
+              {t('experience.timeline')}
             </h3>
           </div>
 

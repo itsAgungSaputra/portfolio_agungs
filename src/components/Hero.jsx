@@ -2,13 +2,15 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import profpic from "../assets/profilepic.jpg";
 import Skeleton from "./ui/Skeleton";
+import { useLanguage } from "../context/LanguageContext";
 import { 
   AiOutlineGithub, 
   AiOutlineLinkedin, 
   AiOutlineInstagram,
   AiOutlineBehance,
   AiOutlineDownload,
-  AiOutlineEnvironment
+  AiOutlineEnvironment,
+  AiOutlineEye
 } from "react-icons/ai";
 import { 
   DiHtml5, 
@@ -37,6 +39,7 @@ const staggerContainer = {
 const Hero = () => {
   const [isDark, setIsDark] = useState(false);
   const [profileLoaded, setProfileLoaded] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Check initial theme
@@ -85,6 +88,10 @@ const Hero = () => {
     document.body.removeChild(link);
   };
 
+  const handleViewCV = () => {
+    window.open("/CV_Mohamad Agung Saputra.pdf", "_blank");
+  };
+
   return (
     <section id="home" className="min-h-screen pt-24 pb-12 px-4">
       <motion.div 
@@ -130,20 +137,19 @@ const Hero = () => {
                       <div className="w-2 h-2 bg-green-500 rounded-full" />
                       <div className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full animate-ping opacity-75" />
                     </div>
-                    <span className="text-xs font-medium text-green-700 dark:text-green-400 whitespace-nowrap">Open for Work</span>
+                    <span className="text-xs font-medium text-green-700 dark:text-green-400 whitespace-nowrap">{t('hero.openForWork')}</span>
                   </div>
                 </div>
               </div>
               <div className="flex-1 mt-6 md:mt-0">
                 <p className="text-sm font-medium text-indigo-600 dark:text-indigo-400 mb-1">
-                  Front-End Developer
+                  {t('hero.role')}
                 </p>
                 <h1 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-2">
                   Agung Saputra
                 </h1>
                 <p className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base leading-relaxed">
-                  I am a fresh graduate Bachelor of Information Systems at Gorontalo State University, 
-                  deeply interested in web development particularly front-end and adept at problem-solving.
+                  {t('hero.bio')}
                 </p>
               </div>
             </div>
@@ -158,25 +164,43 @@ const Hero = () => {
               <AiOutlineEnvironment className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
             </div>
             <div className="min-w-0">
-              <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider">Location</p>
-              <p className="font-semibold text-neutral-900 dark:text-white text-sm md:text-base">Gorontalo, Indonesia</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider">{t('hero.location')}</p>
+              <p className="font-semibold text-neutral-900 dark:text-white text-sm md:text-base">{t('hero.locationValue')}</p>
             </div>
           </motion.div>
 
-          {/* Card 3: Download CV - CTA */}
+          {/* Card 3: CV Card - View & Download */}
           <motion.div 
             variants={fadeInUp}
-            className="bento-card bento-card-hover bg-indigo-600 dark:bg-indigo-500 border-indigo-600 dark:border-indigo-500 cursor-pointer group"
-            onClick={handleDownloadCV}
+            className="bento-card bento-card-hover bg-indigo-600 dark:bg-indigo-500 border-indigo-600 dark:border-indigo-500 group relative overflow-hidden"
           >
-            <div className="flex items-center justify-between h-full">
+            {/* Background Click -> View CV */}
+            <div 
+              onClick={handleViewCV} 
+              className="absolute inset-0 z-10 cursor-pointer" 
+              aria-label="View CV"
+            />
+            
+            <div className="flex items-center justify-between h-full relative z-20 pointer-events-none">
               <div>
-                <p className="text-indigo-200 text-sm mb-1">Get my resume</p>
-                <p className="text-white font-semibold text-lg">Download CV</p>
+                <p className="text-indigo-200 text-sm mb-1">{t('hero.checkProfile')}</p>
+                <div className="flex items-center gap-2">
+                  <AiOutlineEye className="w-5 h-5 text-white/70" />
+                  <p className="text-white font-semibold text-lg">{t('hero.viewResume')}</p>
+                </div>
               </div>
-              <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
+              
+              {/* Download Button (Secondary Action) */}
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDownloadCV();
+                }}
+                className="w-12 h-12 rounded-2xl bg-white/20 hover:bg-white/30 flex items-center justify-center pointer-events-auto transition-colors"
+                aria-label="Download CV"
+              >
                 <AiOutlineDownload className="w-6 h-6 text-white" />
-              </div>
+              </button>
             </div>
           </motion.div>
 
@@ -185,7 +209,7 @@ const Hero = () => {
             variants={fadeInUp}
             className="bento-card"
           >
-            <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider mb-4">Connect</p>
+            <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider mb-4">{t('hero.connect')}</p>
             <div className="flex gap-3">
               {socialLinks.map((social, index) => (
                 <a
@@ -209,7 +233,7 @@ const Hero = () => {
           >
             <div className="flex items-center gap-2 mb-4">
               <SiSpotify className="text-green-500 text-base" />
-              <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider">Now Playing</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider">{t('hero.nowPlaying')}</p>
             </div>
             <a 
               href="https://spotify-github-profile.kittinanx.com/api/view?uid=agung_saputra14&redirect=true" 
@@ -230,7 +254,7 @@ const Hero = () => {
             variants={fadeInUp}
             className="bento-card md:col-span-2"
           >
-            <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider mb-4">Tech Stack</p>
+            <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider mb-4">{t('hero.techStack')}</p>
             <div className="flex flex-wrap gap-3">
               {techStack.map((tech, index) => (
                 <motion.div

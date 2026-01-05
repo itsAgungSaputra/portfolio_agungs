@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   AiOutlineMail, 
   AiOutlineSend,
@@ -7,10 +7,38 @@ import {
   AiOutlineGithub,
   AiOutlineCheck,
   AiOutlineCopy,
-  AiOutlineLoading3Quarters
+  AiOutlineLoading3Quarters,
+  AiOutlineCheckCircle,
+  AiOutlineCloseCircle
 } from "react-icons/ai";
+import { useLanguage } from "../context/LanguageContext";
+
+// Toast Notification Component
+const Toast = ({ message, type, onClose }) => (
+  <motion.div
+    initial={{ opacity: 0, y: -20, x: "-50%" }}
+    animate={{ opacity: 1, y: 0, x: "-50%" }}
+    exit={{ opacity: 0, y: -20, x: "-50%" }}
+    className={`fixed top-24 left-1/2 z-50 px-4 py-3 rounded-xl shadow-lg flex items-center gap-3 ${
+      type === 'success' 
+        ? 'bg-green-100 dark:bg-green-900/80 text-green-800 dark:text-green-200 border border-green-200 dark:border-green-800' 
+        : 'bg-red-100 dark:bg-red-900/80 text-red-800 dark:text-red-200 border border-red-200 dark:border-red-800'
+    }`}
+  >
+    {type === 'success' ? (
+      <AiOutlineCheckCircle className="text-xl flex-shrink-0" />
+    ) : (
+      <AiOutlineCloseCircle className="text-xl flex-shrink-0" />
+    )}
+    <span className="text-sm font-medium">{message}</span>
+    <button onClick={onClose} className="ml-2 hover:opacity-70">
+      ✕
+    </button>
+  </motion.div>
+);
 
 const Contact = () => {
+  const { t, language } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,6 +46,15 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [toast, setToast] = useState(null);
+
+  // Web3Forms Access Key
+  const WEB3FORMS_ACCESS_KEY = "f24f9b95-3c52-4c50-a5eb-817f0cf18c61";
+
+  const showToast = (message, type) => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 5000);
+  };
 
   const handleCopyEmail = async () => {
     const email = "agungsaputraofficial@gmail.com";
@@ -41,13 +78,47 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
-    setIsSubmitting(false);
-    alert("Message sent successfully!");
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New Contact Form Message from ${formData.name}`,
+          from_name: "Portfolio Contact Form",
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        showToast(
+          language === 'id' 
+            ? "Pesan berhasil dikirim! Saya akan segera menghubungi Anda." 
+            : "Message sent successfully! I'll get back to you soon.",
+          'success'
+        );
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        throw new Error(result.message || "Failed to send message");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      showToast(
+        language === 'id'
+          ? "Gagal mengirim pesan. Silakan coba lagi atau hubungi via email."
+          : "Failed to send message. Please try again or contact via email.",
+        'error'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactLinks = [
@@ -73,6 +144,17 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-12 md:py-20 px-4">
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {toast && (
+          <Toast 
+            message={toast.message} 
+            type={toast.type} 
+            onClose={() => setToast(null)} 
+          />
+        )}
+      </AnimatePresence>
+
       <div className="container-main">
         {/* Section Header */}
         <motion.div 
@@ -82,9 +164,9 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="section-title mb-4">Get In Touch</h2>
+          <h2 className="section-title mb-4">{t('contact.title')}</h2>
           <p className="section-subtitle max-w-2xl mx-auto">
-            Have a project in mind or just want to say hello? Feel free to reach out!
+            {t('contact.subtitle')}
           </p>
         </motion.div>
 
@@ -98,14 +180,14 @@ const Contact = () => {
                 transition={{ duration: 0.5 }}
                 >
                 <h3 className="text-lg md:text-xl font-semibold text-neutral-900 dark:text-white mb-4 md:mb-6">
-                  Send a Message
+                  {t('contact.sendMessage')}
                 </h3>
                 
                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
-                    Your Name
+                    {t('contact.yourName')}
                     </label>
                     <input
                     type="text"
@@ -114,12 +196,12 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="input-minimal"
-                    placeholder="John Doe"
+                    placeholder={t('contact.namePlaceholder')}
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
-                    Your Email
+                    {t('contact.yourEmail')}
                     </label>
                     <input
                     type="email"
@@ -128,14 +210,14 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="input-minimal"
-                    placeholder="john@example.com"
+                    placeholder={t('contact.emailPlaceholder')}
                     />
                   </div>
                   </div>
                   
                   <div>
                   <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
-                    Message
+                    {t('contact.message')}
                   </label>
                   <textarea
                     name="message"
@@ -144,7 +226,7 @@ const Contact = () => {
                     required
                     rows={4}
                     className="input-minimal resize-none"
-                    placeholder="Tell me about your project..."
+                    placeholder={t('contact.messagePlaceholder')}
                   />
                   </div>
 
@@ -158,12 +240,12 @@ const Contact = () => {
                   {isSubmitting ? (
                     <>
                     <AiOutlineLoading3Quarters className="animate-spin" />
-                    Sending...
+                    {t('contact.sending')}
                     </>
                   ) : (
                     <>
                     <AiOutlineSend />
-                    Send Message
+                    {t('contact.send')}
                     </>
                   )}
                   </motion.button>
@@ -196,7 +278,7 @@ const Contact = () => {
                   Email
                 </p>
                 <p className="font-medium text-sm md:text-base text-neutral-900 dark:text-white truncate">
-                  {copiedEmail ? 'Copied!' : 'agungsaputraofficial@gmail.com'}
+                  {copiedEmail ? t('contact.copied') : 'agungsaputraofficial@gmail.com'}
                 </p>
               </div>
               <div className={`text-base md:text-lg flex-shrink-0 transition-all ${
@@ -234,8 +316,8 @@ const Contact = () => {
             {/* Additional Info Card */}
             <div className="bento-card bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border-indigo-100 dark:border-indigo-900/30">
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Based in <span className="font-semibold text-neutral-900 dark:text-white">Gorontalo, Indonesia</span>. 
-                Open to remote opportunities.
+                {t('contact.basedIn')} <span className="font-semibold text-neutral-900 dark:text-white">Gorontalo, Indonesia</span>. 
+                {t('contact.openRemote')}
               </p>
             </div>
           </motion.div>

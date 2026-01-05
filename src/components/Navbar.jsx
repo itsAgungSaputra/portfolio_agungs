@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
-import { HiSun, HiMoon, HiHome, HiCode, HiMail, HiAcademicCap, HiBriefcase } from 'react-icons/hi';
-import { motion } from 'framer-motion';
+import { HiSun, HiMoon, HiHome, HiCode, HiMail, HiAcademicCap, HiBriefcase, HiGlobeAlt } from 'react-icons/hi';
+import { motion, AnimatePresence } from 'framer-motion';
 import logoLight from '../assets/logo(lightmode).png';
 import logoDark from '../assets/logo(darkmode).png';
+import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
   const [isDark, setIsDark] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const { language, toggleLanguage, t } = useLanguage();
 
   useEffect(() => {
     // Check saved theme preference
@@ -54,21 +56,21 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Education', href: '#education' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Contact', href: '#contact' },
+    { name: t('navbar.home'), href: '#home' },
+    { name: t('navbar.skills'), href: '#skills' },
+    { name: t('navbar.education'), href: '#education' },
+    { name: t('navbar.experience'), href: '#experience' },
+    { name: t('navbar.portfolio'), href: '#portfolio' },
+    { name: t('navbar.contact'), href: '#contact' },
   ];
 
   // Mobile dock navigation items with icons
   const dockItems = [
-    { id: 'home', icon: HiHome, label: 'Home' },
-    { id: 'education', icon: HiAcademicCap, label: 'Education' },
-    { id: 'experience', icon: HiBriefcase, label: 'Experience' },
-    { id: 'portfolio', icon: HiCode, label: 'Portfolio' },
-    { id: 'contact', icon: HiMail, label: 'Contact' },
+    { id: 'home', icon: HiHome, label: t('navbar.home') },
+    { id: 'education', icon: HiAcademicCap, label: t('navbar.education') },
+    { id: 'experience', icon: HiBriefcase, label: t('navbar.experience') },
+    { id: 'portfolio', icon: HiCode, label: t('navbar.portfolio') },
+    { id: 'contact', icon: HiMail, label: t('navbar.contact') },
   ];
 
   const handleDockClick = (sectionId) => {
@@ -82,7 +84,7 @@ const Navbar = () => {
   return (
     <>
       {/* Desktop Floating Pill Navbar */}
-      <nav className={`navbar-pill hidden md:flex items-center gap-2 md:gap-4 transition-all duration-300 ${
+      <nav className={`navbar-pill hidden md:flex items-center gap-2 transition-all duration-300 ${
         isScrolled ? 'shadow-xl' : ''
       }`}>
         {/* Logo */}
@@ -105,22 +107,43 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="flex items-center gap-0.5">
+        <div className="flex items-center">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="px-3 py-2 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-full transition-all duration-200"
+              className="px-2.5 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-full transition-all duration-200"
             >
               {link.name}
             </a>
           ))}
         </div>
 
+        {/* Language Toggle */}
+        <button
+          onClick={toggleLanguage}
+          className="flex-shrink-0 flex items-center gap-1 px-2 py-1.5 rounded-full bg-gray-100 dark:bg-neutral-800 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors"
+          aria-label="Toggle language"
+        >
+          <HiGlobeAlt className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={language}
+              initial={{ y: -10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 10, opacity: 0 }}
+              transition={{ duration: 0.15 }}
+              className="text-xs font-semibold text-neutral-700 dark:text-neutral-300 uppercase"
+            >
+              {language}
+            </motion.span>
+          </AnimatePresence>
+        </button>
+
         {/* Theme Toggle */}
         <button
           onClick={toggleTheme}
-          className="flex-shrink-0 btn-ghost rounded-full"
+          className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors"
           aria-label="Toggle theme"
         >
           {isDark ? (
@@ -153,18 +176,33 @@ const Navbar = () => {
             />
           </a>
 
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 transition-colors"
-            aria-label="Toggle theme"
-          >
-            {isDark ? (
-              <HiSun className="w-5 h-5 text-yellow-500" />
-            ) : (
-              <HiMoon className="w-5 h-5 text-indigo-600" />
-            )}
-          </button>
+          {/* Language & Theme Toggle */}
+          <div className="flex items-center gap-2">
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLanguage}
+              className="flex items-center gap-1 px-2 py-1.5 rounded-full bg-gray-100 dark:bg-neutral-800 transition-colors"
+              aria-label="Toggle language"
+            >
+              <HiGlobeAlt className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
+              <span className="text-xs font-semibold text-neutral-700 dark:text-neutral-300 uppercase">
+                {language}
+              </span>
+            </button>
+
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDark ? (
+                <HiSun className="w-5 h-5 text-yellow-500" />
+              ) : (
+                <HiMoon className="w-5 h-5 text-indigo-600" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 

@@ -2,8 +2,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { AiOutlineGithub, AiOutlineLink, AiOutlineClose, AiOutlineCheck } from "react-icons/ai";
 import { DiReact, DiPhp, DiLaravel, DiJavascript1, DiMysql } from "react-icons/di";
 import { SiTypescript, SiTailwindcss, SiShadcnui } from "react-icons/si";
+import { useLanguage } from "../context/LanguageContext";
 
 const ProjectModal = ({ project, isOpen, onClose, techIcons }) => {
+  const { t } = useLanguage();
+
   if (!project) return null;
 
   // Handle backdrop click
@@ -95,7 +98,7 @@ const ProjectModal = ({ project, isOpen, onClose, techIcons }) => {
                 <div className="mb-8">
                   <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-3 flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-                    Key Features
+                    {t('portfolio.features')}
                   </h3>
                   <ul className="space-y-3">
                     {project.features.map((feature, index) => (
@@ -122,7 +125,7 @@ const ProjectModal = ({ project, isOpen, onClose, techIcons }) => {
                   className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white rounded-2xl font-medium hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
                 >
                   <AiOutlineGithub className="text-xl" />
-                  View Source Code
+                  {t('portfolio.viewCode')}
                 </a>
                 <a
                   href={project.demo}
@@ -131,7 +134,7 @@ const ProjectModal = ({ project, isOpen, onClose, techIcons }) => {
                   className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-2xl font-medium hover:bg-indigo-700 transition-colors"
                 >
                   <AiOutlineLink className="text-xl" />
-                  Live Demo
+                  {t('portfolio.viewDemo')}
                 </a>
               </div>
             </div>

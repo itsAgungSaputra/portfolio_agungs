@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 import { 
   DiHtml5, 
   DiCss3, 
@@ -25,10 +26,12 @@ const fadeInUp = {
 };
 
 const Skills = () => {
+  const { t } = useLanguage();
+
   const skillCategories = [
     {
-      title: "Frontend",
-      description: "Building beautiful user interfaces",
+      title: t('skills.frontend'),
+      description: t('skills.frontendDesc'),
       skills: [
         { name: "HTML5", icon: <DiHtml5 />, color: "#E34F26" },
         { name: "CSS3", icon: <DiCss3 />, color: "#1572B6" },
@@ -40,16 +43,16 @@ const Skills = () => {
       ]
     },
     {
-      title: "Backend",
-      description: "Server-side development",
+      title: t('skills.backend'),
+      description: t('skills.backendDesc'),
       skills: [
         { name: "PHP", icon: <DiPhp />, color: "#777BB4" },
         { name: "Laravel", icon: <DiLaravel />, color: "#FF2D20" },
       ]
     },
     {
-      title: "Tools",
-      description: "Development workflow",
+      title: t('skills.tools'),
+      description: t('skills.toolsDesc'),
       skills: [
         { name: "Git", icon: <DiGit />, color: "#F05032" },
         { name: "VS Code", icon: <VscCode />, color: "#007ACC" },
@@ -70,9 +73,9 @@ const Skills = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="section-title mb-4">Skills & Technologies</h2>
+          <h2 className="section-title mb-4">{t('skills.title')}</h2>
           <p className="section-subtitle max-w-2xl mx-auto">
-            Technologies and tools I use to bring ideas to life
+            {t('skills.subtitle')}
           </p>
         </motion.div>
 
@@ -130,7 +133,7 @@ const Skills = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <p className="text-neutral-600 dark:text-neutral-400">
-            Always learning and exploring new technologies to stay up-to-date with the latest trends in web development.
+            {t('skills.learningNote')}
           </p>
         </motion.div>
       </div>

@@ -9,9 +9,10 @@ import simikomImage from "../assets/portfolio/SIMIKOM.png";
 import kslImage from "../assets/portfolio/KSL UNG.png";
 import ProjectModal from "./ProjectModal";
 import Skeleton from "./ui/Skeleton";
+import { useLanguage } from "../context/LanguageContext";
 
 // Component for Project Card with image loading state
-const ProjectCard = ({ project, index, techIcons, onClick }) => {
+const ProjectCard = ({ project, index, techIcons, onClick, viewDetailsText }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
@@ -40,7 +41,7 @@ const ProjectCard = ({ project, index, techIcons, onClick }) => {
         {/* Click to View Hint */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
           <span className="px-4 py-2 bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm rounded-xl text-sm font-medium text-neutral-900 dark:text-white">
-            Click to view details
+            {viewDetailsText}
           </span>
         </div>
       </div>
@@ -73,6 +74,7 @@ const ProjectCard = ({ project, index, techIcons, onClick }) => {
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const { t } = useLanguage();
 
   // Technology icon mapping
   const techIcons = {
@@ -89,76 +91,45 @@ const Portfolio = () => {
   const projects = [
     {
       id: 1,
-      title: "THU Ummul Jannah App",
-      description: "A web apps for Hajj and Umrah savings management integrated with online payment system and WhatsApp notifications.",
-      fullDescription: "THU Ummul Jannah App is a comprehensive web application designed for managing Hajj and Umrah savings programs. Built with modern technologies, this system streamlines the entire process from member registration to payment tracking. The application integrates seamlessly with online payment gateways and provides automated WhatsApp notifications for payment reminders and confirmations, ensuring a smooth experience for both administrators and members.",
+      title: t('portfolio.projects.thu.title'),
+      description: t('portfolio.projects.thu.description'),
+      fullDescription: t('portfolio.projects.thu.fullDescription'),
       image: thuImage,
       tags: ["React", "TypeScript", "Laravel", "Tailwind CSS", "ShadcnUI", "MySQL"],
-      features: [
-        "Member registration and profile management system",
-        "Automated savings calculation with flexible payment schedules",
-        "Integration with multiple online payment gateways (Midtrans)",
-        "Real-time WhatsApp notifications for payment reminders and confirmations",
-        "Admin dashboard with comprehensive reporting and analytics",
-        "Export data to Excel/PDF for financial documentation",
-        "Responsive design optimized for mobile and desktop"
-      ],
+      features: t('portfolio.projects.thu.features'),
       github: "https://github.com/itsAgungSaputra/ummuljannahapp",
       demo: "https://thesisagung.matlhy.my.id/"
     },
     {
       id: 2,
-      title: "Geolocation Gorut",
-      description: "An interactive geolocation-based information system for North Gorontalo Regency.",
-      fullDescription: "Geolocation Gorut is a web-based Geographic Information System (GIS) that provides detailed location data and information about North Gorontalo Regency. The application features an interactive map interface that allows users to explore various points of interest, government facilities, tourism spots, and administrative boundaries. Built with Laravel and integrated with Leaflet.js for map visualization.",
+      title: t('portfolio.projects.geolocation.title'),
+      description: t('portfolio.projects.geolocation.description'),
+      fullDescription: t('portfolio.projects.geolocation.fullDescription'),
       image: geolocationImage,
       tags: ["Laravel", "Tailwind CSS", "PHP"],
-      features: [
-        "Interactive map with multiple layer support",
-        "Search functionality for locations and facilities",
-        "Detailed information panels for each point of interest",
-        "Admin panel for managing location data and categories",
-        "Responsive map controls optimized for touch devices",
-        "Export and share location coordinates"
-      ],
+      features: t('portfolio.projects.geolocation.features'),
       github: "https://github.com/itsAgungSaputra/geolocation_gorut",
       demo: "#"
     },
     {
       id: 3,
-      title: "SIMIKOM (Sistem Informasi Manajemen Iuran Komite) SD Lab UNG",
-      description: "A committee fee management information system for SD Laboratorium UNG.",
-      fullDescription: "SIMIKOM is a comprehensive committee fee management system developed specifically for SD Laboratorium UNG. This application digitizes the entire process of collecting and managing school committee fees, replacing traditional manual methods with an efficient digital solution. The system provides transparency in financial management and simplifies the payment process for parents while giving administrators powerful tools for tracking and reporting.",
+      title: t('portfolio.projects.simikom.title'),
+      description: t('portfolio.projects.simikom.description'),
+      fullDescription: t('portfolio.projects.simikom.fullDescription'),
       image: simikomImage,
       tags: ["Laravel", "Tailwind CSS", "PHP", "MySQL"],
-      features: [
-        "Student and parent data management with family linking",
-        "Flexible fee structure configuration per academic year",
-        "Multiple payment methods including installment options",
-        "Automated receipt generation with unique transaction codes",
-        "Real-time payment status tracking for parents",
-        "Comprehensive financial reports with filtering options",
-        "SMS/Email notifications for payment reminders"
-      ],
+      features: t('portfolio.projects.simikom.features'),
       github: "#",
       demo: "#"
     },
     {
       id: 4,
-      title: "KSL UNG",
-      description: "Official website for Kelompok Studi Linux (Linux Study Group) UNG.",
-      fullDescription: "KSL UNG Website is the official online platform for Kelompok Studi Linux at Gorontalo State University. The website serves as a hub for the Linux community at UNG, featuring news updates, event information, learning resources, and member portfolios. Built with Laravel and modern frontend technologies, the site showcases the organization's activities and provides a platform for knowledge sharing among members.",
+      title: t('portfolio.projects.ksl.title'),
+      description: t('portfolio.projects.ksl.description'),
+      fullDescription: t('portfolio.projects.ksl.fullDescription'),
       image: kslImage,
       tags: ["Laravel", "Tailwind CSS", "JavaScript", "PHP"],
-      features: [
-        "Dynamic content management system for articles and news",
-        "Event calendar with registration functionality",
-        "Member portfolio showcase with project galleries",
-        "Learning resources library with categorized tutorials",
-        "Blog system with markdown support and comments",
-        "Admin dashboard for content and member management",
-        "SEO optimized pages for better discoverability"
-      ],
+      features: t('portfolio.projects.ksl.features'),
       github: "https://github.com/ksl-ung/website-ksl",
       demo: "#"
     },
@@ -175,9 +146,9 @@ const Portfolio = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="section-title mb-4">Featured Projects</h2>
+          <h2 className="section-title mb-4">{t('portfolio.title')}</h2>
           <p className="section-subtitle max-w-2xl mx-auto">
-            A collection of projects that showcase my skills and passion for web development
+            {t('portfolio.subtitle')}
           </p>
         </motion.div>
 
@@ -190,6 +161,7 @@ const Portfolio = () => {
               index={index}
               techIcons={techIcons}
               onClick={() => setSelectedProject(project)}
+              viewDetailsText={t('portfolio.viewDetails')}
             />
           ))}
         </div>
@@ -209,7 +181,7 @@ const Portfolio = () => {
             className="btn-secondary"
           >
             <AiOutlineGithub className="text-xl" />
-            View More on GitHub
+            {t('portfolio.viewMore')}
           </a>
         </motion.div>
       </div>
