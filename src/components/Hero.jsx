@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import profpic from "../assets/profilepic.jpg";
+import Skeleton from "./ui/Skeleton";
 import { 
   AiOutlineGithub, 
   AiOutlineLinkedin, 
@@ -35,6 +36,7 @@ const staggerContainer = {
 
 const Hero = () => {
   const [isDark, setIsDark] = useState(false);
+  const [profileLoaded, setProfileLoaded] = useState(false);
 
   useEffect(() => {
     // Check initial theme
@@ -101,10 +103,18 @@ const Hero = () => {
           >
             <div className="flex flex-col md:flex-row items-center gap-6 md:gap-6 w-full">
               <div className="relative">
+                {/* Skeleton loader */}
+                {!profileLoaded && (
+                  <Skeleton 
+                    className="w-32 h-32 md:w-40 md:h-40" 
+                    rounded="rounded-3xl"
+                  />
+                )}
                 <img 
                   src={profpic} 
                   alt="Agung Saputra" 
-                  className="w-32 h-32 md:w-40 md:h-40 rounded-3xl object-cover shadow-lg"
+                  className={`w-32 h-32 md:w-40 md:h-40 rounded-3xl object-cover shadow-lg transition-opacity duration-300 ${profileLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
+                  onLoad={() => setProfileLoaded(true)}
                 />
                 {/* Status Indicator - Green dot */}
                 <div className="absolute -bottom-1 -right-1 flex items-center">

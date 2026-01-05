@@ -6,7 +6,8 @@ import {
   AiOutlineLinkedin,
   AiOutlineGithub,
   AiOutlineCheck,
-  AiOutlineCopy
+  AiOutlineCopy,
+  AiOutlineLoading3Quarters
 } from "react-icons/ai";
 
 const Contact = () => {
@@ -87,26 +88,26 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 md:gap-6">
           {/* Contact Form */}
-          <motion.div
-            className="bento-card lg:col-span-3"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-6">
-              Send a Message
-            </h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
+                <motion.div
+                className="bento-card lg:col-span-3"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                >
+                <h3 className="text-lg md:text-xl font-semibold text-neutral-900 dark:text-white mb-4 md:mb-6">
+                  Send a Message
+                </h3>
+                
+                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
                     Your Name
-                  </label>
-                  <input
+                    </label>
+                    <input
                     type="text"
                     name="name"
                     value={formData.name}
@@ -114,13 +115,13 @@ const Contact = () => {
                     required
                     className="input-minimal"
                     placeholder="John Doe"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
                     Your Email
-                  </label>
-                  <input
+                    </label>
+                    <input
                     type="email"
                     name="email"
                     value={formData.email}
@@ -128,50 +129,50 @@ const Contact = () => {
                     required
                     className="input-minimal"
                     placeholder="john@example.com"
+                    />
+                  </div>
+                  </div>
+                  
+                  <div>
+                  <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
+                    Message
+                  </label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={4}
+                    className="input-minimal resize-none"
+                    placeholder="Tell me about your project..."
                   />
-                </div>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={4}
-                  className="input-minimal resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
+                  </div>
 
-              <motion.button
-                type="submit"
-                disabled={isSubmitting}
-                className="btn-primary w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {isSubmitting ? (
-                  <>
-                    <span className="animate-spin">⏳</span>
+                  <motion.button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn-primary w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  >
+                  {isSubmitting ? (
+                    <>
+                    <AiOutlineLoading3Quarters className="animate-spin" />
                     Sending...
-                  </>
-                ) : (
-                  <>
+                    </>
+                  ) : (
+                    <>
                     <AiOutlineSend />
                     Send Message
-                  </>
-                )}
-              </motion.button>
-            </form>
-          </motion.div>
+                    </>
+                  )}
+                  </motion.button>
+                </form>
+                </motion.div>
 
-          {/* Contact Info */}
+                {/* Contact Info */}
           <motion.div
-            className="lg:col-span-2 space-y-4"
+            className="lg:col-span-2 space-y-3 md:space-y-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -180,25 +181,25 @@ const Contact = () => {
             {/* Email - Copy to Clipboard */}
             <motion.button
               onClick={handleCopyEmail}
-              className="bento-card bento-card-hover flex items-center gap-4 group w-full text-left cursor-pointer"
+              className="bento-card bento-card-hover flex items-center gap-3 md:gap-4 group w-full text-left cursor-pointer"
               whileTap={{ scale: 0.98 }}
             >
-              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl transition-all ${
+              <div className={`w-10 h-10 md:w-12 md:h-12 flex-shrink-0 rounded-2xl flex items-center justify-center text-lg md:text-xl transition-all ${
                 copiedEmail 
                   ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' 
                   : 'bg-gray-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/30 group-hover:text-indigo-600 dark:group-hover:text-indigo-400'
               }`}>
                 {copiedEmail ? <AiOutlineCheck /> : <AiOutlineMail />}
               </div>
-              <div className="flex-1">
-                <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider">
+              <div className="flex-1 min-w-0">
+                <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider mb-0.5">
                   Email
                 </p>
-                <p className="font-medium text-neutral-900 dark:text-white">
+                <p className="font-medium text-sm md:text-base text-neutral-900 dark:text-white truncate">
                   {copiedEmail ? 'Copied!' : 'agungsaputraofficial@gmail.com'}
                 </p>
               </div>
-              <div className={`text-lg transition-all ${
+              <div className={`text-base md:text-lg flex-shrink-0 transition-all ${
                 copiedEmail 
                   ? 'text-green-500' 
                   : 'text-neutral-400 group-hover:text-indigo-500'
@@ -214,16 +215,16 @@ const Contact = () => {
                 href={contact.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bento-card bento-card-hover flex items-center gap-4 group"
+                className="bento-card bento-card-hover flex items-center gap-3 md:gap-4 group"
               >
-                <div className="w-12 h-12 rounded-2xl bg-gray-100 dark:bg-neutral-800 flex items-center justify-center text-xl text-neutral-600 dark:text-neutral-400 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/30 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-all">
+                <div className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 rounded-2xl bg-gray-100 dark:bg-neutral-800 flex items-center justify-center text-lg md:text-xl text-neutral-600 dark:text-neutral-400 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/30 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-all">
                   {contact.icon}
                 </div>
-                <div>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider">
+                <div className="min-w-0 flex-1">
+                  <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider mb-0.5">
                     {contact.label}
                   </p>
-                  <p className="font-medium text-neutral-900 dark:text-white">
+                  <p className="font-medium text-sm md:text-base text-neutral-900 dark:text-white truncate">
                     {contact.value}
                   </p>
                 </div>

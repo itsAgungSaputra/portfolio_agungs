@@ -29,9 +29,9 @@ const Footer = () => {
   return (
     <footer className="py-8 md:py-12 px-4 border-t border-gray-200 dark:border-neutral-800">
       <div className="container-main">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+        <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-8">
           {/* Logo & Copyright */}
-          <div className="flex flex-col items-center md:items-start gap-2">
+          <div className="flex flex-col items-center md:items-start gap-3 text-center md:text-left">
             <a 
               href="#home" 
               className="transition-opacity hover:opacity-80"
@@ -49,15 +49,17 @@ const Footer = () => {
                 className="h-8 md:h-10 w-auto object-contain hidden dark:block"
               />
             </a>
-            <p className="text-sm text-neutral-500 dark:text-neutral-500 flex items-center gap-1">
-              © {currentYear} Agung Saputra. Made with 
-              <AiOutlineHeart className="text-red-500" /> 
-              All rights reserved.
+            <p className="text-xs md:text-sm text-neutral-500 dark:text-neutral-500 flex items-center justify-center md:justify-start gap-1 flex-wrap max-w-xs md:max-w-none">
+              <span>© {currentYear} Agung Saputra.</span>
+              <span className="flex items-center gap-1">
+                Made with <AiOutlineHeart className="text-red-500" />
+              </span>
+              <span className="hidden md:inline">All rights reserved.</span>
             </p>
           </div>
 
           {/* Quick Links */}
-          <nav className="flex flex-wrap justify-center gap-4 md:gap-6">
+          <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 md:gap-6 order-last md:order-none">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -70,7 +72,7 @@ const Footer = () => {
           </nav>
 
           {/* Social Links */}
-          <div className="flex gap-3">
+          <div className="flex gap-3 md:gap-4">
             {socialLinks.map((social) => (
               <a
                 key={social.label}
@@ -78,7 +80,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-600 dark:text-neutral-400 hover:bg-gray-200 dark:hover:bg-neutral-700 hover:text-neutral-900 dark:hover:text-white transition-all"
+                className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-gray-100 dark:bg-neutral-800 flex items-center justify-center text-lg md:text-xl text-neutral-600 dark:text-neutral-400 hover:bg-gray-200 dark:hover:bg-neutral-700 hover:text-neutral-900 dark:hover:text-white transition-all active:scale-95"
               >
                 {social.icon}
               </a>
