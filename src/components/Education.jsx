@@ -12,6 +12,7 @@ import logoSMK from "../assets/education/SMKNEGERI1LIMBOTO.png";
 // Education Item Component with logo loading state
 const EducationItem = ({ edu, index }) => {
   const [logoLoaded, setLogoLoaded] = useState(false);
+  const { language } = useLanguage();
 
   return (
     <motion.div
@@ -64,6 +65,16 @@ const EducationItem = ({ edu, index }) => {
               {edu.institution}
             </p>
             
+            {/* IPK/GPA */}
+            {edu.gpa && (
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 mb-2 bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg border border-purple-200 dark:border-purple-800/50">
+                <span className="text-[10px] sm:text-xs font-semibold text-purple-700 dark:text-purple-300">
+                  {language === 'id' ? 'IPK:' : 'GPA:'}
+                </span>
+                <span className="text-xs sm:text-sm font-bold text-purple-900 dark:text-purple-100">{edu.gpa}</span>
+              </div>
+            )}
+            
             <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm mb-2 sm:mb-3 leading-relaxed">
               {edu.description}
             </p>
@@ -96,8 +107,9 @@ const Education = () => {
       degree: t('education.degrees.bachelor'),
       institution: t('education.institutions.ung'),
       period: "Aug 2021 - Dec 2025",
+      gpa: "3.74",
       description: t('education.descriptions.ung'),
-      achievements: [t('education.achievements.webDev'), t('education.achievements.database'), t('education.achievements.softwareEng')],
+      achievements: [t('education.achievements.webDev'), t('education.achievements.database')],
       logo: logoUNG
     },
     {
@@ -105,8 +117,9 @@ const Education = () => {
       degree: t('education.degrees.exchange'),
       institution: t('education.institutions.ub'),
       period: "Aug 2023 - Dec 2023",
+      gpa: "3.60",
       description: t('education.descriptions.ub'),
-      achievements: [t('education.achievements.computerScience'), t('education.achievements.webDev'), t('education.achievements.uiux')],
+      achievements: [t('education.achievements.webDev'), t('education.achievements.uiux'), t('education.achievements.bigData'), t('education.achievements.dataScience'), t('education.achievements.humanComputerInteraction'), t('education.achievements.dataVisualization')],
       logo: logoUB
     },
     {
@@ -126,7 +139,7 @@ const Education = () => {
       id: 1,
       name: t('education.certs.vsga'),
       issuer: "Digitalent Scholarship",
-      year: "2021"
+      year: "2021, 2022"
     },
   ];
 

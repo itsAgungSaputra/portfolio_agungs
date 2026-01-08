@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import profpic from "../assets/profilepic.jpg";
 import Skeleton from "./ui/Skeleton";
@@ -10,8 +10,10 @@ import {
   AiOutlineBehance,
   AiOutlineDownload,
   AiOutlineEnvironment,
-  AiOutlineEye
+  AiOutlineEye,
+  AiOutlineClose
 } from "react-icons/ai";
+import { HiGlobeAlt } from "react-icons/hi";
 import { 
   DiHtml5, 
   DiCss3, 
@@ -21,6 +23,127 @@ import {
   DiLaravel 
 } from "react-icons/di";
 import { SiNextdotjs, SiTailwindcss, SiSpotify, SiTypescript } from "react-icons/si";
+
+// CV Modal Component
+const CVModal = ({ isOpen, onClose, t }) => {
+  const cvVersions = [
+    {
+      lang: "English",
+      code: "EN",
+      file: "/CV_Mohamad Agung Saputra_English_Ver.pdf",
+      downloadName: "CV_Mohamad Agung Saputra_English.pdf"
+    },
+    {
+      lang: "Indonesia",
+      code: "ID",
+      file: "/CV_Mohamad Agung Saputra_Indo_Ver.pdf",
+      downloadName: "CV_Mohamad Agung Saputra_Indonesia.pdf"
+    }
+  ];
+
+  const handleView = (file) => {
+    window.open(file, "_blank");
+    onClose();
+  };
+
+  const handleDownload = (file, downloadName) => {
+    const link = document.createElement("a");
+    link.href = file;
+    link.download = downloadName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
+          />
+          
+          {/* Modal */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-md"
+          >
+            <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-neutral-800 overflow-hidden">
+              {/* Header */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-neutral-800">
+                <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">
+                  {t('hero.selectCV')}
+                </h3>
+                <button
+                  onClick={onClose}
+                  className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors"
+                >
+                  <AiOutlineClose className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* CV Options */}
+              <div className="p-4 space-y-3">
+                {cvVersions.map((cv) => (
+                  <div
+                    key={cv.lang}
+                    className="p-4 bg-gray-50 dark:bg-neutral-800/50 rounded-xl border border-gray-200 dark:border-neutral-700 hover:border-indigo-300 dark:hover:border-indigo-600 transition-colors"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        {/* Language Icon Badge */}
+                        <div className="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+                          <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">
+                            {cv.code}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="font-medium text-neutral-900 dark:text-white">
+                            CV - {cv.lang}
+                          </p>
+                          <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                            {cv.lang === "English" ? "English Version" : "Versi Indonesia"}
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => handleView(cv.file)}
+                          className="flex items-center gap-1.5 px-3 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-lg hover:bg-indigo-200 dark:hover:bg-indigo-900/50 transition-colors text-sm font-medium"
+                        >
+                          <AiOutlineEye className="w-4 h-4" />
+                          <span className="hidden sm:inline">{t('hero.view')}</span>
+                        </button>
+                        <button
+                          onClick={() => handleDownload(cv.file, cv.downloadName)}
+                          className="flex items-center gap-1.5 px-3 py-2 bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors text-sm font-medium"
+                        >
+                          <AiOutlineDownload className="w-4 h-4" />
+                          <span className="hidden sm:inline">{t('hero.download')}</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+};
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -39,6 +162,7 @@ const staggerContainer = {
 const Hero = () => {
   const [isDark, setIsDark] = useState(false);
   const [profileLoaded, setProfileLoaded] = useState(false);
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -79,21 +203,18 @@ const Hero = () => {
     { icon: <SiTailwindcss />, name: "Tailwind", color: "#06B6D4" },
   ];
 
-  const handleDownloadCV = () => {
-    const link = document.createElement("a");
-    link.href = "/CV_Mohamad Agung Saputra.pdf";
-    link.download = "CV_Mohamad Agung Saputra.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const handleViewCV = () => {
-    window.open("/CV_Mohamad Agung Saputra.pdf", "_blank");
+  const openCVModal = () => {
+    setIsCVModalOpen(true);
   };
 
   return (
     <section id="home" className="min-h-screen pt-24 pb-12 px-4">
+      {/* CV Modal */}
+      <CVModal 
+        isOpen={isCVModalOpen} 
+        onClose={() => setIsCVModalOpen(false)} 
+        t={t}
+      />
       <motion.div 
         className="container-main"
         variants={staggerContainer}
@@ -172,16 +293,10 @@ const Hero = () => {
           {/* Card 3: CV Card - View & Download */}
           <motion.div 
             variants={fadeInUp}
-            className="bento-card bento-card-hover bg-indigo-600 dark:bg-indigo-500 border-indigo-600 dark:border-indigo-500 group relative overflow-hidden"
+            onClick={openCVModal}
+            className="bento-card bento-card-hover bg-indigo-600 dark:bg-indigo-500 border-indigo-600 dark:border-indigo-500 group cursor-pointer"
           >
-            {/* Background Click -> View CV */}
-            <div 
-              onClick={handleViewCV} 
-              className="absolute inset-0 z-10 cursor-pointer" 
-              aria-label="View CV"
-            />
-            
-            <div className="flex items-center justify-between h-full relative z-20 pointer-events-none">
+            <div className="flex items-center justify-between h-full">
               <div>
                 <p className="text-indigo-200 text-sm mb-1">{t('hero.checkProfile')}</p>
                 <div className="flex items-center gap-2">
@@ -190,17 +305,9 @@ const Hero = () => {
                 </div>
               </div>
               
-              {/* Download Button (Secondary Action) */}
-              <button 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleDownloadCV();
-                }}
-                className="w-12 h-12 rounded-2xl bg-white/20 hover:bg-white/30 flex items-center justify-center pointer-events-auto transition-colors"
-                aria-label="Download CV"
-              >
+              <div className="w-12 h-12 rounded-2xl bg-white/20 group-hover:bg-white/30 flex items-center justify-center transition-colors">
                 <AiOutlineDownload className="w-6 h-6 text-white" />
-              </button>
+              </div>
             </div>
           </motion.div>
 

@@ -14,7 +14,7 @@ export const translations = {
     // Hero Section
     hero: {
       role: "Front-End Developer",
-      bio: "I am a fresh graduate Bachelor of Information Systems at Gorontalo State University, deeply interested in web development particularly front-end and adept at problem-solving.",
+      bio: "I am a fresh graduate Bachelor of Information Systems at Universitas Negeri Gorontalo, deeply interested in web development particularly front-end and adept at problem-solving.",
       location: "Location",
       locationValue: "Gorontalo, Indonesia",
       openForWork: "Open for Work",
@@ -22,7 +22,10 @@ export const translations = {
       viewResume: "View Resume",
       connect: "Connect",
       nowPlaying: "Now Listening",
-      techStack: "Tech Stack"
+      techStack: "Tech Stack",
+      selectCV: "Select CV Version",
+      view: "View",
+      download: "Download"
     },
 
     // Skills Section
@@ -48,7 +51,7 @@ export const translations = {
       // Education Items
       degrees: {
         bachelor: "Bachelor of Information Systems",
-        exchange: "Student Exchange Program",
+        exchange: "Merdeka Student Exchange Program",
         vocational: "Software Engineering"
       },
       institutions: {
@@ -58,14 +61,17 @@ export const translations = {
       },
       descriptions: {
         ung: "Focused on web development, database management, and software engineering. Graduated with a strong foundation in both technical and analytical skills.",
-        ub: "Bachelor of Computer Science exchange program, expanding knowledge and networking.",
+        ub: "Bachelor of Information Systems exchange program, expanding knowledge and networking.",
         smk: "Vocational high school with focus on software engineering and programming fundamentals."
       },
       achievements: {
         webDev: "Web Development",
         database: "Database Systems",
-        softwareEng: "Software Engineering",
-        computerScience: "Computer Science",
+        informationSystems: "Information Systems",
+        bigData: "Big Data",
+        dataScience: "Data Science",
+        humanComputerInteraction: "Human-Computer Interaction",
+        dataVisualization: "Data Visualization",
         uiux: "UI/UX Design",
         programmingBasics: "Programming Basics",
         softwareDev: "Software Development"
@@ -73,7 +79,6 @@ export const translations = {
       // Certifications
       certs: {
         vsga: "Junior Web Developer - VSGA",
-        bootcamp: "Web Development Bootcamp"
       }
     },
 
@@ -98,7 +103,7 @@ export const translations = {
       // Companies
       companies: {
         timedoor: "Timedoor Academy",
-        sekawan: "Sekawan Media (SEAL Coding Factory)",
+        sekawan: "Sekawan Media, Cluster Coding Factory (SEAL)",
         sashop: "SAShop Gorontalo",
         selfEmployed: "Self-employed",
         smartData: "Smart Data Integrasi"
@@ -111,25 +116,28 @@ export const translations = {
         selfEmployed: "High school years transitioning to college years saw dedication to Front-End Development, significantly enhancing experience and skill set.",
         smartData: "Smart Data Integrasi is a company that specializes in web development. The company has contributed to the creation of websites and applications for several government agencies in Gorontalo."
       },
+      // Achievements
+      achievements: {
+        bestTeacher: "Best Teacher of the Month - June 2025"
+      },
       // Highlights
       highlights: {
         etiams: "Developed 'ETIAMS' web application - internal audit management system for a BUMN company",
-        twintech: "Built 'Twintech Precision DCR' - Digital Controlling & Reporting application",
-        timahSso: "Created 'Timah SSO' web application for PT. Timah",
+        twintech: "Developed 'Twintech Precision DCR' - Digital Controlling & Reporting application",
+        timahSso: "Developed 'Timah SSO' web application for PT. Timah",
         teams: "Developed 'TeAMS' - audit management system for JOB Pertamina-Medco E&P Tomori Sulawesi",
         sashopContent: "Developed engaging Instagram content for SAShop Gorontalo",
         smkWebsite: "New student registration website for SMK Negeri 1 Limboto",
         simikom: "SIMIKOM - information management and tuition payment system for SD LABORATORIUM UNG",
         pkkmb: "PKKMB website for Department of Informatics Engineering at UNG",
         thesis: "Thesis exam verification web application for Department of Informatics Engineering at UNG",
-        gorutWebsite: "Developed the official website of North Gorontalo Regency providing information and news about the region"
+        gorutWebsite: "Developed the official website portal of North Gorontalo Regency providing information and news about the region"
       },
       // Skills
       skillTags: {
         teaching: "Teaching",
         programming: "Programming",
         webDev: "Web Development",
-        qualityControl: "Quality Control",
         graphicDesign: "Graphic Design",
         socialMedia: "Social Media",
         contentCreation: "Content Creation"
@@ -260,7 +268,10 @@ export const translations = {
       viewResume: "Lihat Resume",
       connect: "Terhubung",
       nowPlaying: "Sedang Mendengarkan",
-      techStack: "Tech Stack"
+      techStack: "Tech Stack",
+      selectCV: "Pilih Versi CV",
+      view: "Lihat",
+      download: "Unduh"
     },
 
     // Skills Section
@@ -286,7 +297,7 @@ export const translations = {
       // Education Items
       degrees: {
         bachelor: "Sarjana Sistem Informasi",
-        exchange: "Program Pertukaran Mahasiswa",
+        exchange: "Program Pertukaran Mahasiswa Merdeka",
         vocational: "Rekayasa Perangkat Lunak"
       },
       institutions: {
@@ -295,16 +306,19 @@ export const translations = {
         smk: "SMK Negeri 1 Gorontalo"
       },
       descriptions: {
-        ung: "Fokus pada pengembangan web, manajemen basis data, dan rekayasa perangkat lunak. Lulus dengan fondasi kuat dalam keterampilan teknis dan analitis.",
-        ub: "Program pertukaran Sarjana Ilmu Komputer, memperluas pengetahuan dan jaringan.",
+        ung: "Fokus pada pengembangan web dan manajemen basis data. Lulus dengan fondasi kuat dalam keterampilan teknis dan analitis.",
+        ub: "Program pertukaran Sarjana Sistem Informasi, memperluas pengetahuan dan jaringan.",
         smk: "Sekolah menengah kejuruan dengan fokus pada rekayasa perangkat lunak dan dasar-dasar pemrograman."
       },
       achievements: {
         webDev: "Pengembangan Web",
         database: "Sistem Basis Data",
-        softwareEng: "Rekayasa Perangkat Lunak",
-        computerScience: "Ilmu Komputer",
+        informationSystems: "Sistem Informasi",
         uiux: "Desain UI/UX",
+        bigData: "Big Data",
+        dataScience: "Ilmu Data",
+        humanComputerInteraction: "Interaksi Manusia-Komputer",
+        dataVisualization: "Visualisasi Data",
         programmingBasics: "Dasar Pemrograman",
         softwareDev: "Pengembangan Perangkat Lunak"
       },
@@ -328,14 +342,14 @@ export const translations = {
       },
       // Job Roles
       roles: {
-        codingMentor: "Mentor Pemrograman",
+        codingMentor: "Mentor Koding",
         frontendDev: "Pengembang Antarmuka Pengguna",
         graphicDesigner: "Desainer Grafis"
       },
       // Companies
       companies: {
         timedoor: "Timedoor Academy",
-        sekawan: "Sekawan Media (SEAL Coding Factory)",
+        sekawan: "Sekawan Media, Cluster Coding Factory (SEAL)",
         sashop: "SAShop Gorontalo",
         selfEmployed: "Wiraswasta",
         smartData: "Smart Data Integrasi"
@@ -348,25 +362,28 @@ export const translations = {
         selfEmployed: "Tahun-tahun SMA hingga kuliah didedikasikan untuk Pengembangan Antarmuka Pengguna, secara signifikan meningkatkan pengalaman dan keahlian.",
         smartData: "Smart Data Integrasi adalah perusahaan yang mengkhususkan diri dalam pengembangan web. Perusahaan telah berkontribusi dalam pembuatan website dan aplikasi untuk beberapa instansi pemerintah di Gorontalo."
       },
+      // Achievements
+      achievements: {
+        bestTeacher: "Penghargaan Guru Terbaik Bulan ini - Juni 2025"
+      },
       // Highlights
       highlights: {
         etiams: "Mengembangkan aplikasi web 'ETIAMS' - sistem manajemen audit internal untuk perusahaan BUMN",
-        twintech: "Membangun 'Twintech Precision DCR' - aplikasi Digital Controlling & Reporting",
-        timahSso: "Membuat aplikasi web 'Timah SSO' untuk PT. Timah",
+        twintech: "Mengembangkan 'Twintech Precision DCR' - aplikasi Digital Controlling & Reporting",
+        timahSso: "Mengembangkan aplikasi web 'Timah SSO' untuk PT. Timah",
         teams: "Mengembangkan 'TeAMS' - sistem manajemen audit untuk JOB Pertamina-Medco E&P Tomori Sulawesi",
         sashopContent: "Mengembangkan konten Instagram yang menarik untuk SAShop Gorontalo",
         smkWebsite: "Website pendaftaran siswa baru untuk SMK Negeri 1 Limboto",
         simikom: "SIMIKOM - sistem informasi manajemen dan pembayaran iuran untuk SD LABORATORIUM UNG",
         pkkmb: "Website PKKMB untuk Jurusan Teknik Informatika UNG",
         thesis: "Aplikasi web verifikasi ujian skripsi untuk Jurusan Teknik Informatika UNG",
-        gorutWebsite: "Mengembangkan website resmi Kabupaten Gorontalo Utara yang menyediakan informasi dan berita tentang daerah tersebut"
+        gorutWebsite: "Mengembangkan website resmi portal Kabupaten Gorontalo Utara yang menyediakan informasi dan berita tentang daerah tersebut"
       },
       // Skills
       skillTags: {
         teaching: "Mengajar",
         programming: "Pemrograman",
         webDev: "Pengembangan Web",
-        qualityControl: "Kontrol Kualitas",
         graphicDesign: "Desain Grafis",
         socialMedia: "Media Sosial",
         contentCreation: "Pembuatan Konten"

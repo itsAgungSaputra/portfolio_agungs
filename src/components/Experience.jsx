@@ -14,6 +14,7 @@ const Experience = () => {
       location: "Gorontalo, Indonesia",
       period: `Apr 2025 - ${t('experience.present')}`,
       description: t('experience.descriptions.timedoor'),
+      highlights: [t('experience.achievements.bestTeacher')],
       skills: [t('experience.skillTags.teaching'), t('experience.skillTags.programming'), t('experience.skillTags.webDev')]
     },
     {
@@ -30,7 +31,7 @@ const Experience = () => {
         t('experience.highlights.timahSso'),
         t('experience.highlights.teams')
       ],
-      skills: [t('experience.skillTags.webDev'), t('experience.skillTags.qualityControl')]
+      skills: [t('experience.skillTags.webDev')]
     },
     {
       id: 3,

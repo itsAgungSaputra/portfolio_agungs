@@ -23,12 +23,14 @@ const Footer = () => {
   const navLinks = [
     { name: t('navbar.home'), href: "#home" },
     { name: t('navbar.skills'), href: "#skills" },
+    { name: t('navbar.education'), href: "#education" },
+    { name: t('navbar.experience'), href: "#experience" },
     { name: t('navbar.portfolio'), href: "#portfolio" },
     { name: t('navbar.contact'), href: "#contact" },
   ];
 
   return (
-    <footer className="py-8 md:py-12 px-4 border-t border-gray-200 dark:border-neutral-800">
+    <footer className="py-8 md:py-12 px-4 pb-24 md:pb-12 border-t border-gray-200 dark:border-neutral-800">
       <div className="container-main">
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-8">
           {/* Logo & Copyright */}
