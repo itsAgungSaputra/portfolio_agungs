@@ -23,6 +23,8 @@ import {
   DiLaravel 
 } from "react-icons/di";
 import { SiNextdotjs, SiTailwindcss, SiSpotify, SiTypescript } from "react-icons/si";
+import GB from 'country-flag-icons/react/3x2/GB';
+import ID from 'country-flag-icons/react/3x2/ID';
 
 // CV Modal Component
 const CVModal = ({ isOpen, onClose, t }) => {
@@ -30,12 +32,14 @@ const CVModal = ({ isOpen, onClose, t }) => {
     {
       lang: "English",
       code: "EN",
+      Flag: GB,
       file: "/CV_Mohamad Agung Saputra_English_Ver.pdf",
       downloadName: "CV_Mohamad Agung Saputra_English.pdf"
     },
     {
       lang: "Indonesia",
       code: "ID",
+      Flag: ID,
       file: "/CV_Mohamad Agung Saputra_Indo_Ver.pdf",
       downloadName: "CV_Mohamad Agung Saputra_Indonesia.pdf"
     }
@@ -101,11 +105,9 @@ const CVModal = ({ isOpen, onClose, t }) => {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        {/* Language Icon Badge */}
-                        <div className="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                          <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">
-                            {cv.code}
-                          </span>
+                        {/* Country Flag Icon */}
+                        <div className="w-10 h-7 rounded overflow-hidden shadow-sm border border-gray-200 dark:border-neutral-600">
+                          <cv.Flag title={cv.lang} className="w-full h-full object-cover" />
                         </div>
                         <div>
                           <p className="font-medium text-neutral-900 dark:text-white">
