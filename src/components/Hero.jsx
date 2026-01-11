@@ -235,15 +235,17 @@ const Hero = () => {
               <div className="relative">
                 {/* Skeleton loader */}
                 {!profileLoaded && (
-                  <Skeleton 
-                    className="w-32 h-32 md:w-40 md:h-40" 
-                    rounded="rounded-3xl"
-                  />
+                  <div className="absolute inset-0 z-10">
+                    <Skeleton 
+                      className="w-32 h-32 md:w-40 md:h-40" 
+                      rounded="rounded-3xl"
+                    />
+                  </div>
                 )}
                 <img 
                   src={profpic} 
                   alt="Agung Saputra" 
-                  className={`w-32 h-32 md:w-40 md:h-40 rounded-3xl object-cover shadow-lg transition-opacity duration-300 ${profileLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
+                  className={`w-32 h-32 md:w-40 md:h-40 rounded-3xl object-cover shadow-lg transition-opacity duration-500 ${profileLoaded ? 'opacity-100' : 'opacity-0'}`}
                   onLoad={() => setProfileLoaded(true)}
                 />
                 {/* Status Indicator - Green dot */}

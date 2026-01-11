@@ -25,10 +25,12 @@ const ProjectCard = ({ project, index, techIcons, onClick, viewDetailsText }) =>
       onClick={onClick}
     >
       {/* Project Image */}
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-48 overflow-hidden bg-gray-100 dark:bg-neutral-800">
         {/* Skeleton loader */}
         {!imageLoaded && (
-          <Skeleton className="absolute inset-0 w-full h-full" rounded="rounded-none" />
+          <div className="absolute inset-0 z-10">
+            <Skeleton className="w-full h-full" rounded="rounded-none" />
+          </div>
         )}
         <img 
           src={project.image} 
