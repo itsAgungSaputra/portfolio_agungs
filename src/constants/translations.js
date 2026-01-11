@@ -223,7 +223,7 @@ export const translations = {
       yourName: "Your Name",
       yourEmail: "Your Email",
       message: "Message",
-      namePlaceholder: "John Doe",
+      namePlaceholder: "John Cena",
       emailPlaceholder: "john@example.com",
       messagePlaceholder: "Tell me about your project...",
       send: "Send Message",

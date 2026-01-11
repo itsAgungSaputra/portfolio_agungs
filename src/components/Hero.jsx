@@ -80,7 +80,7 @@ const CVModal = ({ isOpen, onClose, t }) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-md"
+            className="fixed top-1/2 left-0 right-0 -translate-y-1/2 z-50 mx-4 sm:mx-auto max-w-md sm:left-1/2 sm:-translate-x-1/2"
           >
             <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-neutral-800 overflow-hidden">
               {/* Header */}
