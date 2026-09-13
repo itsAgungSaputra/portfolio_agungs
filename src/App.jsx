@@ -11,9 +11,9 @@ import { LanguageProvider } from "./context/LanguageContext";
 export default function App() {
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-gray-50 dark:bg-neutral-950">
+      <div className="min-h-screen bg-warm-50 dark:bg-warm-900">
         <Navbar />
-        <main className="max-w-7xl mx-auto pt-20 px-4 sm:px-6 space-y-12 md:space-y-16">
+        <main className="max-w-7xl mx-auto pt-16 md:pt-20 px-4 sm:px-6 space-y-12 md:space-y-16">
           <Hero />
           <Skills />
           <Education />

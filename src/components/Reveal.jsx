@@ -1,37 +1,36 @@
-import React, { useEffect, useRef } from 'react'
-import { motion, useInView, useAnimation } from 'framer-motion'
+import { motion } from 'framer-motion';
 
-const Reveal = ({ children, width = 'fit-content' }) => {
-
-    const ref = useRef(null)
-
-    const isInView = useInView(ref, { once: true })
-
-    const mainControls = useAnimation()
-
-    useEffect(() => {
-        if (isInView) {
-            mainControls.start('visible')
-        }
-    }, [isInView, mainControls])
-
+/**
+ * Reveal — smooth scroll-triggered fade+slide animation
+ * 
+ * Props:
+ *   delay     — animation delay in seconds (default 0)
+ *   y         — slide distance in px (default 16)
+ *   duration  — animation duration in seconds (default 0.5)
+ *   className — additional classes for the wrapper
+ */
+const Reveal = ({
+  children,
+  delay = 0,
+  y = 16,
+  duration = 0.5,
+  className = '',
+}) => {
   return (
-    <div ref={ref} style={{ position: 'relative', width, overflow: 'hidden' }}>
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{
+        duration,
+        delay,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
-        <motion.div
-        variants={{
-            hidden: { opacity: 0, y: 75 },
-            visible: { opacity: 1, y: 0 }, 
-        }}
-        initial="hidden"
-        animate={mainControls}
-        transition={{ duration: 0.5, delay: 0.25 }}
-        >
-            {children}
-        </motion.div>
-        
-    </div>
-  )
-}
-
-export default Reveal
+export default Reveal;

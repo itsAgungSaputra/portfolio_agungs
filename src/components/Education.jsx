@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
 import { HiAcademicCap, HiBookOpen } from "react-icons/hi";
 import { useState } from "react";
 import Skeleton from "./ui/Skeleton";
+import Reveal from "./Reveal";
 import { useLanguage } from "../context/LanguageContext";
 
 // Import education logos
@@ -15,18 +15,12 @@ const EducationItem = ({ edu, index }) => {
   const { language } = useLanguage();
 
   return (
-    <motion.div
-      className="relative pl-6 sm:pl-8"
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-    >
+    <div className="relative pl-6 sm:pl-8">
       {/* Dot */}
-      <div className="absolute left-0 top-1.5 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-purple-600 dark:bg-purple-500 border-[3px] sm:border-4 border-white dark:border-neutral-900 shadow-sm" />
+      <div className="absolute left-0 top-1.5 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-amber-700 dark:bg-amber-500 border-[3px] sm:border-4 border-white dark:border-warm-900 shadow-sm" />
 
       {/* Content */}
-      <div className="bg-gray-50 dark:bg-neutral-800/50 rounded-xl sm:rounded-2xl p-3 sm:p-5 hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors">
+      <div className="bg-warm-50 dark:bg-warm-800/50 rounded-xl sm:rounded-2xl p-3 sm:p-5 hover:bg-warm-100 dark:hover:bg-warm-800 transition-colors">
         {/* Mobile: Vertical Layout, Desktop: Horizontal Layout */}
         <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
           {/* Logo + Period Row (Mobile) */}
@@ -39,12 +33,12 @@ const EducationItem = ({ edu, index }) => {
               <img 
                 src={edu.logo} 
                 alt={edu.institution}
-                className={`w-10 h-10 sm:w-14 sm:h-14 object-contain rounded-lg sm:rounded-xl bg-white dark:bg-neutral-700 p-1 sm:p-1.5 transition-opacity duration-300 ${logoLoaded ? 'opacity-100' : 'opacity-0 absolute top-0 left-0'}`}
+                className={`w-10 h-10 sm:w-14 sm:h-14 object-contain rounded-lg sm:rounded-xl bg-white dark:bg-warm-700 p-1 sm:p-1.5 transition-opacity duration-300 ${logoLoaded ? 'opacity-100' : 'opacity-0 absolute top-0 left-0'}`}
                 onLoad={() => setLogoLoaded(true)}
               />
             </div>
             {/* Period - Visible only on mobile inline with logo */}
-            <span className="sm:hidden text-xs text-gray-400 dark:text-neutral-500 whitespace-nowrap">
+            <span className="sm:hidden text-xs text-warm-600 dark:text-warm-500 whitespace-nowrap">
               {edu.period}
             </span>
           </div>
@@ -52,30 +46,30 @@ const EducationItem = ({ edu, index }) => {
           {/* Info */}
           <div className="flex-1 min-w-0">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 sm:gap-1 mb-1">
-              <h4 className="text-base sm:text-lg font-semibold text-neutral-900 dark:text-white leading-tight">
+              <h4 className="font-heading text-base sm:text-lg font-bold text-warm-900 dark:text-white leading-tight">
                 {edu.degree}
               </h4>
               {/* Period - Hidden on mobile, shown on desktop */}
-              <span className="hidden sm:block text-sm text-gray-400 dark:text-neutral-500 whitespace-nowrap">
+              <span className="hidden sm:block text-sm text-warm-600 dark:text-warm-500 whitespace-nowrap">
                 {edu.period}
               </span>
             </div>
             
-            <p className="text-purple-600 dark:text-purple-400 text-xs sm:text-sm font-medium mb-1.5 sm:mb-2">
+            <p className="text-amber-700 dark:text-amber-400 text-xs sm:text-sm font-medium mb-1.5 sm:mb-2">
               {edu.institution}
             </p>
             
             {/* IPK/GPA */}
             {edu.gpa && (
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 mb-2 bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg border border-purple-200 dark:border-purple-800/50">
-                <span className="text-[10px] sm:text-xs font-semibold text-purple-700 dark:text-purple-300">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 mb-2 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-200 dark:border-amber-800/50">
+                <span className="text-[10px] sm:text-xs font-semibold text-amber-700 dark:text-amber-300">
                   {language === 'id' ? 'IPK:' : 'GPA:'}
                 </span>
-                <span className="text-xs sm:text-sm font-bold text-purple-900 dark:text-purple-100">{edu.gpa}</span>
+                <span className="text-xs sm:text-sm font-bold text-amber-900 dark:text-amber-100">{edu.gpa}</span>
               </div>
             )}
             
-            <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm mb-2 sm:mb-3 leading-relaxed">
+            <p className="text-warm-600 dark:text-warm-400 text-xs sm:text-sm mb-2 sm:mb-3 leading-relaxed">
               {edu.description}
             </p>
 
@@ -84,7 +78,7 @@ const EducationItem = ({ edu, index }) => {
               {edu.achievements.map((achievement) => (
                 <span 
                   key={achievement}
-                  className="px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium bg-white dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 rounded-md sm:rounded-lg border border-gray-200 dark:border-neutral-600"
+                  className="px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium bg-white dark:bg-warm-700 text-warm-600 dark:text-warm-300 rounded-md sm:rounded-lg border border-warm-200 dark:border-warm-600"
                 >
                   {achievement}
                 </span>
@@ -93,7 +87,7 @@ const EducationItem = ({ edu, index }) => {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -117,7 +111,7 @@ const Education = () => {
       degree: t('education.degrees.exchange'),
       institution: t('education.institutions.ub'),
       period: "Aug 2023 - Dec 2023",
-      gpa: "3.60",
+      gpa: "3.69",
       description: t('education.descriptions.ub'),
       achievements: [t('education.achievements.webDev'), t('education.achievements.uiux'), t('education.achievements.bigData'), t('education.achievements.dataScience'), t('education.achievements.humanComputerInteraction'), t('education.achievements.dataVisualization')],
       logo: logoUB
@@ -147,34 +141,23 @@ const Education = () => {
     <section id="education" className="py-10 sm:py-12 md:py-20 px-3 sm:px-4">
       <div className="container-main">
         {/* Section Header */}
-        <motion.div 
-          className="text-center mb-8 sm:mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <Reveal className="mb-8 sm:mb-12">
+          <span className="section-label">02 // ACADEMIC BACKGROUND</span>
           <h2 className="section-title mb-3 sm:mb-4">{t('education.title')}</h2>
-          <p className="section-subtitle max-w-2xl mx-auto text-sm sm:text-base">
+          <p className="section-subtitle max-w-xl text-sm sm:text-base">
             {t('education.subtitle')}
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Education Timeline Card */}
-          <motion.div
-            className="bento-card lg:col-span-2"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <Reveal delay={0.05} className="lg:col-span-2">
+          <div className="bento-card h-full">
+
             {/* Card Header */}
             <div className="flex items-center gap-2 sm:gap-3 mb-5 sm:mb-8">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
-                <HiAcademicCap className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600 dark:text-purple-400" />
-              </div>
-              <h3 className="text-base sm:text-xl font-semibold text-neutral-900 dark:text-white">
+              <HiAcademicCap className="w-6 h-6 sm:w-7 sm:h-7 text-amber-700 dark:text-amber-500" />
+              <h3 className="font-heading text-base sm:text-xl font-bold text-warm-900 dark:text-white">
                 {t('education.academicBackground')}
               </h3>
             </div>
@@ -182,7 +165,7 @@ const Education = () => {
             {/* Timeline */}
             <div className="relative">
               {/* Vertical Line */}
-              <div className="absolute left-[5px] sm:left-[7px] top-2 bottom-2 w-0.5 bg-gray-200 dark:bg-neutral-700" />
+              <div className="absolute left-[5px] sm:left-[7px] top-2 bottom-2 w-0.5 bg-warm-200 dark:bg-warm-700" />
 
               {/* Timeline Items */}
               <div className="space-y-5 sm:space-y-8">
@@ -191,55 +174,48 @@ const Education = () => {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
+          </Reveal>
 
           {/* Certifications Card */}
-          <motion.div
-            className="bento-card"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h3 className="text-base sm:text-lg font-semibold text-neutral-900 dark:text-white mb-4 sm:mb-6">
+          <Reveal delay={0.12}>
+          <div className="bento-card h-full">
+            <h3 className="font-heading text-base sm:text-lg font-bold text-warm-900 dark:text-white mb-4 sm:mb-6">
               {t('education.certifications')}
             </h3>
 
             <div className="space-y-3 sm:space-y-4">
-              {certifications.map((cert, index) => (
-                <motion.div
+              {certifications.map((cert) => (
+                <div
                   key={cert.id}
-                  className="p-3 sm:p-4 bg-gray-50 dark:bg-neutral-800/50 rounded-lg sm:rounded-xl hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className="p-3 sm:p-4 bg-warm-50 dark:bg-warm-800/50 rounded-lg sm:rounded-xl hover:bg-warm-100 dark:hover:bg-warm-800 transition-colors"
                 >
-                  <h4 className="font-medium text-neutral-900 dark:text-white text-xs sm:text-sm mb-1 leading-tight">
+                  <h4 className="font-medium text-warm-900 dark:text-white text-xs sm:text-sm mb-1 leading-tight">
                     {cert.name}
                   </h4>
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] sm:text-xs text-neutral-500 dark:text-neutral-500">
+                    <span className="text-[10px] sm:text-xs text-warm-500 dark:text-warm-500">
                       {cert.issuer}
                     </span>
-                    <span className="text-[10px] sm:text-xs text-gray-400 dark:text-neutral-600">
+                    <span className="text-[10px] sm:text-xs text-warm-600 dark:text-warm-600">
                       {cert.year}
                     </span>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
             {/* Learning Note */}
-            <div className="mt-6 p-4 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-xl border border-purple-100 dark:border-purple-900/30">
+            <div className="mt-6 p-4 bg-warm-50 dark:bg-warm-800/50 rounded-xl border border-warm-200 dark:border-warm-700">
               <div className="flex items-start gap-2">
-                <HiBookOpen className="w-5 h-5 text-purple-600 dark:text-purple-400 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                <HiBookOpen className="w-5 h-5 text-amber-700 dark:text-amber-400 flex-shrink-0 mt-0.5" />
+                <p className="text-sm text-warm-600 dark:text-warm-400">
                   {t('skills.learningNote')}
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
+          </Reveal>
         </div>
       </div>
     </section>

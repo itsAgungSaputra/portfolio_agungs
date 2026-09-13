@@ -11,6 +11,7 @@ import {
   AiOutlineCheckCircle,
   AiOutlineCloseCircle
 } from "react-icons/ai";
+import Reveal from "./Reveal";
 import { useLanguage } from "../context/LanguageContext";
 
 // Toast Notification Component
@@ -157,39 +158,29 @@ const Contact = () => {
 
       <div className="container-main">
         {/* Section Header */}
-        <motion.div 
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <Reveal className="mb-12">
+          <span className="section-label">05 // GET IN TOUCH</span>
           <h2 className="section-title mb-4">{t('contact.title')}</h2>
-          <p className="section-subtitle max-w-2xl mx-auto">
+          <p className="section-subtitle max-w-xl">
             {t('contact.subtitle')}
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 md:gap-6">
           {/* Contact Form */}
-                <motion.div
-                className="bento-card lg:col-span-3"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                >
-                <h3 className="text-lg md:text-xl font-semibold text-neutral-900 dark:text-white mb-4 md:mb-6">
-                  {t('contact.sendMessage')}
-                </h3>
-                
-                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
+          <Reveal delay={0.05} className="lg:col-span-3">
+          <div className="bento-card h-full">
+            <h3 className="font-heading text-lg md:text-xl font-bold text-warm-900 dark:text-white mb-4 md:mb-6">
+              {t('contact.sendMessage')}
+            </h3>
+            
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-warm-600 dark:text-warm-400 mb-2">
                     {t('contact.yourName')}
-                    </label>
-                    <input
+                  </label>
+                  <input
                     type="text"
                     name="name"
                     value={formData.name}
@@ -197,13 +188,13 @@ const Contact = () => {
                     required
                     className="input-minimal"
                     placeholder={t('contact.namePlaceholder')}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-warm-600 dark:text-warm-400 mb-2">
                     {t('contact.yourEmail')}
-                    </label>
-                    <input
+                  </label>
+                  <input
                     type="email"
                     name="email"
                     value={formData.email}
@@ -211,80 +202,76 @@ const Contact = () => {
                     required
                     className="input-minimal"
                     placeholder={t('contact.emailPlaceholder')}
-                    />
-                  </div>
-                  </div>
-                  
-                  <div>
-                  <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">
-                    {t('contact.message')}
-                  </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={4}
-                    className="input-minimal resize-none"
-                    placeholder={t('contact.messagePlaceholder')}
                   />
-                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-warm-600 dark:text-warm-400 mb-2">
+                  {t('contact.message')}
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={4}
+                  className="input-minimal resize-none"
+                  placeholder={t('contact.messagePlaceholder')}
+                />
+              </div>
 
-                  <motion.button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="btn-primary w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  >
-                  {isSubmitting ? (
-                    <>
+              <motion.button
+                type="submit"
+                disabled={isSubmitting}
+                className="btn-primary w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {isSubmitting ? (
+                  <>
                     <AiOutlineLoading3Quarters className="animate-spin" />
                     {t('contact.sending')}
-                    </>
-                  ) : (
-                    <>
+                  </>
+                ) : (
+                  <>
                     <AiOutlineSend />
                     {t('contact.send')}
-                    </>
-                  )}
-                  </motion.button>
-                </form>
-                </motion.div>
+                  </>
+                )}
+              </motion.button>
+            </form>
+          </div>
+          </Reveal>
 
-                {/* Contact Info */}
-          <motion.div
-            className="lg:col-span-2 space-y-3 md:space-y-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
+          {/* Contact Info */}
+          <Reveal delay={0.12} className="lg:col-span-2">
+            <div className="space-y-3 md:space-y-4">
             {/* Email - Copy to Clipboard */}
             <motion.button
               onClick={handleCopyEmail}
-              className="bento-card bento-card-hover flex items-center gap-3 md:gap-4 group w-full text-left cursor-pointer"
+              className="bento-card bento-card-hover flex items-center gap-3 md:gap-4 group w-full text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-400 focus-visible:ring-offset-2"
               whileTap={{ scale: 0.98 }}
             >
-              <div className={`w-10 h-10 md:w-12 md:h-12 flex-shrink-0 rounded-2xl flex items-center justify-center text-lg md:text-xl transition-all ${
+              <div className={`w-10 h-10 flex-shrink-0 rounded-xl flex items-center justify-center text-lg md:text-xl transition-all ${
                 copiedEmail 
                   ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' 
-                  : 'bg-gray-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/30 group-hover:text-indigo-600 dark:group-hover:text-indigo-400'
+                  : 'bg-warm-100 dark:bg-warm-800 text-warm-600 dark:text-warm-400 group-hover:bg-warm-100 dark:group-hover:bg-warm-800 group-hover:text-amber-700 dark:group-hover:text-amber-400'
               }`}>
                 {copiedEmail ? <AiOutlineCheck /> : <AiOutlineMail />}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider mb-0.5">
+                <p className="text-xs font-semibold text-warm-600 dark:text-warm-400 uppercase tracking-wider mb-0.5">
                   Email
                 </p>
-                <p className="font-medium text-sm md:text-base text-neutral-900 dark:text-white truncate">
+                <p className="font-medium text-sm md:text-base text-warm-900 dark:text-white truncate">
                   {copiedEmail ? t('contact.copied') : 'agungsaputraofficial@gmail.com'}
                 </p>
               </div>
               <div className={`text-base md:text-lg flex-shrink-0 transition-all ${
                 copiedEmail 
                   ? 'text-green-500' 
-                  : 'text-neutral-400 group-hover:text-indigo-500'
+                  : 'text-warm-600 group-hover:text-amber-500'
               }`}>
                 {copiedEmail ? <AiOutlineCheck /> : <AiOutlineCopy />}
               </div>
@@ -297,16 +284,16 @@ const Contact = () => {
                 href={contact.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bento-card bento-card-hover flex items-center gap-3 md:gap-4 group"
+                className="bento-card bento-card-hover flex items-center gap-3 md:gap-4 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-400 focus-visible:ring-offset-2"
               >
-                <div className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 rounded-2xl bg-gray-100 dark:bg-neutral-800 flex items-center justify-center text-lg md:text-xl text-neutral-600 dark:text-neutral-400 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/30 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-all">
+                <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-warm-100 dark:bg-warm-800 flex items-center justify-center text-lg md:text-xl text-warm-600 dark:text-warm-400 group-hover:bg-warm-100 dark:group-hover:bg-warm-800 group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-all">
                   {contact.icon}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs text-neutral-500 dark:text-neutral-500 uppercase tracking-wider mb-0.5">
+                  <p className="text-xs font-semibold text-warm-600 dark:text-warm-400 uppercase tracking-wider mb-0.5">
                     {contact.label}
                   </p>
-                  <p className="font-medium text-sm md:text-base text-neutral-900 dark:text-white truncate">
+                  <p className="font-medium text-sm md:text-base text-warm-900 dark:text-white truncate">
                     {contact.value}
                   </p>
                 </div>
@@ -314,13 +301,14 @@ const Contact = () => {
             ))}
 
             {/* Additional Info Card */}
-            <div className="bento-card bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border-indigo-100 dark:border-indigo-900/30">
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                {t('contact.basedIn')} <span className="font-semibold text-neutral-900 dark:text-white">Gorontalo, Indonesia</span>. 
+            <div className="bento-card bg-warm-50 dark:bg-warm-800/50">
+              <p className="text-sm text-warm-600 dark:text-warm-400">
+                {t('contact.basedIn')} <span className="font-semibold text-warm-900 dark:text-white">Gorontalo, Indonesia</span>. 
                 {t('contact.openRemote')}
               </p>
             </div>
-          </motion.div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

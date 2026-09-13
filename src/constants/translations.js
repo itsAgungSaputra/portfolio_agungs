@@ -20,7 +20,7 @@ export const translations = {
       openForWork: "Open for Work",
       checkProfile: "Check my profile",
       viewResume: "View Resume",
-      connect: "Connect",
+      connect: "Get in Touch",
       nowPlaying: "Now Listening",
       techStack: "Tech Stack",
       selectCV: "Select CV Version",
@@ -31,9 +31,9 @@ export const translations = {
     // Skills Section
     skills: {
       title: "Skills & Technologies",
-      subtitle: "Technologies and tools I use to bring ideas to life",
+      subtitle: "Current stack and tools I use for building client and internal web applications.",
       frontend: "Frontend",
-      frontendDesc: "Building beautiful user interfaces",
+      frontendDesc: "Semantic markup, responsive design, and interactive state management",
       backend: "Backend",
       backendDesc: "Server-side development",
       tools: "Tools",
@@ -147,7 +147,7 @@ export const translations = {
     // Portfolio Section
     portfolio: {
       title: "Featured Projects",
-      subtitle: "A collection of projects that showcase my skills and passion for web development",
+      subtitle: "Production-ready web applications, client projects, and front-end experiments.",
       viewDetails: "Click to view details",
       viewMore: "View More on GitHub",
       viewDemo: "Live Demo",
@@ -266,7 +266,7 @@ export const translations = {
       openForWork: "Terbuka untuk Bekerja",
       checkProfile: "Lihat profil saya",
       viewResume: "Lihat Resume",
-      connect: "Terhubung",
+      connect: "Hubungi Saya",
       nowPlaying: "Sedang Mendengarkan",
       techStack: "Tech Stack",
       selectCV: "Pilih Versi CV",
@@ -277,9 +277,9 @@ export const translations = {
     // Skills Section
     skills: {
       title: "Keahlian & Teknologi",
-      subtitle: "Teknologi dan alat yang saya gunakan untuk mewujudkan ide",
+      subtitle: "Teknologi dan perangkat utama yang saya gunakan sehari-hari.",
       frontend: "Frontend",
-      frontendDesc: "Membangun antarmuka pengguna yang menarik",
+      frontendDesc: "Struktur semantik, antarmuka responsif, dan interaktivitas modern",
       backend: "Backend",
       backendDesc: "Pengembangan sisi server",
       tools: "Alat",
@@ -393,7 +393,7 @@ export const translations = {
     // Portfolio Section
     portfolio: {
       title: "Proyek Unggulan",
-      subtitle: "Kumpulan proyek yang menunjukkan keahlian dan semangat saya dalam pengembangan web",
+      subtitle: "Aplikasi web production, proyek klien, dan eksplorasi antarmuka pengguna.",
       viewDetails: "Klik untuk melihat detail",
       viewMore: "Lihat Lebih Banyak di GitHub",
       viewDemo: "Demo Langsung",

@@ -112,7 +112,7 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.href}
-              className="px-2.5 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-full transition-all duration-200"
+              className="px-2.5 py-1.5 text-sm font-medium text-warm-600 dark:text-warm-400 hover:text-warm-900 dark:hover:text-white hover:bg-warm-100 dark:hover:bg-warm-800 rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-400 focus-visible:ring-offset-2"
             >
               {link.name}
             </a>
@@ -122,10 +122,10 @@ const Navbar = () => {
         {/* Language Toggle */}
         <button
           onClick={toggleLanguage}
-          className="flex-shrink-0 flex items-center gap-1 px-2 py-1.5 rounded-full bg-gray-100 dark:bg-neutral-800 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors"
+          className="flex-shrink-0 flex items-center gap-1 px-2 py-1.5 rounded-full bg-warm-100 dark:bg-warm-800 hover:bg-warm-200 dark:hover:bg-warm-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-400 focus-visible:ring-offset-2"
           aria-label="Toggle language"
         >
-          <HiGlobeAlt className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
+          <HiGlobeAlt className="w-4 h-4 text-warm-600 dark:text-warm-400" />
           <AnimatePresence mode="wait">
             <motion.span
               key={language}
@@ -133,7 +133,7 @@ const Navbar = () => {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 10, opacity: 0 }}
               transition={{ duration: 0.15 }}
-              className="text-xs font-semibold text-neutral-700 dark:text-neutral-300 uppercase"
+              className="text-xs font-semibold text-warm-700 dark:text-warm-300 uppercase"
             >
               {language}
             </motion.span>
@@ -143,20 +143,20 @@ const Navbar = () => {
         {/* Theme Toggle */}
         <button
           onClick={toggleTheme}
-          className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors"
+          className="flex-shrink-0 w-11 h-11 flex items-center justify-center rounded-full bg-warm-100 dark:bg-warm-800 hover:bg-warm-200 dark:hover:bg-warm-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-400 focus-visible:ring-offset-2"
           aria-label="Toggle theme"
         >
           {isDark ? (
             <HiSun className="w-5 h-5 text-yellow-500" />
           ) : (
-            <HiMoon className="w-5 h-5 text-indigo-600" />
+            <HiMoon className="w-5 h-5 text-warm-600" />
           )}
         </button>
       </nav>
 
       {/* Mobile Top Bar - Logo & Theme Toggle Only */}
-      <div className="fixed top-0 left-0 right-0 z-50 md:hidden">
-        <div className="flex items-center justify-between px-4 py-3 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-neutral-800/50">
+      <header className="fixed top-0 left-0 right-0 z-40 md:hidden bg-white/85 dark:bg-warm-900/85 backdrop-blur-xl border-b border-warm-200/60 dark:border-warm-800/60">
+        <div className="flex items-center justify-between px-4 py-2.5">
           {/* Logo */}
           <a 
             href="#home" 
@@ -181,11 +181,11 @@ const Navbar = () => {
             {/* Language Toggle */}
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-1 px-2 py-1.5 rounded-full bg-gray-100 dark:bg-neutral-800 transition-colors"
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-warm-100 dark:bg-warm-800 hover:bg-warm-200 dark:hover:bg-warm-700 transition-colors"
               aria-label="Toggle language"
             >
-              <HiGlobeAlt className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
-              <span className="text-xs font-semibold text-neutral-700 dark:text-neutral-300 uppercase">
+              <HiGlobeAlt className="w-4 h-4 text-warm-600 dark:text-warm-400" />
+              <span className="text-xs font-semibold text-warm-700 dark:text-warm-300 uppercase">
                 {language}
               </span>
             </button>
@@ -193,60 +193,49 @@ const Navbar = () => {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 transition-colors"
+              className="w-11 h-11 flex items-center justify-center rounded-full bg-warm-100 dark:bg-warm-800 hover:bg-warm-200 dark:hover:bg-warm-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-400 focus-visible:ring-offset-2"
               aria-label="Toggle theme"
             >
               {isDark ? (
                 <HiSun className="w-5 h-5 text-yellow-500" />
               ) : (
-                <HiMoon className="w-5 h-5 text-indigo-600" />
+                <HiMoon className="w-5 h-5 text-warm-600" />
               )}
             </button>
           </div>
         </div>
-      </div>
+      </header>
 
       {/* Mobile Bottom Dock Navigation */}
-      <div className="fixed bottom-6 left-0 right-0 z-50 md:hidden flex justify-center px-4">
+      <div className="fixed bottom-5 left-0 right-0 z-50 md:hidden flex justify-center px-4 pointer-events-none">
         <motion.nav 
-          initial={{ y: 100, opacity: 0 }}
+          initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5, type: 'spring', stiffness: 200, damping: 20 }}
+          transition={{ duration: 0.3 }}
+          className="pointer-events-auto"
         >
-          <div className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-white/80 dark:bg-neutral-900/80 backdrop-blur-xl border border-gray-200/50 dark:border-neutral-800/50 shadow-xl">
+          <div className="flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-white/90 dark:bg-warm-900/90 backdrop-blur-xl border border-warm-200/80 dark:border-warm-800/80 shadow-2xl">
             {dockItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeSection === item.id;
               
               return (
-                <motion.button
+                <button
                   key={item.id}
                   onClick={() => handleDockClick(item.id)}
-                  className={`relative flex flex-col items-center justify-center w-14 h-12 rounded-xl transition-colors ${
+                  className={`relative flex flex-col items-center justify-center w-12 h-11 rounded-xl transition-colors ${
                     isActive 
-                      ? 'bg-indigo-50 dark:bg-indigo-900/30' 
-                      : 'hover:bg-gray-100 dark:hover:bg-neutral-800'
+                      ? 'bg-amber-100/70 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400' 
+                      : 'text-warm-500 dark:text-warm-400 hover:bg-warm-100 dark:hover:bg-warm-800'
                   }`}
-                  whileTap={{ scale: 1.2 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 17 }}
                   aria-label={item.label}
                 >
-                  <Icon 
-                    className={`w-6 h-6 transition-colors ${
-                      isActive 
-                        ? 'text-indigo-500' 
-                        : 'text-neutral-500 dark:text-neutral-400'
-                    }`}
-                  />
+                  <Icon className="w-5 h-5" />
                   {/* Active indicator dot */}
                   {isActive && (
-                    <motion.div 
-                      className="absolute -bottom-1 w-1 h-1 rounded-full bg-indigo-500"
-                      layoutId="activeDot"
-                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                    />
+                    <div className="absolute -bottom-0.5 w-1.5 h-1.5 rounded-full bg-amber-600 dark:bg-amber-400" />
                   )}
-                </motion.button>
+                </button>
               );
             })}
           </div>

@@ -30,7 +30,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="py-8 md:py-12 px-4 pb-24 md:pb-12 border-t border-gray-200 dark:border-neutral-800">
+    <footer className="py-8 md:py-12 px-4 pb-24 md:pb-12 border-t border-warm-200 dark:border-warm-800">
       <div className="container-main">
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-8">
           {/* Logo & Copyright */}
@@ -52,7 +52,7 @@ const Footer = () => {
                 className="h-8 md:h-10 w-auto object-contain hidden dark:block"
               />
             </a>
-            <p className="text-xs md:text-sm text-neutral-500 dark:text-neutral-500 flex items-center justify-center md:justify-start gap-1 flex-wrap max-w-xs md:max-w-none">
+            <p className="text-xs md:text-sm text-warm-500 dark:text-warm-500 flex items-center justify-center md:justify-start gap-1 flex-wrap max-w-xs md:max-w-none">
               <span>© {currentYear} Agung Saputra.</span>
               <span className="flex items-center gap-1">
                 {t('footer.madeWith')} <AiOutlineHeart className="text-red-500" />
@@ -67,7 +67,7 @@ const Footer = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                className="text-sm text-warm-600 dark:text-warm-400 hover:text-warm-900 dark:hover:text-warm-100 transition-colors"
               >
                 {link.name}
               </a>
@@ -83,7 +83,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-gray-100 dark:bg-neutral-800 flex items-center justify-center text-lg md:text-xl text-neutral-600 dark:text-neutral-400 hover:bg-gray-200 dark:hover:bg-neutral-700 hover:text-neutral-900 dark:hover:text-white transition-all active:scale-95"
+                className="w-11 h-11 rounded-lg flex items-center justify-center text-lg md:text-xl text-warm-500 dark:text-warm-400 hover:text-warm-900 dark:hover:text-warm-100 transition-colors duration-150 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-400 focus-visible:ring-offset-2"
               >
                 {social.icon}
               </a>
