@@ -10,7 +10,7 @@ import logoUB from "../assets/education/UNIVERSITASBRAWIJAYA.png";
 import logoSMK from "../assets/education/SMKNEGERI1LIMBOTO.png";
 
 // Education Item Component with logo loading state
-const EducationItem = ({ edu, index }) => {
+const EducationItem = ({ edu }) => {
   const [logoLoaded, setLogoLoaded] = useState(false);
   const { language } = useLanguage();
 
@@ -142,7 +142,7 @@ const Education = () => {
       <div className="container-main">
         {/* Section Header */}
         <Reveal className="mb-8 sm:mb-12">
-          <span className="section-label">02 // ACADEMIC BACKGROUND</span>
+          <span className="section-label">{t('education.label')}</span>
           <h2 className="section-title mb-3 sm:mb-4">{t('education.title')}</h2>
           <p className="section-subtitle max-w-xl text-sm sm:text-base">
             {t('education.subtitle')}
@@ -152,10 +152,9 @@ const Education = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Education Timeline Card */}
           <Reveal delay={0.05} className="lg:col-span-2">
-          <div className="bento-card h-full">
-
+          <div className="h-full">
             {/* Card Header */}
-            <div className="flex items-center gap-2 sm:gap-3 mb-5 sm:mb-8">
+            <div className="flex items-center gap-2 sm:gap-3 mb-5 sm:mb-8 border-b border-warm-200 dark:border-warm-800 pb-4">
               <HiAcademicCap className="w-6 h-6 sm:w-7 sm:h-7 text-amber-700 dark:text-amber-500" />
               <h3 className="font-heading text-base sm:text-xl font-bold text-warm-900 dark:text-white">
                 {t('education.academicBackground')}
@@ -169,8 +168,8 @@ const Education = () => {
 
               {/* Timeline Items */}
               <div className="space-y-5 sm:space-y-8">
-                {educations.map((edu, index) => (
-                  <EducationItem key={edu.id} edu={edu} index={index} />
+                {educations.map((edu) => (
+                  <EducationItem key={edu.id} edu={edu} />
                 ))}
               </div>
             </div>
@@ -179,7 +178,7 @@ const Education = () => {
 
           {/* Certifications Card */}
           <Reveal delay={0.12}>
-          <div className="bento-card h-full">
+          <div className="h-full border-t lg:border-t-0 lg:border-l border-warm-200 dark:border-warm-800 pt-6 lg:pt-0 lg:pl-8">
             <h3 className="font-heading text-base sm:text-lg font-bold text-warm-900 dark:text-white mb-4 sm:mb-6">
               {t('education.certifications')}
             </h3>
@@ -188,7 +187,7 @@ const Education = () => {
               {certifications.map((cert) => (
                 <div
                   key={cert.id}
-                  className="p-3 sm:p-4 bg-warm-50 dark:bg-warm-800/50 rounded-lg sm:rounded-xl hover:bg-warm-100 dark:hover:bg-warm-800 transition-colors"
+                  className="py-3 border-b border-warm-200 dark:border-warm-800"
                 >
                   <h4 className="font-medium text-warm-900 dark:text-white text-xs sm:text-sm mb-1 leading-tight">
                     {cert.name}
@@ -206,7 +205,7 @@ const Education = () => {
             </div>
 
             {/* Learning Note */}
-            <div className="mt-6 p-4 bg-warm-50 dark:bg-warm-800/50 rounded-xl border border-warm-200 dark:border-warm-700">
+            <div className="mt-6 pt-4 border-t border-warm-200 dark:border-warm-800">
               <div className="flex items-start gap-2">
                 <HiBookOpen className="w-5 h-5 text-amber-700 dark:text-amber-400 flex-shrink-0 mt-0.5" />
                 <p className="text-sm text-warm-600 dark:text-warm-400">

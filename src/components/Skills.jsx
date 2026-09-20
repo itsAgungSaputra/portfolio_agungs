@@ -1,6 +1,5 @@
 import { useLanguage } from "../context/LanguageContext";
 import Reveal from "./Reveal";
-import SpotlightCard from "./ui/SpotlightCard";
 import { 
   DiHtml5, DiCss3, DiJavascript1, DiReact, DiPhp, DiLaravel, DiGit
 } from "react-icons/di";
@@ -49,46 +48,36 @@ const Skills = () => {
       <div className="container-main">
         {/* Section Header */}
         <Reveal className="mb-12">
-          <span className="section-label">01 // SKILLS & TECHNOLOGIES</span>
+          <span className="section-label">{t('skills.label')}</span>
           <h2 className="section-title mb-3">{t('skills.title')}</h2>
           <p className="section-subtitle max-w-xl">{t('skills.subtitle')}</p>
         </Reveal>
 
-        {/* Skills Grid — each card reveals with small stagger */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {/* Skills list: typography and grouping carry the hierarchy. */}
+        <div className="divide-y divide-warm-200 dark:divide-warm-800 border-y border-warm-200 dark:border-warm-800">
           {skillCategories.map((category, i) => (
-            <Reveal key={category.title} delay={i * 0.1}>
-              <SpotlightCard className="h-full flex flex-col justify-between p-6 sm:p-7">
+            <Reveal key={category.title} delay={i * 0.04}>
+              <div className="grid grid-cols-1 md:grid-cols-[minmax(10rem,0.7fr)_minmax(0,1.8fr)] gap-5 md:gap-10 py-7 md:py-9">
                 <div>
-                  {/* Category Header with luxury jewel dot */}
-                  <div className="flex items-center justify-between gap-3 mb-2">
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-xs shadow-amber-500/50" />
-                      <h3 className="font-heading text-xl sm:text-2xl font-bold tracking-tight text-warm-900 dark:text-warm-50">
-                        {category.title}
-                      </h3>
-                    </div>
-                    {/* <span className="text-xs font-semibold px-2.5 py-0.5 rounded-md bg-warm-100 dark:bg-warm-800 text-warm-700 dark:text-warm-300 border border-warm-200/80 dark:border-warm-700/80">
-                      {category.skills.length} Tools
-                    </span> */}
-                  </div>
-
-                  <p className="text-sm text-warm-700 dark:text-warm-300 font-normal leading-relaxed mb-6">
+                  <h3 className="font-heading text-xl sm:text-2xl font-bold tracking-tight text-warm-900 dark:text-warm-50">
+                    {category.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-warm-600 dark:text-warm-400 leading-relaxed max-w-xs">
                     {category.description}
                   </p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill) => (
-                      <div key={skill.name} className="tech-badge">
-                        <span style={{ color: skill.color }} className="text-lg dark:brightness-110">
-                          {skill.icon}
-                        </span>
-                        <span>{skill.name}</span>
-                      </div>
-                    ))}
-                  </div>
                 </div>
-              </SpotlightCard>
+
+                <div className="flex flex-wrap content-start gap-x-5 gap-y-4">
+                  {category.skills.map((skill) => (
+                    <div key={skill.name} className="flex items-center gap-2 text-sm font-medium text-warm-800 dark:text-warm-200">
+                      <span style={{ color: skill.color }} className="text-lg dark:brightness-110">
+                        {skill.icon}
+                      </span>
+                      <span>{skill.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </Reveal>
           ))}
         </div>

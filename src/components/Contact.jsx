@@ -165,7 +165,7 @@ const Contact = () => {
       <div className="container-main">
         {/* Section Header */}
         <Reveal className="mb-12">
-          <span className="section-label">05 // GET IN TOUCH</span>
+          <span className="section-label">{t('contact.label')}</span>
           <h2 className="section-title mb-4">{t('contact.title')}</h2>
           <p className="section-subtitle max-w-xl">
             {t('contact.subtitle')}

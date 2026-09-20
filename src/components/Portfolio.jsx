@@ -104,7 +104,7 @@ const Portfolio = () => {
         <Reveal className="mb-14 md:mb-20">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-warm-200 dark:border-warm-800/80">
             <div>
-              <span className="section-label">04 // SELECTED WORKS</span>
+              <span className="section-label">{t('portfolio.label')}</span>
               <h2 className="section-title">{t('portfolio.title')}</h2>
             </div>
             <p className="section-subtitle max-w-md text-sm md:text-base">

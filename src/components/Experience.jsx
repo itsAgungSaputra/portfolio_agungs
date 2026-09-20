@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 import { useLanguage } from "../context/LanguageContext";
 
 const Experience = () => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
 
   const experiences = [
     {
@@ -82,7 +82,7 @@ const Experience = () => {
       <div className="container-main">
         {/* Section Header */}
         <Reveal className="mb-12">
-          <span className="section-label">03 // WORK EXPERIENCE</span>
+          <span className="section-label">{t('experience.label')}</span>
           <h2 className="section-title mb-4">{t('experience.title')}</h2>
           <p className="section-subtitle max-w-xl">
             {t('experience.subtitle')}
@@ -91,9 +91,9 @@ const Experience = () => {
 
         {/* Timeline Card */}
         <Reveal delay={0.06}>
-        <div className="bento-card">
+        <div className="border-y border-warm-200 dark:border-warm-800">
           {/* Card Header */}
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 py-5 border-b border-warm-200 dark:border-warm-800">
             <HiBriefcase className="w-5 h-5 text-amber-700 dark:text-amber-400" />
             <h3 className="font-heading text-xl font-bold text-warm-900 dark:text-warm-50">
               {t('experience.timeline')}
@@ -106,8 +106,8 @@ const Experience = () => {
             <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-warm-200 dark:bg-warm-700" />
 
             {/* Timeline Items */}
-            <div className="space-y-8">
-              {experiences.map((exp, index) => (
+            <div className="space-y-0">
+              {experiences.map((exp) => (
                 <div
                   key={exp.id}
                   className="relative pl-8"
@@ -116,7 +116,7 @@ const Experience = () => {
                   <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-amber-700 dark:bg-amber-500 border-4 border-white dark:border-warm-850 shadow-sm" />
 
                   {/* Content */}
-                  <div className="bg-warm-50 dark:bg-warm-800/50 rounded-2xl p-5 hover:bg-warm-100 dark:hover:bg-warm-800 transition-colors">
+                  <div className="py-7 border-b border-warm-200 dark:border-warm-800 last:border-b-0">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
                       <div>
                         <div className="flex items-center gap-2 flex-wrap">

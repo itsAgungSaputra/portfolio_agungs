@@ -30,7 +30,8 @@ export const translations = {
 
     // Skills Section
     skills: {
-      title: "Skills & Technologies",
+      label: "01 // WHAT I WORK WITH",
+      title: "What I Work With",
       subtitle: "Current stack and tools I use for building client and internal web applications.",
       frontend: "Frontend",
       frontendDesc: "Semantic markup, responsive design, and interactive state management",
@@ -43,7 +44,8 @@ export const translations = {
 
     // Education Section
     education: {
-      title: "Education",
+      label: "02 // WHERE I LEARNED",
+      title: "Where I Learned",
       subtitle: "My academic background and continuous learning journey",
       academicBackground: "Academic Background",
       certifications: "Certifications & Courses",
@@ -84,7 +86,8 @@ export const translations = {
 
     // Experience Section
     experience: {
-      title: "Work Experience",
+      label: "03 // HOW I GOT HERE",
+      title: "How I Got Here",
       subtitle: "My professional journey and contributions",
       timeline: "Experience Timeline",
       present: "Present",
@@ -146,7 +149,8 @@ export const translations = {
 
     // Portfolio Section
     portfolio: {
-      title: "Featured Projects",
+      label: "04 // THINGS I BUILT",
+      title: "Things I've Built",
       subtitle: "Production-ready web applications, client projects, and front-end experiments.",
       viewDetails: "Click to view details",
       viewMore: "View More on GitHub",
@@ -217,7 +221,8 @@ export const translations = {
 
     // Contact Section
     contact: {
-      title: "Get In Touch",
+      label: "05 // LET'S TALK",
+      title: "Let's Talk",
       subtitle: "Have a project in mind or just want to say hello? Feel free to reach out!",
       sendMessage: "Send a Message",
       yourName: "Your Name",
@@ -276,7 +281,8 @@ export const translations = {
 
     // Skills Section
     skills: {
-      title: "Keahlian & Teknologi",
+      label: "01 // YANG SAYA KERJAKAN",
+      title: "Yang Saya Kerjakan",
       subtitle: "Teknologi dan perangkat utama yang saya gunakan sehari-hari.",
       frontend: "Frontend",
       frontendDesc: "Struktur semantik, antarmuka responsif, dan interaktivitas modern",
@@ -289,7 +295,8 @@ export const translations = {
 
     // Education Section
     education: {
-      title: "Pendidikan",
+      label: "02 // TEMPAT SAYA BELAJAR",
+      title: "Tempat Saya Belajar",
       subtitle: "Latar belakang akademis dan perjalanan pembelajaran saya",
       academicBackground: "Latar Belakang Akademis",
       certifications: "Sertifikasi & Kursus",
@@ -330,7 +337,8 @@ export const translations = {
 
     // Experience Section
     experience: {
-      title: "Pengalaman Kerja",
+      label: "03 // PERJALANAN SAYA",
+      title: "Perjalanan Saya",
       subtitle: "Perjalanan profesional dan kontribusi saya",
       timeline: "Linimasa Pengalaman",
       present: "Sekarang",
@@ -392,7 +400,8 @@ export const translations = {
 
     // Portfolio Section
     portfolio: {
-      title: "Proyek Unggulan",
+      label: "04 // YANG SAYA BANGUN",
+      title: "Yang Saya Bangun",
       subtitle: "Aplikasi web production, proyek klien, dan eksplorasi antarmuka pengguna.",
       viewDetails: "Klik untuk melihat detail",
       viewMore: "Lihat Lebih Banyak di GitHub",
@@ -463,7 +472,8 @@ export const translations = {
 
     // Contact Section
     contact: {
-      title: "Hubungi Saya",
+      label: "05 // MARI BICARA",
+      title: "Mari Bicara",
       subtitle: "Punya proyek atau ingin menyapa? Jangan ragu untuk menghubungi!",
       sendMessage: "Kirim Pesan",
       yourName: "Nama Anda",
