@@ -155,7 +155,7 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Top Bar - Logo & Theme Toggle Only */}
-      <header className="fixed top-0 left-0 right-0 z-40 md:hidden bg-white/85 dark:bg-warm-900/85 backdrop-blur-xl border-b border-warm-200/60 dark:border-warm-800/60">
+      <header className="mobile-topbar fixed top-0 left-0 right-0 z-40 md:hidden bg-white/85 dark:bg-warm-900/85 backdrop-blur-xl border-b border-warm-200/60 dark:border-warm-800/60">
         <div className="flex items-center justify-between px-4 py-2.5">
           {/* Logo */}
           <a 
@@ -181,7 +181,7 @@ const Navbar = () => {
             {/* Language Toggle */}
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-warm-100 dark:bg-warm-800 hover:bg-warm-200 dark:hover:bg-warm-700 transition-colors"
+              className="flex min-h-11 items-center gap-1 px-2.5 py-1.5 rounded-full bg-warm-100 dark:bg-warm-800 hover:bg-warm-200 dark:hover:bg-warm-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-400 focus-visible:ring-offset-2"
               aria-label="Toggle language"
             >
               <HiGlobeAlt className="w-4 h-4 text-warm-600 dark:text-warm-400" />
@@ -207,14 +207,14 @@ const Navbar = () => {
       </header>
 
       {/* Mobile Bottom Dock Navigation */}
-      <div className="fixed bottom-5 left-0 right-0 z-50 md:hidden flex justify-center px-4 pointer-events-none">
+      <div className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] left-0 right-0 z-50 md:hidden flex justify-center px-4 pointer-events-none">
         <motion.nav 
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.3 }}
           className="pointer-events-auto"
         >
-          <div className="flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-white/90 dark:bg-warm-900/90 backdrop-blur-xl border border-warm-200/80 dark:border-warm-800/80 shadow-2xl">
+          <div className="mobile-dock flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-white/90 dark:bg-warm-900/90 backdrop-blur-xl border border-warm-200/80 dark:border-warm-800/80 shadow-2xl">
             {dockItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeSection === item.id;
@@ -223,7 +223,7 @@ const Navbar = () => {
                 <button
                   key={item.id}
                   onClick={() => handleDockClick(item.id)}
-                  className={`relative flex flex-col items-center justify-center w-12 h-11 rounded-xl transition-colors ${
+                  className={`relative flex flex-col items-center justify-center w-12 h-11 rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-400 focus-visible:ring-offset-2 ${
                     isActive 
                       ? 'bg-amber-100/70 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400' 
                       : 'text-warm-500 dark:text-warm-400 hover:bg-warm-100 dark:hover:bg-warm-800'

@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 import profpic from "../assets/profilepic.jpg";
 import Skeleton from "./ui/Skeleton";
 import SpotlightCard from "./ui/SpotlightCard";
@@ -29,6 +29,9 @@ import ID from 'country-flag-icons/react/3x2/ID';
 
 // CV Modal Component
 const CVModal = ({ isOpen, onClose, t }) => {
+  const shouldReduceMotion = useReducedMotion();
+  const closeButtonRef = useRef(null);
+  const previousFocusRef = useRef(null);
   const cvVersions = [
     {
       lang: "English",
@@ -60,6 +63,46 @@ const CVModal = ({ isOpen, onClose, t }) => {
     document.body.removeChild(link);
   };
 
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    previousFocusRef.current = document.activeElement;
+    closeButtonRef.current?.focus();
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const modal = document.getElementById("cv-dialog");
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+      if (event.key !== "Tab" || !modal) return;
+
+      const focusable = modal.querySelectorAll(
+        'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    modal?.addEventListener("keydown", handleKeyDown);
+    return () => {
+      modal?.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      previousFocusRef.current?.focus?.();
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
@@ -80,20 +123,25 @@ const CVModal = ({ isOpen, onClose, t }) => {
             initial={{ opacity: 0, scale: 0.95, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
-            transition={{ type: "spring", damping: 26, stiffness: 320 }}
-            className="fixed top-1/2 left-0 right-0 -translate-y-1/2 z-50 mx-4 sm:mx-auto max-w-md sm:left-1/2 sm:-translate-x-1/2"
+            transition={shouldReduceMotion ? { duration: 0.15 } : { type: "spring", damping: 26, stiffness: 320 }}
+            id="cv-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cv-dialog-title"
+            className="modal-surface fixed top-1/2 left-0 right-0 -translate-y-1/2 z-50 mx-4 sm:mx-auto max-w-md sm:left-1/2 sm:-translate-x-1/2"
           >
-            <div className="bg-white dark:bg-warm-900 rounded-2xl shadow-2xl border border-warm-200 dark:border-warm-800 overflow-hidden">
+            <div className="modal-surface bg-white dark:bg-warm-900 rounded-2xl shadow-2xl border border-warm-200 dark:border-warm-800 overflow-hidden">
               {/* Header */}
               <div className="flex items-center justify-between p-4 sm:p-5 border-b border-warm-200 dark:border-warm-800">
                 <div>
                   <span className="text-xs font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-400">RESUME / CURRICULUM VITAE</span>
-                  <h3 className="font-heading text-lg font-bold text-warm-900 dark:text-white">
+                  <h3 id="cv-dialog-title" className="font-heading text-lg font-bold text-warm-900 dark:text-white">
                     {t('hero.selectCV')}
                   </h3>
                 </div>
                 <button
                   onClick={onClose}
+                  ref={closeButtonRef}
                   className="w-11 h-11 rounded-lg bg-warm-100 dark:bg-warm-800 flex items-center justify-center text-warm-500 hover:text-warm-700 dark:hover:text-warm-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-400 focus-visible:ring-offset-2"
                   aria-label="Close"
                 >
@@ -126,14 +174,14 @@ const CVModal = ({ isOpen, onClose, t }) => {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleView(cv.file)}
-                          className="flex items-center gap-1 px-3 py-1.5 bg-warm-200 dark:bg-warm-800 text-warm-700 dark:text-warm-300 rounded-lg hover:bg-warm-300 dark:hover:bg-warm-700 transition-colors text-xs font-medium"
+                          className="min-h-11 flex items-center gap-1 px-3 py-1.5 bg-warm-200 dark:bg-warm-800 text-warm-700 dark:text-warm-300 rounded-lg hover:bg-warm-300 dark:hover:bg-warm-700 transition-colors text-xs font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-400 focus-visible:ring-offset-2"
                         >
                           <AiOutlineEye className="w-3.5 h-3.5" />
                           <span>{t('hero.view')}</span>
                         </button>
                         <button
                           onClick={() => handleDownload(cv.file, cv.downloadName)}
-                          className="flex items-center gap-1 px-3 py-1.5 bg-amber-700 dark:bg-amber-500 text-white dark:text-warm-900 rounded-lg hover:bg-amber-800 dark:hover:bg-amber-400 transition-colors text-xs font-medium"
+                          className="min-h-11 flex items-center gap-1 px-3 py-1.5 bg-amber-700 dark:bg-amber-500 text-white dark:text-warm-900 rounded-lg hover:bg-amber-800 dark:hover:bg-amber-400 transition-colors text-xs font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-400 focus-visible:ring-offset-2"
                         >
                           <AiOutlineDownload className="w-3.5 h-3.5" />
                           <span>{t('hero.download')}</span>

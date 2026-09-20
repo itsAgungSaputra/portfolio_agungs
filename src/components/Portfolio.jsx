@@ -132,6 +132,7 @@ const Portfolio = () => {
                     <SpotlightCard 
                       className="p-2 sm:p-3 overflow-hidden cursor-pointer"
                       onClick={() => setSelectedProject(project)}
+                      aria-label={`${t('portfolio.viewDetails')}: ${project.title}`}
                     >
                       <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-warm-100 dark:bg-warm-800/60">
                         {!loadedImages[project.id] && (
@@ -176,12 +177,12 @@ const Portfolio = () => {
                     </div>
 
                     {/* Headline */}
-                    <h3 
+                    <button
                       onClick={() => setSelectedProject(project)}
-                      className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-warm-900 dark:text-warm-50 hover:text-amber-700 dark:hover:text-amber-400 transition-colors cursor-pointer"
+                      className="block text-left font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-warm-900 dark:text-warm-50 hover:text-amber-700 dark:hover:text-amber-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-400 focus-visible:ring-offset-4 rounded-lg"
                     >
                       {project.title}
-                    </h3>
+                    </button>
 
                     {/* Narrative Description */}
                     <p className="text-sm sm:text-base text-warm-600 dark:text-warm-400 leading-relaxed">
@@ -211,7 +212,7 @@ const Portfolio = () => {
                           rel="noopener noreferrer"
                           className="btn-primary text-xs !py-2 !px-4"
                         >
-                          <span>Live Preview</span>
+                            <span>{t('portfolio.viewDemo')}</span>
                           <AiOutlineLink className="w-3.5 h-3.5" />
                         </a>
                       )}
@@ -225,7 +226,7 @@ const Portfolio = () => {
                           className="btn-secondary text-xs !py-2 !px-4"
                         >
                           <AiOutlineGithub className="w-3.5 h-3.5" />
-                          <span>Source Code</span>
+                          <span>{t('portfolio.viewCode')}</span>
                         </a>
                       )}
 
@@ -234,7 +235,7 @@ const Portfolio = () => {
                         onClick={() => setSelectedProject(project)}
                         className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-warm-700 dark:text-warm-300 hover:text-amber-700 dark:hover:text-amber-400 py-2 px-2 transition-colors ml-auto sm:ml-0"
                       >
-                        <span>Case Overview</span>
+                        <span>{t('portfolio.viewDetails')}</span>
                         <AiOutlineArrowRight className="w-3 h-3" />
                       </button>
                     </div>

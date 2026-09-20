@@ -1,4 +1,5 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { 
   AiOutlineGithub, 
   AiOutlineLink, 
@@ -9,19 +10,55 @@ import { useLanguage } from "../context/LanguageContext";
 
 const ProjectModal = ({ project, isOpen, onClose, techIcons }) => {
   const { t } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
+  const closeButtonRef = useRef(null);
+  const previousFocusRef = useRef(null);
+
+  useEffect(() => {
+    if (!isOpen || !project) return undefined;
+
+    previousFocusRef.current = document.activeElement;
+    closeButtonRef.current?.focus();
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const modal = document.getElementById("project-dialog");
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+      if (event.key !== "Tab" || !modal) return;
+
+      const focusable = modal.querySelectorAll(
+        'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    modal?.addEventListener("keydown", handleKeyDown);
+    return () => {
+      modal?.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      previousFocusRef.current?.focus?.();
+    };
+  }, [isOpen, onClose, project]);
 
   if (!project) return null;
 
   // Handle backdrop click
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
-
-  // Handle escape key
-  const handleKeyDown = (e) => {
-    if (e.key === "Escape") {
       onClose();
     }
   };
@@ -33,27 +70,30 @@ const ProjectModal = ({ project, isOpen, onClose, techIcons }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-warm-950/75 dark:bg-black/85 backdrop-blur-md overflow-y-auto"
+          id="project-dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="project-dialog-title"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-warm-950/80 dark:bg-black/90 overflow-y-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: shouldReduceMotion ? 0.15 : 0.2 }}
           onClick={handleBackdropClick}
-          onKeyDown={handleKeyDown}
-          tabIndex={-1}
         >
           <motion.div
-            className="relative w-full max-w-4xl max-h-[90vh] flex flex-col bg-white dark:bg-warm-900 rounded-3xl shadow-2xl border border-warm-200/90 dark:border-warm-800 overflow-hidden"
+            className="modal-surface relative w-full max-w-4xl max-h-[90vh] flex flex-col bg-white dark:bg-warm-900 rounded-3xl shadow-2xl border border-warm-200/90 dark:border-warm-800 overflow-hidden"
             initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 16 }}
-            transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={shouldReduceMotion ? { duration: 0.15 } : { duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Floating Sticky Close Button (Always visible during scroll) */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-30 w-11 h-11 flex items-center justify-center rounded-full bg-warm-900/80 hover:bg-warm-900 text-warm-100 hover:text-white backdrop-blur-md border border-white/20 transition-all duration-200 hover:scale-105 shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2"
+              ref={closeButtonRef}
+              className="absolute top-4 right-4 z-30 w-11 h-11 flex items-center justify-center rounded-full bg-warm-900 hover:bg-warm-800 text-warm-100 hover:text-white border border-white/20 transition-all duration-200 hover:scale-105 shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2"
               aria-label="Close modal"
             >
               <AiOutlineClose className="text-lg" />
@@ -84,7 +124,7 @@ const ProjectModal = ({ project, isOpen, onClose, techIcons }) => {
 
                 {/* Bottom Title on Cover */}
                 <div className="absolute bottom-5 left-5 right-16 sm:left-7 sm:bottom-6 z-10">
-                  <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white drop-shadow-sm leading-tight">
+                  <h2 id="project-dialog-title" className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white drop-shadow-sm leading-tight">
                     {project.title}
                   </h2>
                 </div>
@@ -201,7 +241,7 @@ const ProjectModal = ({ project, isOpen, onClose, techIcons }) => {
                 {/* Close Button on mobile */}
                 <button
                   onClick={onClose}
-                  className="px-4 py-2.5 rounded-xl text-xs font-semibold text-warm-600 dark:text-warm-400 hover:bg-warm-100 dark:hover:bg-warm-800 transition-colors sm:hidden border border-warm-200 dark:border-warm-700"
+                  className="min-h-11 px-4 py-2.5 rounded-xl text-xs font-semibold text-warm-600 dark:text-warm-400 hover:bg-warm-100 dark:hover:bg-warm-800 transition-colors sm:hidden border border-warm-200 dark:border-warm-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-400 focus-visible:ring-offset-2"
                 >
                   {t('portfolio.close') || "Close"}
                 </button>

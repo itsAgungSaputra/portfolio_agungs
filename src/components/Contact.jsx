@@ -20,6 +20,8 @@ const Toast = ({ message, type, onClose }) => (
     initial={{ opacity: 0, y: -20, x: "-50%" }}
     animate={{ opacity: 1, y: 0, x: "-50%" }}
     exit={{ opacity: 0, y: -20, x: "-50%" }}
+    role={type === 'success' ? 'status' : 'alert'}
+    aria-live={type === 'success' ? 'polite' : 'assertive'}
     className={`fixed top-24 left-1/2 z-50 px-4 py-3 rounded-xl shadow-lg flex items-center gap-3 ${
       type === 'success' 
         ? 'bg-green-100 dark:bg-green-900/80 text-green-800 dark:text-green-200 border border-green-200 dark:border-green-800' 
@@ -32,7 +34,11 @@ const Toast = ({ message, type, onClose }) => (
       <AiOutlineCloseCircle className="text-xl flex-shrink-0" />
     )}
     <span className="text-sm font-medium">{message}</span>
-    <button onClick={onClose} className="ml-2 hover:opacity-70">
+    <button
+      onClick={onClose}
+      className="ml-2 min-w-[44px] min-h-[44px] flex items-center justify-center hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current rounded-lg"
+      aria-label="Close notification"
+    >
       ✕
     </button>
   </motion.div>
@@ -177,10 +183,11 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-warm-600 dark:text-warm-400 mb-2">
+                  <label htmlFor="contact-name" className="block text-sm font-medium text-warm-600 dark:text-warm-400 mb-2">
                     {t('contact.yourName')}
                   </label>
                   <input
+                    id="contact-name"
                     type="text"
                     name="name"
                     value={formData.name}
@@ -191,10 +198,11 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-warm-600 dark:text-warm-400 mb-2">
+                  <label htmlFor="contact-email" className="block text-sm font-medium text-warm-600 dark:text-warm-400 mb-2">
                     {t('contact.yourEmail')}
                   </label>
                   <input
+                    id="contact-email"
                     type="email"
                     name="email"
                     value={formData.email}
@@ -207,10 +215,11 @@ const Contact = () => {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-warm-600 dark:text-warm-400 mb-2">
+                <label htmlFor="contact-message" className="block text-sm font-medium text-warm-600 dark:text-warm-400 mb-2">
                   {t('contact.message')}
                 </label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}

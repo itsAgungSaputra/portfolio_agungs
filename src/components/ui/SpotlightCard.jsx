@@ -24,14 +24,27 @@ export default function SpotlightCard({
     cardRef.current.style.setProperty("--mouse-y", `${y}px`);
   };
 
+  const handleKeyDown = (e) => {
+    if (!onClick) return;
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onClick(e);
+    }
+  };
+
   return (
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onFocus={() => setIsHovered(true)}
+      onBlur={() => setIsHovered(false)}
       onClick={onClick}
-      className={`relative overflow-hidden bento-card group ${className}`}
+      onKeyDown={handleKeyDown}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      className={`relative overflow-hidden bento-card group ${onClick ? "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 dark:focus-visible:ring-amber-400 focus-visible:ring-offset-2" : ""} ${className}`}
       {...props}
     >
       {/* Surface ambient spotlight glow */}

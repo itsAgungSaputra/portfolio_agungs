@@ -6,7 +6,6 @@ export default {
   ],
   darkMode: 'class',
   theme: {
-    extend: {},
     extend: {
       fontFamily: {
         heading: ['Outfit', 'system-ui', 'sans-serif'],
