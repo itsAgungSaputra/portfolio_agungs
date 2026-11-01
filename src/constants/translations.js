@@ -95,13 +95,15 @@ export const translations = {
       types: {
         partTime: "Part-Time",
         internship: "Internship",
+        computerInternship: "Internship",
         freelance: "Freelance"
       },
       // Job Roles
       roles: {
         codingMentor: "Coding Mentor",
         frontendDev: "Front-End Developer",
-        graphicDesigner: "Graphic Designer"
+        graphicDesigner: "Graphic Designer",
+        computerSpecialist: "Computer Specialist"
       },
       // Companies
       companies: {
@@ -109,7 +111,8 @@ export const translations = {
         sekawan: "Sekawan Media, Cluster Coding Factory (SEAL)",
         sashop: "SAShop Gorontalo",
         selfEmployed: "Self-employed",
-        smartData: "Smart Data Integrasi"
+        smartData: "Smart Data Integrasi",
+        kantorBahasa: "Kantor Bahasa Provinsi Gorontalo"
       },
       // Descriptions
       descriptions: {
@@ -117,7 +120,8 @@ export const translations = {
         sekawan: "Sekawan Media is an IT company focused on developing applications and websites. Founded in 2013, Sekawan Media has provided top-notch solutions to hundreds of clients from various industries.",
         sashop: "SAShop Gorontalo is a clothing and personal care store based in Gorontalo, Indonesia offering fashionable clothing items and personal care products.",
         selfEmployed: "High school years transitioning to college years saw dedication to Front-End Development, significantly enhancing experience and skill set.",
-        smartData: "Smart Data Integrasi is a company that specializes in web development. The company has contributed to the creation of websites and applications for several government agencies in Gorontalo."
+        smartData: "Smart Data Integrasi is a company that specializes in web development. The company has contributed to the creation of websites and applications for several government agencies in Gorontalo.",
+        kantorBahasa: "Kantor Bahasa Provinsi Gorontalo is a technical implementing unit under the Language Development and Fostering Agency, Ministry of Primary and Secondary Education, responsible for language and literature development, preservation, and public services in Gorontalo."
       },
       // Achievements
       achievements: {
@@ -143,7 +147,15 @@ export const translations = {
         webDev: "Web Development",
         graphicDesign: "Graphic Design",
         socialMedia: "Social Media",
-        contentCreation: "Content Creation"
+        contentCreation: "Content Creation",
+        googleAppsScript: "Google Apps Script",
+        wordpress: "WordPress",
+        systemsAnalysis: "Systems Analysis",
+        uiux: "UI/UX Design",
+        hardwareSupport: "Hardware & IT Support",
+        contentManagement: "Content Management",
+        multimedia: "Multimedia",
+        publicServices: "Public Services"
       }
     },
 
@@ -346,13 +358,15 @@ export const translations = {
       types: {
         partTime: "Paruh Waktu",
         internship: "Magang",
+        computerInternship: "Internship",
         freelance: "Lepas"
       },
       // Job Roles
       roles: {
         codingMentor: "Mentor Koding",
         frontendDev: "Pengembang Antarmuka Pengguna",
-        graphicDesigner: "Desainer Grafis"
+        graphicDesigner: "Desainer Grafis",
+        computerSpecialist: "Pranata Komputer"
       },
       // Companies
       companies: {
@@ -360,7 +374,8 @@ export const translations = {
         sekawan: "Sekawan Media, Cluster Coding Factory (SEAL)",
         sashop: "SAShop Gorontalo",
         selfEmployed: "Wiraswasta",
-        smartData: "Smart Data Integrasi"
+        smartData: "Smart Data Integrasi",
+        kantorBahasa: "Kantor Bahasa Provinsi Gorontalo"
       },
       // Descriptions
       descriptions: {
@@ -368,7 +383,8 @@ export const translations = {
         sekawan: "Sekawan Media adalah perusahaan IT yang fokus pada pengembangan aplikasi dan website. Didirikan pada tahun 2013, Sekawan Media telah memberikan solusi terbaik kepada ratusan klien dari berbagai industri.",
         sashop: "SAShop Gorontalo adalah toko pakaian dan perawatan pribadi yang berbasis di Gorontalo, Indonesia yang menawarkan item pakaian modis dan produk perawatan pribadi.",
         selfEmployed: "Tahun-tahun SMA hingga kuliah didedikasikan untuk Pengembangan Antarmuka Pengguna, secara signifikan meningkatkan pengalaman dan keahlian.",
-        smartData: "Smart Data Integrasi adalah perusahaan yang mengkhususkan diri dalam pengembangan web. Perusahaan telah berkontribusi dalam pembuatan website dan aplikasi untuk beberapa instansi pemerintah di Gorontalo."
+        smartData: "Smart Data Integrasi adalah perusahaan yang mengkhususkan diri dalam pengembangan web. Perusahaan telah berkontribusi dalam pembuatan website dan aplikasi untuk beberapa instansi pemerintah di Gorontalo.",
+        kantorBahasa: "Kantor Bahasa Provinsi Gorontalo merupakan unit pelaksana teknis (UPT) di bawah Badan Pengembangan dan Pembinaan Bahasa, Kementerian Pendidikan Dasar dan Menengah, yang bertugas dalam pengembangan, pelindungan, dan pelayanan publik kebahasaan serta kesastraan di Provinsi Gorontalo."
       },
       // Achievements
       achievements: {
@@ -394,7 +410,15 @@ export const translations = {
         webDev: "Pengembangan Web",
         graphicDesign: "Desain Grafis",
         socialMedia: "Media Sosial",
-        contentCreation: "Pembuatan Konten"
+        contentCreation: "Pembuatan Konten",
+        googleAppsScript: "Google Apps Script",
+        wordpress: "WordPress",
+        systemsAnalysis: "Systems Analysis",
+        uiux: "UI/UX Design",
+        hardwareSupport: "Hardware & IT Support",
+        contentManagement: "Content Management",
+        multimedia: "Multimedia",
+        publicServices: "Public Services"
       }
     },
 
@@ -479,7 +503,7 @@ export const translations = {
       yourName: "Nama Anda",
       yourEmail: "Email Anda",
       message: "Pesan",
-      namePlaceholder: "John Doe",
+      namePlaceholder: "John Cena",
       emailPlaceholder: "john@example.com",
       messagePlaceholder: "Ceritakan tentang proyek Anda...",
       send: "Kirim Pesan",

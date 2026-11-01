@@ -8,17 +8,38 @@ const Experience = () => {
   const experiences = [
     {
       id: 1,
+      role: t('experience.roles.computerSpecialist'),
+      type: t('experience.types.computerInternship'),
+      company: t('experience.companies.kantorBahasa'),
+      location: "Gorontalo, Indonesia",
+      period: `Sep 2026 - ${t('experience.present')}`,
+      description: t('experience.descriptions.kantorBahasa'),
+      highlights: [],
+      skills: [
+        t('experience.skillTags.googleAppsScript'),
+        t('experience.skillTags.wordpress'),
+        t('experience.skillTags.webDev'),
+        t('experience.skillTags.systemsAnalysis'),
+        t('experience.skillTags.uiux'),
+        t('experience.skillTags.hardwareSupport'),
+        t('experience.skillTags.contentManagement'),
+        t('experience.skillTags.multimedia'),
+        t('experience.skillTags.publicServices')
+      ]
+    },
+    {
+      id: 2,
       role: t('experience.roles.codingMentor'),
       type: t('experience.types.partTime'),
       company: t('experience.companies.timedoor'),
       location: "Gorontalo, Indonesia",
-      period: `Apr 2025 - ${t('experience.present')}`,
+      period: "Apr 2025 - Sep 2026",
       description: t('experience.descriptions.timedoor'),
       highlights: [t('experience.achievements.bestTeacher')],
       skills: [t('experience.skillTags.teaching'), t('experience.skillTags.programming'), t('experience.skillTags.webDev')]
     },
     {
-      id: 2,
+      id: 3,
       role: t('experience.roles.frontendDev'),
       type: t('experience.types.internship'),
       company: t('experience.companies.sekawan'),
@@ -34,7 +55,7 @@ const Experience = () => {
       skills: [t('experience.skillTags.webDev')]
     },
     {
-      id: 3,
+      id: 4,
       role: t('experience.roles.graphicDesigner'),
       type: t('experience.types.partTime'),
       company: t('experience.companies.sashop'),
@@ -47,7 +68,7 @@ const Experience = () => {
       skills: [t('experience.skillTags.graphicDesign'), t('experience.skillTags.socialMedia'), t('experience.skillTags.contentCreation')]
     },
     {
-      id: 4,
+      id: 5,
       role: t('experience.roles.frontendDev'),
       type: t('experience.types.freelance'),
       company: t('experience.companies.selfEmployed'),
@@ -63,7 +84,7 @@ const Experience = () => {
       skills: [t('experience.skillTags.webDev')]
     },
     {
-      id: 5,
+      id: 6,
       role: t('experience.roles.frontendDev'),
       type: t('experience.types.internship'),
       company: t('experience.companies.smartData'),
